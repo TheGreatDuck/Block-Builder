@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="MOUSE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (vdir &gt; 0)
+{
+    if (floor(mouse_y/64) - y/64 &lt; 0)
+    {
+        segment[y/64 - floor(mouse_y/64) - 1] -= (segment[y/64 - floor(mouse_y/64) - 1] &gt; 0);
+    }
+}
+
+if (vdir &lt; 0)
+{
+    if (floor(mouse_y/64) - y/64 &gt; 0)
+    {
+        segment[floor(mouse_y/64) - y/64 - 1] -= (segment[floor(mouse_y/64) - y/64 - 1] &gt; 0);
+    }
+}
+
+if (hdir &gt; 0)
+{
+    if (floor(mouse_x/64) - x/64 &lt; 0)
+    {
+        segment[x/64 - floor(mouse_x/64) - 1] -= (segment[x/64 - floor(mouse_x/64) - 1] &gt; 0);
+    }
+}
+
+if (hdir &lt; 0)
+{
+    if (floor(mouse_x/64) - x/64 &gt; 0)
+    {
+        segment[floor(mouse_x/64) - x/64 - 1] -= (segment[floor(mouse_x/64) - x/64 - 1] &gt; 0);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

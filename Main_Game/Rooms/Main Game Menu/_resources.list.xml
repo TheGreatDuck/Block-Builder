@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="rm_startup" type="RESOURCE"/>
+  <resource name="rm_mainMenu" type="RESOURCE"/>
+  <resource name="rm_progressScreen" type="RESOURCE"/>
+</resources>

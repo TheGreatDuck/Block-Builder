@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Blocks" type="GROUP"/>
+  <resource name="TriggerCubes" type="GROUP"/>
+  <resource name="obj_playerOverworld" type="RESOURCE"/>
+</resources>

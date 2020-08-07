@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_bossStoneSerpentCollision" type="RESOURCE"/>
+  <resource name="spr_bossStoneSerpentHead" type="RESOURCE"/>
+  <resource name="spr_bossStoneSerpentBody" type="RESOURCE"/>
+  <resource name="spr_bossStoneSerpentSkeleton" type="RESOURCE"/>
+</resources>

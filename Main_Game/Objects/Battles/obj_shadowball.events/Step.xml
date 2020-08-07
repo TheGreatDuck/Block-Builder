@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (x==64*floor(x/64) &amp;&amp; y==64*floor(y/64) &amp;&amp; x &gt;= 0 &amp;&amp; y &gt;= 0)
+{
+    blockCollision = obj_blockNetwork.blocks[x/64,y/64] mod 1000000;
+    blockMetadata = 1000000*floor(obj_blockNetwork.blocks[x/64,y/64]/1000000);
+    if (blockCollision == 31 || blockCollision == 32)
+    {
+        obj_blockNetwork.blocks[x/64,y/64] = 34 + blockMetadata;
+        randomVariable = irandom(9);
+        if (randomVariable == 0)
+        {
+            newEnemy = instance_create(x,y,obj_shadowIdle);
+            with (newEnemy)
+            {
+                with (obj_battleManager)
+                {
+                    linkedCycle_insertAfterCurrent(battleCycle,combatant_createCombatant(0,other.id,other.objectType,other.objectActivator));
+                }
+            }
+        }
+        instance_destroy();
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

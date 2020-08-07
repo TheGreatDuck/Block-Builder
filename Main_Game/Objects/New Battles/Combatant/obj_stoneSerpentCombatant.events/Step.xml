@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if ((x mod 64 == 0) &amp;&amp; (y mod 64 == 0) &amp;&amp; (x &lt; room_width) &amp;&amp; (y &lt; room_height) &amp;&amp; !moving &amp;&amp; (x &gt;= 0) &amp;&amp; (y &gt;= 0))
+{
+    vspeed=0;
+    hspeed=0;
+    if (movementNumber &gt; 0)
+    {
+            vspeed = vdir;
+            hspeed = hdir;
+            alarm[0] = 1;
+            moving = 1;
+            movementNumber-=1;
+    }
+}
+
+if (((abs(-hdir*8*length + x - room_width/2) &gt; room_width/2) || (abs(-vdir*8*length + y - room_height/2) &gt; room_height/2)) &amp;&amp; comingIn == false &amp;&amp; outside == true)
+{
+    comingIn = true;
+    side = irandom(3);
+    if (side mod 2 == 0)
+    {
+        y = irandom((room_height/64)-1)*64;
+        x = (side &lt; 2)*(room_width + 64) - 128;
+        hspeed = ((side &lt; 2)*(-16) + 8);
+        hdir = hspeed;
+        vspeed = 0
+        vdir = vspeed;
+    } else
+    {
+        x = irandom((room_width/64)-1)*64;
+        y = (side &gt; 2)*(room_height + 64) - 128;
+        vspeed = ((side &gt; 2)*(-16) + 8);
+        vdir = vspeed;
+        hspeed = 0
+        hdir = hspeed;
+    }
+    image_index = (4-side)*(side mod 2) + 2*(!(side/2));
+}
+
+comingIn = ((abs(-hdir*8*length + x - room_width/2) &gt; room_width/2) || (abs(-vdir*8*length + y - room_height/2) &gt; room_height/2));
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

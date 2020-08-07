@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="rm_configureControls" type="RESOURCE"/>
+  <resource name="rm_overworldLoadTest" type="RESOURCE"/>
+  <resource name="rm_level" type="RESOURCE"/>
+  <resource name="room307" type="RESOURCE"/>
+  <resource name="rm_overworldMapOne" type="RESOURCE"/>
+  <resource name="rm_3DTest" type="RESOURCE"/>
+  <resource name="rm_menu" type="RESOURCE"/>
+  <resource name="rm_battleLavaTurretOne" type="RESOURCE"/>
+  <resource name="Main Game Menu" type="GROUP"/>
+  <resource name="rm_saveRoom" type="RESOURCE"/>
+  <resource name="rm_enemyGallery" type="RESOURCE"/>
+  <resource name="otherBattleTest" type="RESOURCE"/>
+  <resource name="rm_cerberusFight" type="RESOURCE"/>
+  <resource name="rm_shadowBattle1" type="RESOURCE"/>
+  <resource name="rm_forestLavaRiver" type="RESOURCE"/>
+  <resource name="rm_battleTest" type="RESOURCE"/>
+  <resource name="Level 1-1" type="GROUP"/>
+  <resource name="Level 1-2" type="GROUP"/>
+  <resource name="Level 1-3" type="GROUP"/>
+  <resource name="Level 1-4" type="GROUP"/>
+  <resource name="rm_bigRoomTest" type="RESOURCE"/>
+  <resource name="rm_introThreeMonthsLater" type="RESOURCE"/>
+  <resource name="rm_oldMenu" type="RESOURCE"/>
+  <resource name="rm_magmaRivers" type="RESOURCE"/>
+  <resource name="rm_erebus" type="RESOURCE"/>
+  <resource name="Cutscenes" type="GROUP"/>
+</resources>

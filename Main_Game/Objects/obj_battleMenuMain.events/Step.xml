@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">x = view_xview[0] + 240;
+y = view_yview[0] + 240;
+
+for (i=0; i&lt;3; i+=1)
+{
+    for (j=0; j&lt;3; j+=1)
+    {
+        buttons[i,j].x = x + 48*i + 16;
+        buttons[i,j].y = y + 48*j + 16;
+    }
+}
+
+if (buttons[0].clicked)
+{
+    for (i=0; i&lt;3; i+=1)
+    {
+        for (j=0; j&lt;3; j+=1)
+        {
+            with (buttons[i,j])
+            {
+                instance_destroy();
+            }
+        }
+    }
+    instance_change(obj_battleMenuMove,true);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

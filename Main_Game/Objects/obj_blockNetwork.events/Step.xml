@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/* Rather than trying to have the player object access
+ * the block array, the block network will use it's own
+ * (undrawn) sprite to place the collision only where the
+ * player can walk to.
+ *
+ * This serves as a triple optimization. The old version
+ * had an array of objects that would toggle between colliding
+ * and not colliding. Updating an entire room full of these is
+ * highly inefficiant. Secondly, removing all those entities
+ * reduces the memory of the running game. Thirdly, I do not
+ * know if the collision event is down on a pixel by pixel
+ * iterative loop or if it more careful about the checks.
+ * Only having the local region valid for collision reduces
+ * the time it takes for the collision event of the player
+ * object to determine whether or not a collision exists.
+ */
+x = 64*floor(obj_playerOverworld.x/64);
+y = 64*floor(obj_playerOverworld.y/64);
+upB = 0;
+leftB = 0;
+
+if (y/64 - 1 &gt;= 0)
+{
+    upB = blocks[x/64,y/64 - 1];
+}
+
+if (x/64 - 1 &gt;= 0)
+{
+    leftB = blocks[x/64 - 1,y/64];
+}
+
+rightB = blocks[x/64 + 1,y/64];
+downB = blocks[x/64,y/64 + 1];
+
+upB = upB mod 1000000;
+leftB = upB mod 1000000;
+rightB = upB mod 1000000;
+downB = upB mod 1000000;
+
+upCollision = (upB &lt;= 3) || (upB == 7) || ((upB &gt;= 11) &amp;&amp; (upB &lt;= 15)) || (upB == 19) || (upB == 20) || (upB == 21) || ((upB &gt;= 23) &amp;&amp; (upB &lt;= 26)) || (upB == 35);
+leftCollision = (leftB &lt;= 3) || (leftB == 7) || ((leftB &gt;= 11) &amp;&amp; (leftB &lt;= 15)) || (leftB == 19) || (leftB == 20) || (leftB == 21) || ((leftB &gt;= 23) &amp;&amp; (leftB &lt;= 26)) || (leftB == 35);
+rightCollision = (rightB &lt;= 3) || (rightB == 7) || ((rightB &gt;= 11) &amp;&amp; (rightB &lt;= 15)) || (rightB == 19) || (rightB == 20) || (rightB == 21) || ((rightB &gt;= 23) &amp;&amp; (rightB &lt;= 26)) || (rightB == 35);
+downCollision = (downB &lt;= 3) || (downB == 7) || ((downB &gt;= 11) &amp;&amp; (downB &lt;= 15)) || (downB == 19) || (downB == 20) || (downB == 21) || ((downB &gt;= 23) &amp;&amp; (downB &lt;= 26)) || (downB == 35);
+
+//set the sprite to the correct  value
+sprite_index = spr_blockCollisions;
+
+//set the image index to the right combination
+image_index = 8*downCollision + 4*rightCollision + 2*leftCollision + upCollision;
+
+//lock the subimage where we set it
+image_speed = 0;
+
+animationFrame = (animationFrame + 1) mod 8;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

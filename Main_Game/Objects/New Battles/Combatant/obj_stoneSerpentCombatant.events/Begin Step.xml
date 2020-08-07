@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if ((x mod 64 == 0) &amp;&amp; (y mod 64 == 0) &amp;&amp; (x &lt; room_width) &amp;&amp; (y &lt; room_height) &amp;&amp; (x &gt;= 0) &amp;&amp; (y &gt;= 0))
+{
+    for (i = 0; i &lt;= length; i+=1)
+    {
+        block_x = (-hdir*8*(i)+x)/64;
+        block_y = (-vdir*8*(i)+y)/64;
+        with (obj_blockNetwork)
+        {
+            if (other.block_x &gt;= 0 &amp;&amp; other.block_x &lt; hblocks &amp;&amp; other.block_y &gt;= 0 &amp;&amp; other.block_y &lt; vblocks)
+            {
+                blockMetadata = 1000000*floor(blocks[blocks_x,blocks_y]/1000000);
+                blocks[other.block_x,other.block_y] = 1 + blockMetadata;
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

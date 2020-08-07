@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">global.worldName = "YggdrasilQuest"
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".map");
+
+width = file_text_read_real(file);
+file_text_readln(file);
+height = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; height; i += 1)
+{
+    for (j = 0; j &lt; width; j += 1)
+    {
+        type = file_text_read_real(file);
+        if (type == 0)
+        {
+            instance_create(j*32, i*32, obj_mapWater);
+        }
+        
+        if (type == 1)
+        {
+            instance_create(j*32, i*32, obj_mapLand);
+        }
+        
+        if (type == 2)
+        {
+            instance_create(j*32, i*32, obj_mapGrass);
+        }
+        
+        if (type == 3)
+        {
+            instance_create(j*32, i*32, obj_mapSand);
+        }
+        
+        if (type == 4)
+        {
+            instance_create(j*32, i*32, obj_mapSwamp);
+        }
+        
+        if (type == 5)
+        {
+            instance_create(j*32, i*32, obj_mapMetal);
+        }
+        
+        if (type == 6)
+        {
+            instance_create(j*32, i*32, obj_mapLava);
+        }
+    }
+    file_text_readln(file);
+}
+file_text_close(file);
+
+
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".col");
+
+width = file_text_read_real(file);
+file_text_readln(file);
+height = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; height; i += 1)
+{
+    for (j = 0; j &lt; width; j += 1)
+    {
+        type = file_text_read_real(file);
+        if (type == 1)
+        {
+            instance_create(j*32, i*32, obj_mapBarrier);
+        }
+    }
+    file_text_readln(file);
+}
+file_text_close(file);
+
+
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".play");
+
+width = file_text_read_real(file);
+file_text_readln(file);
+height = file_text_read_real(file);
+file_text_readln(file);
+
+instance_create(32*width, 32*height, obj_mapPlayer);
+
+file_text_close(file);
+
+
+
+global.worldName = "YggdrasilQuest"
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".pat");
+
+width = file_text_read_real(file);
+file_text_readln(file);
+height = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; height; i += 1)
+{
+    for (j = 0; j &lt; width; j += 1)
+    {
+        type = file_text_read_real(file);
+        if (type &amp; (1 &lt;&lt; 0))
+        {
+            instance_create(j*32, i*32, obj_mapWestMapPath);
+        }
+        
+        if (type &amp; (1 &lt;&lt; 1))
+        {
+            instance_create(j*32, i*32, obj_mapEastMapPath);
+        }
+        
+        if (type &amp; (1 &lt;&lt; 2))
+        {
+            instance_create(j*32, i*32, obj_mapNorthMapPath);
+        }
+        
+        if (type &amp; (1 &lt;&lt; 3))
+        {
+            instance_create(j*32, i*32, obj_mapSouthMapPath);
+        }
+    }
+    file_text_readln(file);
+}
+file_text_close(file);
+
+
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".lev");
+
+numberOfLevels = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; numberOfLevels; i += 1)
+{
+    xPos = file_text_read_real(file);
+    yPos = file_text_read_real(file);
+    
+    createdLevel = instance_create(32*xPos, 32*yPos, obj_mapLevel);
+    
+    createdLevel.level = file_text_read_real(file);
+    
+    createdLevel.north = file_text_read_real(file);
+    createdLevel.west  = file_text_read_real(file);
+    createdLevel.east  = file_text_read_real(file);
+    createdLevel.south = file_text_read_real(file);
+    
+    file_text_readln(file);
+}
+file_text_close(file);
+
+
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".loc");
+
+numberOfLocks = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; numberOfLocks; i += 1)
+{
+    xPos = file_text_read_real(file);
+    yPos = file_text_read_real(file);
+    
+    createdLock = instance_create(32*xPos, 32*yPos, obj_mapLock);
+    
+    createdLock.level = file_text_read_real(file);
+    
+    createdLock.north = file_text_read_real(file);
+    createdLock.west  = file_text_read_real(file);
+    createdLock.east  = file_text_read_real(file);
+    createdLock.south = file_text_read_real(file);
+    
+    file_text_readln(file);
+}
+file_text_close(file);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

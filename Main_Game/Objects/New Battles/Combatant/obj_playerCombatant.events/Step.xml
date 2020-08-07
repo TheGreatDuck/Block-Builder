@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (x==64*floor(x/64) &amp;&amp; y==64*floor(y/64) &amp;&amp; (hspeed!=0 || vspeed!=0))
+{
+    if (left==-1 &amp;&amp; (!scr_walkableBlockExists(x/64,y/64,-1,0) || !scr_isBlockType(x/64,y/64,5)))
+    {
+            vspeed=0;
+            hspeed=0;
+            image_speed=0;
+            attackCompleted = true;
+            left = 0;
+    }
+    
+    if (right==1 &amp;&amp; (!scr_walkableBlockExists(x/64,y/64,1,0) || !scr_isBlockType(x/64,y/64,5)))
+    {
+        vspeed=0;
+        hspeed=0;
+        image_speed=0;
+        attackCompleted = true;
+        right = 0;
+    }
+    
+    if (up==-1 &amp;&amp; (!scr_walkableBlockExists(x/64,y/64,0,-1) || !scr_isBlockType(x/64,y/64,5)))
+    {
+        vspeed=0;
+        hspeed=0;
+        image_speed=0;
+        attackCompleted = true;
+        up = 0;
+    }
+    
+    if (down==1 &amp;&amp; (!scr_walkableBlockExists(x/64,y/64,0,1) || !scr_isBlockType(x/64,y/64,5)))
+    {
+        vspeed=0;
+        hspeed=0;
+        image_speed=0;
+        attackCompleted = true;
+        down = 0;
+    }
+}
+
+if (arrowShot == true &amp;&amp; instance_number(obj_arrow) == 0)
+{
+    attackCompleted = true;
+    arrowShot = false;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

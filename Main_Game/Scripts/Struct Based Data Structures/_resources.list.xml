@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Heap Interface" type="GROUP"/>
+  <resource name="Functors" type="GROUP"/>
+  <resource name="LinkedCycle" type="GROUP"/>
+  <resource name="Nodes" type="GROUP"/>
+  <resource name="Combatant" type="GROUP"/>
+  <resource name="Battle" type="GROUP"/>
+  <resource name="LinkedList" type="GROUP"/>
+  <resource name="StoneSerpentSegments" type="GROUP"/>
+  <resource name="Vector" type="GROUP"/>
+  <resource name="Triangle" type="GROUP"/>
+  <resource name="Line" type="GROUP"/>
+  <resource name="Square" type="GROUP"/>
+  <resource name="3D Model Gen Scripts" type="GROUP"/>
+</resources>

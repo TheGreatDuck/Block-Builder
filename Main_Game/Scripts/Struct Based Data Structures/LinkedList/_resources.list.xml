@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="linkedList_createList" type="RESOURCE"/>
+  <resource name="linkedList_setHeadNode" type="RESOURCE"/>
+  <resource name="linkedList_setTailNode" type="RESOURCE"/>
+  <resource name="linkedList_setCurrentNode" type="RESOURCE"/>
+  <resource name="linkedList_setDataDestructor" type="RESOURCE"/>
+  <resource name="linkedList_setLength" type="RESOURCE"/>
+</resources>

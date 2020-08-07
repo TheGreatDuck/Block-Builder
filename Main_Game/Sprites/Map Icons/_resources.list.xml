@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_mapLava" type="RESOURCE"/>
+  <resource name="spr_mapBarrier" type="RESOURCE"/>
+  <resource name="spr_mapLock" type="RESOURCE"/>
+  <resource name="spr_mapForest" type="RESOURCE"/>
+  <resource name="spr_mapLand" type="RESOURCE"/>
+  <resource name="spr_mapDesert" type="RESOURCE"/>
+  <resource name="spr_mapOcean" type="RESOURCE"/>
+  <resource name="spr_mapWall" type="RESOURCE"/>
+  <resource name="spr_mapSwamp" type="RESOURCE"/>
+  <resource name="spr_mapWestMapPath" type="RESOURCE"/>
+  <resource name="spr_mapNorthMapPath" type="RESOURCE"/>
+  <resource name="spr_mapEastMapPath" type="RESOURCE"/>
+  <resource name="spr_mapSouthMapPath" type="RESOURCE"/>
+  <resource name="spr_mapLevelUnfinished" type="RESOURCE"/>
+  <resource name="spr_mapLevelComplete" type="RESOURCE"/>
+</resources>

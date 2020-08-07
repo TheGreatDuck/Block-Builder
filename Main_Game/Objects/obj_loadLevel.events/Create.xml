@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">blockGraph = instance_create(0,0,obj_blockGraph);
+
+with (blockGraph)
+{
+    blockGraph_loadFromFile(program_directory + "\Worlds\" + global.worldName + "\Level " + string(global.levelLoading) + "\level.ter");
+    blockGraph_setUpBlockGraphList();
+    surfaceModel = blockGraph_create3DModel();
+}
+
+
+
+file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\Level " + string(global.levelLoading) + "\level.door");
+
+numberOfDoors = file_text_read_real(file);
+file_text_readln(file);
+
+for (i = 0; i &lt; numberOfDoors; i += 1)
+{
+    createdDoor = instance_create(0, 0, obj_exitDoor3D);
+    
+    createdDoor.level = global.levelLoading;
+    
+    createdDoor.currentSpace = file_text_read_real(file);
+    
+    createdDoor.sideFacing = file_text_read_real(file);
+    
+    createdDoor.north = file_text_read_real(file);
+    createdDoor.west  = file_text_read_real(file);
+    createdDoor.east  = file_text_read_real(file);
+    createdDoor.south = file_text_read_real(file);
+    
+    file_text_readln(file);
+}
+file_text_close(file);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

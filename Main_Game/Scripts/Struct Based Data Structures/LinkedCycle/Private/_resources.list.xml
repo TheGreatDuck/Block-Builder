@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="linkedCycle_getCurrentNode" type="RESOURCE"/>
+  <resource name="linkedCycle_getDataDestructor" type="RESOURCE"/>
+  <resource name="linkedCycle_setCurrentNode" type="RESOURCE"/>
+  <resource name="linkedCycle_setDataDestructor" type="RESOURCE"/>
+  <resource name="linkedCycle_setLength" type="RESOURCE"/>
+</resources>

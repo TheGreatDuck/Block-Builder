@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_battleManager" type="RESOURCE"/>
+  <resource name="Idle" type="GROUP"/>
+  <resource name="Activator" type="GROUP"/>
+  <resource name="Combatant" type="GROUP"/>
+</resources>

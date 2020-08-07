@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (player3D_isControlPressed(control_moveUp) &amp;&amp; moveUp == 0)
+{
+    y = y - 64 + 64*(y == 128);
+    moveUp = 5;
+} else if (!player3D_isControlPressed(control_moveUp))
+{
+    moveUp = 0;
+} else
+{
+    moveUp = moveUp - 1 + (moveUp == 0);
+}
+
+
+
+if (player3D_isControlPressed(control_moveRight) &amp;&amp; moveRight == 0)
+{
+    x = x + 64 - 64*(x == 1088);
+    moveRight = 5;
+} else if (!player3D_isControlPressed(control_moveRight))
+{
+    moveRight = 0;
+} else
+{
+    moveRight = moveRight - 1 + (moveRight == 0);
+}
+
+
+
+if (player3D_isControlPressed(control_moveDown) &amp;&amp; moveDown == 0)
+{
+    y = y + 64 - 64*(y == 768);
+    moveDown = 5;
+} else if (!player3D_isControlPressed(control_moveDown))
+{
+    moveDown = 0;
+} else
+{
+    moveDown = moveDown - 1 + (moveDown == 0);
+}
+
+
+
+if (player3D_isControlPressed(control_moveLeft) &amp;&amp; moveLeft == 0)
+{
+    x = x - 64 + 64*(x == 128);
+    moveLeft = 5;
+} else if (!player3D_isControlPressed(control_moveLeft))
+{
+    moveLeft = 0;
+} else
+{
+    moveLeft = moveLeft - 1 + (moveLeft == 0);
+}
+
+
+
+if (global.gameControlPress[control_pause])
+{
+    global.gameControlPress[control_pause] = false;
+    d3d_start();
+    room_goto(global.returnTo);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

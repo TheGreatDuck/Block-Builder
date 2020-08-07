@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="node_createNode" type="RESOURCE"/>
+  <resource name="node_setData" type="RESOURCE"/>
+  <resource name="node_setNext" type="RESOURCE"/>
+  <resource name="node_setPrevious" type="RESOURCE"/>
+  <resource name="node_setDataDestructor" type="RESOURCE"/>
+  <resource name="node_getData" type="RESOURCE"/>
+  <resource name="node_getNext" type="RESOURCE"/>
+  <resource name="node_getPrevious" type="RESOURCE"/>
+  <resource name="node_getDataDestructor" type="RESOURCE"/>
+  <resource name="node_deleteNode" type="RESOURCE"/>
+  <resource name="node_byteDataDestructor" type="RESOURCE"/>
+</resources>

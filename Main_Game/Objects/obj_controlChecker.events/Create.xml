@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">global.gameControl[control_moveUp] = vk_up;
+global.gameControlType[control_moveUp] = controlType_keyboard;
+global.gameControlControllerID[control_moveUp] = 0;
+
+global.gameControl[control_moveRight] = vk_right;
+global.gameControlType[control_moveRight] = controlType_keyboard;
+global.gameControlControllerID[control_moveRight] = 0;
+
+global.gameControl[control_moveDown] = vk_down;
+global.gameControlType[control_moveDown] = controlType_keyboard;
+global.gameControlControllerID[control_moveDown] = 0;
+
+global.gameControl[control_moveLeft] = vk_left;
+global.gameControlType[control_moveLeft] = controlType_keyboard;
+global.gameControlControllerID[control_moveLeft] = 0;
+
+global.gameControl[control_blockLeft] = vk_lshift;
+global.gameControlType[control_blockLeft] = controlType_keyboard;
+global.gameControlControllerID[control_blockLeft] = 0;
+
+global.gameControl[control_blockRight] = vk_rshift;
+global.gameControlType[control_blockRight] = controlType_keyboard;
+global.gameControlControllerID[control_blockRight] = 0;
+
+global.gameControl[control_pause] = vk_enter;
+global.gameControlType[control_pause] = controlType_keyboard;
+global.gameControlControllerID[control_pause] = 0;
+
+global.gameControl[control_itemOne] = ord('S');
+global.gameControlType[control_itemOne] = controlType_keyboard;
+global.gameControlControllerID[control_itemOne] = 0;
+
+global.gameControl[control_itemTwo] = ord('D');
+global.gameControlType[control_itemTwo] = controlType_keyboard;
+global.gameControlControllerID[control_itemTwo] = 0;
+
+global.gameControl[control_cancel] = ord('C');
+global.gameControlType[control_cancel] = controlType_controller;
+global.gameControlControllerID[control_cancel] = 0;
+
+/*global.gameControl[control_moveUp] = ord('W');
+global.gameControl[control_moveLeft] = ord('A');
+global.gameControl[control_moveRight] = ord('D');
+global.gameControl[control_moveDown] = ord('S');*/
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

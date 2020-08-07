@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Items" type="GROUP"/>
+  <resource name="spr_wood" type="RESOURCE"/>
+  <resource name="spr_exit" type="RESOURCE"/>
+</resources>

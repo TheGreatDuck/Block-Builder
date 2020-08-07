@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="blockGraph_addCube" type="RESOURCE"/>
+  <resource name="blockGraph_addFromFunction" type="RESOURCE"/>
+  <resource name="blockGraph_addTubePlot" type="RESOURCE"/>
+  <resource name="blockGraph_update" type="RESOURCE"/>
+  <resource name="blockGraph_create3DModel" type="RESOURCE"/>
+  <resource name="blockGraph_createSubmodel" type="RESOURCE"/>
+  <resource name="blockGraph_blockArithmetic" type="RESOURCE"/>
+  <resource name="blockGraph_setUpBlockGraphList" type="RESOURCE"/>
+  <resource name="blockGraph_addToBlockUpdateList" type="RESOURCE"/>
+  <resource name="blockGraph_updateBlockGraphWithList" type="RESOURCE"/>
+  <resource name="blockGraph_addToTempBlockUpdateList" type="RESOURCE"/>
+  <resource name="blockGraph_addSquare" type="RESOURCE"/>
+  <resource name="blockGraph_getSideWithPoint" type="RESOURCE"/>
+  <resource name="blockGraph_getSideClosestToDirection" type="RESOURCE"/>
+  <resource name="blockGraph_loadFromFile" type="RESOURCE"/>
+  <resource name="blockGraph_saveToFile" type="RESOURCE"/>
+  <resource name="blockGraph_connectBlocks" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (waiting)
+{
+    timer -= 1;
+    if (keyboard_lastkey != 0)
+    {
+        global.gameControl[selection] = keyboard_key;
+        global.gameControlType[selection] = controlType_keyboard;
+        waiting = false;
+    }
+    
+    if (joystick_exists(0))
+    {
+        for (i = 1; i &lt;= 32; i += 1)
+        {
+            if (joystick_check_button(0,i) &amp;&amp; waiting)
+            {
+                global.gameControl[selection] = i;
+                global.gameControlType[selection] = controlType_controller;
+                global.gameControlControllerID[selection] = 0;
+                waiting = false;
+            }
+        }
+        
+        if (joystick_pov(0) == 0 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_dPadUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_pov(0) == 90 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_dPadRight;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_pov(0) == 180 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_dPadDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_pov(0) == 270 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_dPadLeft;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_xpos(0) &gt;= 0.5 &amp;&amp; joystick_xpos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_xUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_xpos(0) &lt;= -0.5 &amp;&amp; joystick_xpos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_xDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_ypos(0) &gt;= 0.5 &amp;&amp; joystick_ypos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_yUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_ypos(0) &lt;= -0.5 &amp;&amp; joystick_ypos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_yDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_zpos(0) &gt;= 0.5 &amp;&amp; joystick_zpos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_zUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_zpos(0) &lt;= -0.5 &amp;&amp; joystick_zpos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_zDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_rpos(0) &gt;= 0.5 &amp;&amp; joystick_rpos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_rUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_rpos(0) &lt;= -0.5 &amp;&amp; joystick_rpos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_rDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_upos(0) &gt;= 0.5 &amp;&amp; joystick_upos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_uUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_upos(0) &lt;= -0.5 &amp;&amp; joystick_upos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_uDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+        
+        if (joystick_vpos(0) &gt;= 0.5 &amp;&amp; joystick_vpos(0) &lt; 1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_vUp;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+
+        if (joystick_vpos(0) &lt;= -0.5 &amp;&amp; joystick_vpos(0) &gt; -1 &amp;&amp; waiting)
+        {
+            global.gameControlType[selection] = controlType_vDown;
+            global.gameControlControllerID[selection] = 0;
+            waiting = false;
+        }
+    }
+    
+    if (joystick_exists(1))
+    {
+        for (i = 1; i &lt;= 32; i += 1)
+        {
+            if (joystick_check_button(1,i))
+            {
+                global.gameControl[selection] = i;
+                global.gameControlType[selection] = controlType_controller;
+                global.gameControlControllerID[selection] = 1;
+                waiting = false;
+            }
+        }
+        
+        if (joystick_pov(1) == 0)
+        {
+                global.gameControlType[selection] = controlType_dPadUp;
+                global.gameControlControllerID[selection] = 1;
+                waiting = false;
+        }
+        
+        if (joystick_pov(1) == 90)
+        {
+                global.gameControlType[selection] = controlType_dPadRight;
+                global.gameControlControllerID[selection] = 1;
+                waiting = false;
+        }
+        
+        if (joystick_pov(1) == 180)
+        {
+                global.gameControlType[selection] = controlType_dPadDown;
+                global.gameControlControllerID[selection] = 1;
+                waiting = false;
+        }
+        
+        if (joystick_pov(1) == 270)
+        {
+                global.gameControlType[selection] = controlType_dPadLeft;
+                global.gameControlControllerID[selection] = 1;
+                waiting = false;
+        }
+    }
+    
+    if (timer == 0)
+    {
+        waiting = false;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

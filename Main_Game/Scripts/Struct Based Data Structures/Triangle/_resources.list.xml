@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="triangle_createTriangle" type="RESOURCE"/>
+  <resource name="triangle_setPointOne" type="RESOURCE"/>
+  <resource name="triangle_setPointTwo" type="RESOURCE"/>
+  <resource name="triangle_setPointThree" type="RESOURCE"/>
+  <resource name="triangle_setAdjacentOne" type="RESOURCE"/>
+  <resource name="triangle_setAdjacentTwo" type="RESOURCE"/>
+  <resource name="triangle_setAdjacentThree" type="RESOURCE"/>
+  <resource name="triangle_getPointOne" type="RESOURCE"/>
+  <resource name="triangle_getPointTwo" type="RESOURCE"/>
+  <resource name="triangle_getPointThree" type="RESOURCE"/>
+  <resource name="triangle_walkPoint" type="RESOURCE"/>
+  <resource name="triangle_normalVector" type="RESOURCE"/>
+  <resource name="triangle_deleteTriangle" type="RESOURCE"/>
+</resources>

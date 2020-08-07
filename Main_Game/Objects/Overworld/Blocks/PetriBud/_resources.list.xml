@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_blockPetriBud" type="RESOURCE"/>
+  <resource name="obj_blockPetriVineVBlack" type="RESOURCE"/>
+  <resource name="obj_blockPetriVineHBlack" type="RESOURCE"/>
+</resources>

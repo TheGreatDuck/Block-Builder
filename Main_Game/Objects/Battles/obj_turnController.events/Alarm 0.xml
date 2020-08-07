@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">timerStarted=0;
+playerMoves-=1;
+with (obj_spaceBasic)
+{
+    if (turnIntoType == -1)
+    {
+        instance_change(obj_spaceEmpty, true);
+    }
+    
+    if (turnIntoType == 0)
+    {
+        instance_change(obj_spaceGrey, true);
+    }
+    
+    if (turnIntoType == 1)
+    {
+        instance_change(obj_spaceBlue, true);
+    }
+    
+    if (turnIntoType == 2)
+    {
+        instance_change(obj_spaceRed, true);
+    }
+    
+    if (turnIntoType == 3)
+    {
+        instance_change(obj_spaceBrown, true);
+    }
+    
+    if (turnIntoType == 4)
+    {
+        instance_change(obj_spaceLightBlue, true);
+    }
+    
+    if (turnIntoType == 5)
+    {
+        instance_change(obj_spaceGreen, true);
+    }
+    
+    if (turnIntoType == 6)
+    {
+        instance_change(obj_spacePurple, true);
+    }
+    
+    if (turnIntoType == 0)
+    {
+        instance_change(obj_spaceGrey, true);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

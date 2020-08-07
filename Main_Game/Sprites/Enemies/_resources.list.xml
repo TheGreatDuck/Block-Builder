@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_enemyLavaTurret" type="RESOURCE"/>
+  <resource name="spr_enemyIceTurret" type="RESOURCE"/>
+  <resource name="spr_enemyIceBeetleCannon" type="RESOURCE"/>
+  <resource name="spr_enemyFireBeetleCannon" type="RESOURCE"/>
+  <resource name="spr_enemySkeleton" type="RESOURCE"/>
+  <resource name="spr_enemyShadow" type="RESOURCE"/>
+</resources>

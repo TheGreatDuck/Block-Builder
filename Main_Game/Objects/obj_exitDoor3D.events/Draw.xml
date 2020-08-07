@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">d3d_transform_set_identity();
+d3d_transform_add_rotation_matrix(axisX_x,dirX,nx,
+                                  axisX_y,dirY,ny,
+                                  axisX_z,dirZ,nz);
+d3d_transform_add_translation(x,y,z);
+d3d_model_draw(model,0,0,0,sprite_get_texture(spr_levelDoor,0));
+d3d_transform_set_identity();
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

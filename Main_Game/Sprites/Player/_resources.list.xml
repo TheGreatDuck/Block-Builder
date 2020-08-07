@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_playerAndItemCollision" type="RESOURCE"/>
+  <resource name="spr_playerRight" type="RESOURCE"/>
+  <resource name="spr_playerUp" type="RESOURCE"/>
+  <resource name="spr_playerLeft" type="RESOURCE"/>
+  <resource name="spr_playerDown" type="RESOURCE"/>
+  <resource name="spr_playerGolemDown" type="RESOURCE"/>
+  <resource name="Items" type="GROUP"/>
+</resources>

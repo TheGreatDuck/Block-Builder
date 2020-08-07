@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_mapLava" type="RESOURCE"/>
+  <resource name="obj_mapBarrier" type="RESOURCE"/>
+  <resource name="obj_mapLock" type="RESOURCE"/>
+  <resource name="obj_mapGrass" type="RESOURCE"/>
+  <resource name="obj_mapLand" type="RESOURCE"/>
+  <resource name="obj_mapSand" type="RESOURCE"/>
+  <resource name="obj_mapWater" type="RESOURCE"/>
+  <resource name="obj_mapMetal" type="RESOURCE"/>
+  <resource name="obj_mapSwamp" type="RESOURCE"/>
+  <resource name="obj_mapWestMapPath" type="RESOURCE"/>
+  <resource name="obj_mapNorthMapPath" type="RESOURCE"/>
+  <resource name="obj_mapEastMapPath" type="RESOURCE"/>
+  <resource name="obj_mapSouthMapPath" type="RESOURCE"/>
+  <resource name="obj_mapLevel" type="RESOURCE"/>
+  <resource name="obj_mapPlayer" type="RESOURCE"/>
+</resources>

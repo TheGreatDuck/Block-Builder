@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//here are member variables we can store and use
+
+/*points[] // array of points on the curve
+directions[] //array of normalized point differences
+unitUnscaledZ[] //array of normalized frame z vectors
+sphericalLinePole[] //array of rotation poles (matrices maybe?)
+tubeRadiusCorrectionFactor[] //array of tube correction factors
+unitUnscaledY[] //array of normalized frame y vectors
+unitUnscaledX[] //array of normalized frame x vectors
+
+
+
+
+
+int i = 1;
+      Vertex[] v = new Vertex[(points.length+1)*numberOfRotations];
+      Vector previousDirection = directions[i-1];
+      Vector nextDirection = directions[i];
+      Vector unitUnscaledZ = unitUnscaledZ[i];
+      double r = Math.sqrt(unitUnscaledZ.x*unitUnscaledZ.x + unitUnscaledZ.y*unitUnscaledZ.y);
+      Vector unitUnscaledY;
+      if (r != 0.0 &amp;&amp; r != -0.0)
+      {
+//         unitUnscaledY = new Vector(-unitUnscaledZ.x*unitUnscaledZ.z/r,-unitUnscaledZ.y*unitUnscaledZ.z/r,r).normalize();
+      } else
+      {
+//         unitUnscaledY = new Vector(0,1,0);
+      }
+//      Vector unitUnscaledX = unitUnscaledY.crossProduct(unitUnscaledZ).normalize();
+      
+      for (i = 1; i &lt; points.length-1; i+=1)
+      {
+//         Vector currentPoint = new Vector(points[i]);
+//         Vector unitDirectionZ;
+         
+//         previousDirection = new Vector(points[i]).minus(new Vector(points[i-1])).normalize();
+//         nextDirection = new Vector(points[i+1]).minus(new Vector(points[i])).normalize();
+//         unitDirectionZ = previousDirection.plus(nextDirection).normalize();
+         
+//         Vector sphericalLinePole = unitUnscaledZ.crossProduct(unitDirectionZ);
+//         double sphericalDistanceZ = Math.acos(unitDirectionZ.dotProduct(unitUnscaledZ));*/
+         
+         /*the java arccos function has slight error and does not return 0 when it should*/
+         /*a better way to determine if the points aren't coinciding is to see if the cross product is 0*/
+         if (sphericalLinePole.x != 0 || sphericalLinePole.y != 0 || sphericalLinePole.z != 0)
+         {
+//            Matrix sphericalTranslation = Matrix.rotate(180*sphericalDistanceZ/Math.PI,sphericalLinePole.x,sphericalLinePole.y,sphericalLinePole.z);
+            unitUnscaledZ = unitDirectionZ;
+//            unitUnscaledY = sphericalTranslation.times(unitUnscaledY);
+//            unitUnscaledX = sphericalTranslation.times(unitUnscaledX);
+         }
+         //unitUnscaledX = unitUnscaledY.crossProduct(unitUnscaledZ).normalize();
+         
+         /*apply the scaling transformation to the coordinate system*/
+         r = radius[i];
+//         Double tubeRadiusCorrectionFactor = Math.abs(unitDirectionZ.dotProduct(nextDirection));//the radius of the circular joint is NOT the radius of the tube
+         r = r;///tubeRadiusCorrectionFactor;
+//         Vector unitX = unitUnscaledX.times(r);
+//         Vector unitY = unitUnscaledY.times(r);
+         
+         /*add this disk to the list of vertices*/
+//         for (int j = 0; j &lt; numberOfRotations; j+=1)
+         {
+//            double theta = j*2*Math.PI/((double)numberOfRotations) + angle[i];
+//            Vector circularRadius = unitX.times(Math.cos(theta)).plus(unitY.times(Math.sin(theta)));
+//            v[(i-1)*numberOfRotations + j] = new Vertex(currentPoint.plus(circularRadius));
+         }
+//      }
+      
+      // Create and add all the neccessary faces to the scene
+      for (i = 0; i &lt; points.length-3; i+=1)
+      {
+//         for (int j = 0; j &lt; numberOfRotations; j+=1)
+         {
+            /*outer shell*/
+//            this.addPrimitive(new Triangle(new Vertex(v[i*numberOfRotations + j]),
+//                                           new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations)]),
+//                                           new Vertex(v[i*numberOfRotations + j + numberOfRotations])));
+//            
+//            this.addPrimitive(new Triangle(new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations)]),
+//                                           new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations) + numberOfRotations]),
+//                                           new Vertex(v[i*numberOfRotations + j + numberOfRotations])));
+            
+            /*inner shell*/
+            /*
+            this.addPrimitive(new Triangle(new Vertex(v[i*numberOfRotations + j]),
+                                           new Vertex(v[i*numberOfRotations + j + numberOfRotations]),
+                                           new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations)])));
+            
+            this.addPrimitive(new Triangle(new Vertex(v[i*numberOfRotations + j + numberOfRotations]),
+                                           new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations) + numberOfRotations]),
+                                           new Vertex(v[i*numberOfRotations + ((j + 1) % numberOfRotations)])));
+            */
+         }
+      }
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

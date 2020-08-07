@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="player3D_moveInDirection" type="RESOURCE"/>
+  <resource name="player3D_moveInDirectionWithoutCollision" type="RESOURCE"/>
+  <resource name="player3D_isControlPressed" type="RESOURCE"/>
+</resources>

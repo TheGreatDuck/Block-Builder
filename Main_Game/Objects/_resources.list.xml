@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Overworld" type="GROUP"/>
+  <resource name="Battles" type="GROUP"/>
+  <resource name="Items" type="GROUP"/>
+  <resource name="obj_blockNetwork" type="RESOURCE"/>
+  <resource name="obj_networkUpdater" type="RESOURCE"/>
+  <resource name="obj_efficientNetworkUpdater" type="RESOURCE"/>
+  <resource name="obj_threeMonthsLater" type="RESOURCE"/>
+  <resource name="obj_inGameMenu" type="RESOURCE"/>
+  <resource name="obj_battleMenuMain" type="RESOURCE"/>
+  <resource name="obj_battleMenuMove" type="RESOURCE"/>
+  <resource name="obj_buttonMove" type="RESOURCE"/>
+  <resource name="Saving System" type="GROUP"/>
+  <resource name="Map Icons" type="GROUP"/>
+  <resource name="Cutscenes" type="GROUP"/>
+  <resource name="New Battles" type="GROUP"/>
+  <resource name="Main Game Menu" type="GROUP"/>
+  <resource name="obj_blockGraph" type="RESOURCE"/>
+  <resource name="obj_camera" type="RESOURCE"/>
+  <resource name="obj_finishFlag" type="RESOURCE"/>
+  <resource name="obj_fakeFinishFlag" type="RESOURCE"/>
+  <resource name="Galleries" type="GROUP"/>
+  <resource name="3D Player" type="GROUP"/>
+  <resource name="obj_iceTurret3D" type="RESOURCE"/>
+  <resource name="obj_stoneSerpent3D" type="RESOURCE"/>
+  <resource name="obj_exitDoor3D" type="RESOURCE"/>
+  <resource name="obj_configureControls" type="RESOURCE"/>
+  <resource name="Menu" type="GROUP"/>
+  <resource name="obj_controlChecker" type="RESOURCE"/>
+  <resource name="obj_loadWorld" type="RESOURCE"/>
+  <resource name="obj_loadLevel" type="RESOURCE"/>
+</resources>

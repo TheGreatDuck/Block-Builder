@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="mm_init" type="RESOURCE"/>
+  <resource name="mm_malloc" type="RESOURCE"/>
+  <resource name="mm_free" type="RESOURCE"/>
+  <resource name="mm_getNext" type="RESOURCE"/>
+  <resource name="mm_getPrevious" type="RESOURCE"/>
+  <resource name="mm_getLength" type="RESOURCE"/>
+  <resource name="mm_getFree" type="RESOURCE"/>
+  <resource name="mm_setLength" type="RESOURCE"/>
+  <resource name="mm_setFree" type="RESOURCE"/>
+  <resource name="mm_removeNode" type="RESOURCE"/>
+  <resource name="mm_insert" type="RESOURCE"/>
+  <resource name="mm_createGenerator" type="RESOURCE"/>
+</resources>

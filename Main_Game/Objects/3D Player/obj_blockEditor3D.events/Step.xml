@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//spin += 1;
+x = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4x])/4;
+y = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4y])/4;
+z = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4z])/4;
+
+dir1x = obj_blockGraph.blockGraph[currentSpace,Block3D_v3x] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1x];
+dir1y = obj_blockGraph.blockGraph[currentSpace,Block3D_v3y] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1y];
+dir1z = obj_blockGraph.blockGraph[currentSpace,Block3D_v3z] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1z];
+
+dir2x = obj_blockGraph.blockGraph[currentSpace,Block3D_v4x] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1x];
+dir2y = obj_blockGraph.blockGraph[currentSpace,Block3D_v4y] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1y];
+dir2z = obj_blockGraph.blockGraph[currentSpace,Block3D_v4z] - obj_blockGraph.blockGraph[currentSpace,Block3D_v1z];
+
+nx = dir1y*dir2z - dir1z*dir2y;
+ny = dir1z*dir2x - dir1x*dir2z;
+nz = dir1x*dir2y - dir1y*dir2x;
+
+norm = sqrt(nx*nx + ny*ny + nz*nz);
+nx /= norm;
+ny /= norm;
+nz /= norm;
+
+sideX = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
+sideY = /*(obj_blockGraph.blockGraph[currentSpace,Block3D_v1y] + obj_blockGraph.blockGraph[currentSpace,Block3D_v3y])/2;*/(obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
+sideZ = /*(obj_blockGraph.blockGraph[currentSpace,Block3D_v1z] + obj_blockGraph.blockGraph[currentSpace,Block3D_v3z])/2;*/(obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
+
+dirX = sideX-x;
+dirY = sideY-y;
+dirZ = sideZ-z;
+
+norm = sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ);
+dirX /= norm;
+dirY /= norm;
+dirZ /= norm;
+
+axisX_x = (dirY*nz - dirZ*ny);
+axisX_y = (dirZ*nx - dirX*nz);
+axisX_z = (dirX*ny - dirY*nx);
+
+if (global.gameControlPressed[control_moveUp])
+{
+    if (moving == 0)
+    {
+        player3D_moveInDirectionWithoutCollision((sideFacing + 0) mod 4);
+    }
+}
+
+if (global.gameControlPressed[control_moveRight])
+{
+    if (moving == 0)
+    {
+        player3D_moveInDirectionWithoutCollision((sideFacing + 1) mod 4);
+    }
+}
+
+if (global.gameControlPressed[control_moveDown])
+{
+    if (moving == 0)
+    {
+        player3D_moveInDirectionWithoutCollision((sideFacing + 2) mod 4);
+    }
+}
+
+if (global.gameControlPressed[control_moveLeft])
+{
+    if (moving == 0)
+    {
+        player3D_moveInDirectionWithoutCollision((sideFacing + 3) mod 4);
+    }
+}
+
+if (global.gameControlPress[control_blockLeft])
+{
+    global.type = (global.type - 1 + (numberOfBlocks_3D - 1)) mod (numberOfBlocks_3D-1);
+    blockLeftPressed = true;
+}
+
+if (global.gameControlPress[control_blockRight])
+{
+    global.type = (global.type + 1 + (numberOfBlocks_3D - 1)) mod (numberOfBlocks_3D-1);
+    blockRightPressed = true;
+}
+
+if (global.gameControlPressed[control_itemOne])
+{
+    if (global.inventoryBlock[global.type + 1] &gt; 0 &amp;&amp; obj_blockGraph.blockGraph[obj_blockEditor3D.currentSpace,Block3D_type] == 0)
+    {
+        with (obj_blockGraph)
+        {
+            blockGraph_addToBlockUpdateList(obj_blockEditor3D.currentSpace);
+            blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj1]);
+            blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj2]);
+            blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj3]);
+            blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj4]);
+            global.inventoryBlock[global.type + 1] -= 1;
+            blockGraph[obj_blockEditor3D.currentSpace,Block3D_type] = global.type + 1;
+        }
+    }
+}
+
+if (global.gameControlPressed[control_itemTwo])
+{
+    with (obj_blockGraph)
+    {
+        blockGraph_addToBlockUpdateList(obj_blockEditor3D.currentSpace);
+        blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj1]);
+        blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj2]);
+        blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj3]);
+        blockGraph_addToBlockUpdateList(blockGraph[obj_blockEditor3D.currentSpace,Block3D_adj4]);
+        global.inventoryBlock[blockGraph[obj_blockEditor3D.currentSpace,Block3D_type]] += 1;
+        blockGraph[obj_blockEditor3D.currentSpace,Block3D_type] = 0;
+    }
+}
+
+if (global.gameControlPress[control_cancel])
+{
+    global.gameControlPress[control_cancel] = false;
+    with (obj_player3DStalling)
+    {
+        instance_change(obj_player3D,false);
+    }
+    instance_destroy();
+}
+
+
+if (moving == 1)
+{
+    motion += 1;
+    
+    movingSide = (motion &lt;= 4)*movingSideOne + (motion &gt; 4)*movingSideTwo;
+    
+    sideX = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((movingSide mod 3) + sign(movingSide))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((((movingSide+1) mod 4) mod 3) + sign(((movingSide+1) mod 4)))])/2;
+    sideY = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((movingSide mod 3) + sign(movingSide))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((((movingSide+1) mod 4) mod 3) + sign(((movingSide+1) mod 4)))])/2;
+    sideZ = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((movingSide mod 3) + sign(movingSide))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((((movingSide+1) mod 4) mod 3) + sign(((movingSide+1) mod 4)))])/2;
+    
+    x = (motion &lt;= 4)*((4-motion)*x + motion*sideX)/4 + (motion &gt; 4)*((motion-5)*x + (9-motion)*sideX)/4;
+    y = (motion &lt;= 4)*((4-motion)*y + motion*sideY)/4 + (motion &gt; 4)*((motion-5)*y + (9-motion)*sideY)/4;
+    z = (motion &lt;= 4)*((4-motion)*z + motion*sideZ)/4 + (motion &gt; 4)*((motion-5)*z + (9-motion)*sideZ)/4;
+    
+    if (motion == 4)
+    {
+        currentSpace = movingSpace;
+        sideFacing = sideFacingAfter;
+    }
+    
+    if (motion == 8)
+    {
+        moving = 0;
+        motion = 0;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="COLLISION" with="obj_arrow">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">impacted = 0;
+
+if (vdir &gt; 0)
+{
+    if (floor(other.y/64) - y/64 &lt; 0)
+    {
+        if (segment[y/64 - floor(other.y/64) - 1] &gt; 0)
+        {
+            segment[y/64 - floor(other.y/64) - 1] -= 1;
+            impacted = 1;
+        }
+    }
+}
+
+if (vdir &lt; 0)
+{
+    if (floor(other.y/64) - y/64 &gt; 0)
+    {
+        if (segment[floor(other.y/64) - y/64 - 1] &gt; 0)
+        {
+            segment[floor(other.y/64) - y/64 - 1] -= 1;
+            impacted = 1;
+        }
+    }
+}
+
+if (hdir &gt; 0)
+{
+    if (floor(other.x/64) - x/64 &lt; 0)
+    {
+        if (segment[x/64 - floor(other.x/64) - 1] &gt; 0)
+        {
+            segment[x/64 - floor(other.x/64) - 1] -= 1;
+            impacted = 1;
+        }
+    }
+}
+
+if (hdir &lt; 0)
+{
+    if (floor(other.x/64) - x/64 &gt; 0)
+    {
+        if (segment[floor(other.x/64) - x/64 - 1] &gt; 0)
+        {
+            segment[floor(other.x/64) - x/64 - 1] -= 1;
+            impacted = 1;
+        }
+    }
+}
+
+if (impacted == 1)
+{
+    with (other)
+    {
+        instance_destroy();
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

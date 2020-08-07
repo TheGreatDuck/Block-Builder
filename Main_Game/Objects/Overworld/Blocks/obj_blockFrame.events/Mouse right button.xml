@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="MOUSE" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (obj_blockNetwork.blocks[x/64,y/64] != 0 &amp;&amp; instance_number(obj_playerIdle) == 0)
+{
+    blockCollected = obj_blockNetwork.blocks[x/64,y/64] mod 1000000;
+    blockMetadata = 1000000*floor(obj_blockNetwork.blocks[x/64,y/64]/1000000)
+    global.inventoryBlock[blockCollected]+=1;
+    obj_blockNetwork.blocks[x/64,y/64] = blockMetadata;
+    with (obj_playerCombatant)
+    {
+        attackCompleted = true;
+        attackType = -1;
+    }
+    
+    with (obj_blockNetwork)
+    {
+        scr_addToBlockUpdateList(other.x/64,other.y/64);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

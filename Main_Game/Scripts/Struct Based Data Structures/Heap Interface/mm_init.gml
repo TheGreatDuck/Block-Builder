@@ -1,0 +1,5 @@
+HEAD_NODE = 0;
+/*no need to align 0*/
+HEAP_SPACE[HEAD_NODE] = 0;
+LINKED_LIST_LENGTH = 0;
+TAIL_NODE = HEAD_NODE;

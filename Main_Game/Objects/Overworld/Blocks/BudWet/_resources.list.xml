@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_blockBudWet" type="RESOURCE"/>
+  <resource name="obj_blockVineWetVBlack" type="RESOURCE"/>
+  <resource name="obj_blockVineWetVGrey" type="RESOURCE"/>
+  <resource name="obj_blockVineWetVBlue" type="RESOURCE"/>
+  <resource name="obj_blockVineWetHBlack" type="RESOURCE"/>
+  <resource name="obj_blockVineWetHGrey" type="RESOURCE"/>
+  <resource name="obj_blockVineWetHBlue" type="RESOURCE"/>
+</resources>

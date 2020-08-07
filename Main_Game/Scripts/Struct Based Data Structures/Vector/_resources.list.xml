@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="vector_createVector" type="RESOURCE"/>
+  <resource name="vector_copyVector" type="RESOURCE"/>
+  <resource name="vector_setX" type="RESOURCE"/>
+  <resource name="vector_setY" type="RESOURCE"/>
+  <resource name="vector_setZ" type="RESOURCE"/>
+  <resource name="vector_getX" type="RESOURCE"/>
+  <resource name="vector_getY" type="RESOURCE"/>
+  <resource name="vector_getZ" type="RESOURCE"/>
+  <resource name="vector_multiplyByConstant" type="RESOURCE"/>
+  <resource name="vector_addVectors" type="RESOURCE"/>
+  <resource name="vector_subtractVectors" type="RESOURCE"/>
+  <resource name="vector_innerProduct" type="RESOURCE"/>
+  <resource name="vector_crossProduct" type="RESOURCE"/>
+  <resource name="vector_length" type="RESOURCE"/>
+  <resource name="vector_componentInDirection" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">draw_text(0,0,string(timer));
+draw_text(0,64,"Use arrow keys to select control.#Press enter to configure.#Press space when done to start demo.")
+
+if (selection == control_moveUp)
+{
+    draw_text(x,y,"Set Move Up");
+}
+
+if (selection == control_moveRight)
+{
+    draw_text(x,y,"Set Move Right");
+}
+
+if (selection == control_moveDown)
+{
+    draw_text(x,y,"Set Move Down");
+}
+
+if (selection == control_moveLeft)
+{
+    draw_text(x,y,"Set Move Left");
+}
+
+if (selection == control_blockLeft)
+{
+    draw_text(x,y,"Set Block Left");
+}
+
+if (selection == control_blockRight)
+{
+    draw_text(x,y,"Set Block Right");
+}
+
+if (selection == control_pause)
+{
+    draw_text(x,y,"Set Pause");
+}
+
+if (selection == control_itemOne)
+{
+    draw_text(x,y,"Set Item One");
+}
+
+if (selection == control_itemTwo)
+{
+    draw_text(x,y,"Set Item Two");
+}
+
+if (selection == control_confirm)
+{
+    draw_text(x,y,"Set Confirm");
+}
+
+if (selection == control_cancel)
+{
+    draw_text(x,y,"Set Cancel");
+}
+
+if (global.gameControlType[selection] == controlType_keyboard)
+{
+    draw_text(x,y+64,"Keyboard Key " + string(global.gameControl[selection]));
+}
+
+if (global.gameControlType[selection] == controlType_controller)
+{
+    draw_text(x,y+64,"Controller Button " + string(global.gameControl[selection]));
+}
+
+if (global.gameControlType[selection] == controlType_controller)
+{
+    draw_text(x,y+64,"Controller Button " + string(global.gameControl[selection]));
+}
+
+if (global.gameControlType[selection] == controlType_dPadDown)
+{
+    draw_text(x,y+64,"D Pad Down");
+}
+
+if (global.gameControlType[selection] == controlType_dPadRight)
+{
+    draw_text(x,y+64,"D Pad Right");
+}
+
+if (global.gameControlType[selection] == controlType_dPadLeft)
+{
+    draw_text(x,y+64,"D Pad Left");
+}
+
+if (global.gameControlType[selection] == controlType_dPadUp)
+{
+    draw_text(x,y+64,"D Pad Up");
+}
+
+if (global.gameControlType[selection] == controlType_xUp)
+{
+    draw_text(x,y+64,"Joystick X axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_xDown)
+{
+    draw_text(x,y+64,"Joystick X axis Down");
+}
+
+if (global.gameControlType[selection] == controlType_yUp)
+{
+    draw_text(x,y+64,"Joystick Y axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_yDown)
+{
+    draw_text(x,y+64,"Joystick Y axis Down");
+}
+
+if (global.gameControlType[selection] == controlType_zUp)
+{
+    draw_text(x,y+64,"Joystick Z axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_zDown)
+{
+    draw_text(x,y+64,"Joystick Z axis Down");
+}
+
+if (global.gameControlType[selection] == controlType_rUp)
+{
+    draw_text(x,y+64,"Joystick R axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_rDown)
+{
+    draw_text(x,y+64,"Joystick R axis Down");
+}
+
+if (global.gameControlType[selection] == controlType_uUp)
+{
+    draw_text(x,y+64,"Joystick U axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_uDown)
+{
+    draw_text(x,y+64,"Joystick U axis Down");
+}
+
+if (global.gameControlType[selection] == controlType_vUp)
+{
+    draw_text(x,y+64,"Joystick V axis Up");
+}
+
+if (global.gameControlType[selection] == controlType_vDown)
+{
+    draw_text(x,y+64,"Joystick V axis Down");
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

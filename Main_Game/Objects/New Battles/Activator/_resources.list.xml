@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_activatorBasic" type="RESOURCE"/>
+  <resource name="obj_iceTurretActivator" type="RESOURCE"/>
+  <resource name="obj_fireTurretActivator" type="RESOURCE"/>
+  <resource name="obj_shadowActivator" type="RESOURCE"/>
+  <resource name="obj_playerActivator" type="RESOURCE"/>
+  <resource name="obj_stoneSerpentActivator" type="RESOURCE"/>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">//spin += 1;
+x = (obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1x]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v2x]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3x]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4x])/4;
+y = (obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1y]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v2y]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3y]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4y])/4;
+z = (obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1z]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v2z]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3z]+obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4z])/4;
+
+dir1x = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3x] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1x];
+dir1y = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3y] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1y];
+dir1z = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v3z] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1z];
+
+dir2x = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4x] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1x];
+dir2y = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4y] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1y];
+dir2z = obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v4z] - obj_blockGraph.blockGraph[(obj_blockGraph.selectedBlock + 3) mod obj_blockGraph.numberOfBlockModels,Block3D_v1z];
+
+nx = dir1y*dir2z - dir1z*dir2y;
+ny = dir1z*dir2x - dir1x*dir2z;
+nz = dir1x*dir2y - dir1y*dir2x;
+
+norm = sqrt(nx*nx + ny*ny + nz*nz);
+nx /= norm;
+ny /= norm;
+nz /= norm;
+
+rx = ny;
+ry = -nx;
+rz = 0;
+
+angle = arccos(nz)*180/pi;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

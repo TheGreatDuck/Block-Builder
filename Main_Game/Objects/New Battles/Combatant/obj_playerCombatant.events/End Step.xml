@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">if (!attackSelected &amp;&amp; scr_walkableBlockExists(x/64,y/64,0,0) &amp;&amp; (keyboard_check_pressed(vk_up) || keyboard_check_pressed(vk_left) || keyboard_check_pressed(vk_down) || keyboard_check_pressed(vk_right)) &amp;&amp; !keyboard_check(vk_shift))
+{
+    attackType = keyboard_check_pressed(vk_up)*scr_walkableBlockExists(x/64,y/64,0,-1) + attackType*(1-keyboard_check_pressed(vk_up));
+    attackType = 2*keyboard_check_pressed(vk_left)*scr_walkableBlockExists(x/64,y/64,-1,0) + attackType*(1-keyboard_check_pressed(vk_left));
+    attackType = 3*keyboard_check_pressed(vk_down)*scr_walkableBlockExists(x/64,y/64,0,1) + attackType*(1-keyboard_check_pressed(vk_down));
+    attackType = 4*keyboard_check_pressed(vk_right)*scr_walkableBlockExists(x/64,y/64,1,0) + attackType*(1-keyboard_check_pressed(vk_right));
+    
+    attackSelected = (attackType != 0);
+}
+
+if (!attackSelected &amp;&amp; keyboard_check_pressed(ord('A')))
+{
+    arrowDir_x = keyboard_check(vk_right) - keyboard_check(vk_left);
+    arrowDir_y = keyboard_check(vk_down) - keyboard_check(vk_up) + (!keyboard_check(vk_down) &amp;&amp; !keyboard_check(vk_up) &amp;&amp; !keyboard_check(vk_right) &amp;&amp; !keyboard_check(vk_left));
+    
+    arrow = instance_create(x+arrowDir_x*64,y+arrowDir_y*64,obj_arrow);
+    
+    arrow.hspeed = arrowDir_x*8;
+    arrow.vspeed = arrowDir_y*8;
+    
+    attackType = -1;
+    arrowShot = true;
+    attackSelected = true;;
+}
+
+if (!attackSelected)
+{
+    image_speed = 0;
+}
+
+if (attackType == 1)
+{
+    vspeed=-8;
+    sprite_index=spr_playerUp;
+    right=0;
+    up=-1;
+    left=0;
+    down=0;
+    image_speed=1;
+    x += hspeed;
+    y += vspeed;
+    attackType = -1;
+}
+
+if (attackType == 2)
+{
+    hspeed=-8;
+    sprite_index=spr_playerLeft;
+    right=0;
+    up=0;
+    left=-1;
+    down=0;
+    image_speed=1;
+    x += hspeed;
+    y += vspeed;
+    attackType = -1;
+}
+
+if (attackType == 3)
+{
+    vspeed=8;
+    sprite_index=spr_playerDown;
+    right=0;
+    up=0;
+    left=0;
+    down=1;
+    image_speed=1;
+    x += hspeed;
+    y += vspeed;
+    attackType = -1;
+}
+
+if (attackType == 4)
+{
+    hspeed=8;
+    sprite_index=spr_playerRight;
+    right=1;
+    up=0;
+    left=0;
+    down=0;
+    image_speed=1;
+    x += hspeed;
+    y += vspeed;
+    attackType = -1;
+}
+
+if (changeBack)
+{
+    attackSelected = false;
+    attackCompleted = false;
+    changeBack = false;
+    scr_updateBlockNetwork();
+    instance_change(obj_playerIdle,false);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">for (i = 0; i &lt; length; i+=1)
+{
+    draw_sprite(spr_bossStoneSerpentBody*(segment[i] &gt; 0) + spr_bossStoneSerpentSkeleton*(1-(segment[i] &gt; 0)),image_index,-hdir*8*(i+1)+x,-vdir*8*(i+1)+y);
+}
+
+draw_sprite(spr_bossStoneSerpentHead,image_index,x,y);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>
