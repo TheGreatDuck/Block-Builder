@@ -44,3 +44,21 @@ GMEXPORT double setPrevious(double node, double previous)
     node_pointer->previous = (linkedNode*)(int)previous;
     return 1.0;
 }
+
+GMEXPORT double getData(double node)
+{
+    linkedNode* node_pointer = (linkedNode*)(int)node;
+    return node_pointer->data;
+}
+
+GMEXPORT double getNext(double node, double next)
+{
+    linkedNode* node_pointer = (linkedNode*)(int)node;
+    return (double)(int)node_pointer->next;
+}
+
+GMEXPORT double getPrevious(double node, double previous)
+{
+    linkedNode* node_pointer = (linkedNode*)(int)node;
+    return (double)(int)node_pointer->previous;
+}

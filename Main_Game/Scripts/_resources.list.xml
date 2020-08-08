@@ -9,9 +9,7 @@
   <resource name="scr_walkableBlockExists" type="RESOURCE"/>
   <resource name="scr_isBlockType" type="RESOURCE"/>
   <resource name="Struct Based Data Structures" type="GROUP"/>
-  <resource name="testScript" type="RESOURCE"/>
   <resource name="scr_exportLevel" type="RESOURCE"/>
-  <resource name="3D Block Builder Levels" type="GROUP"/>
   <resource name="d3d_transform_add_rotation_matrix" type="RESOURCE"/>
   <resource name="Player 3D" type="GROUP"/>
   <resource name="Stone Serpent 3D" type="GROUP"/>
