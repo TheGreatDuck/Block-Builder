@@ -11,5 +11,4 @@
   <resource name="mm_setFree" type="RESOURCE"/>
   <resource name="mm_removeNode" type="RESOURCE"/>
   <resource name="mm_insert" type="RESOURCE"/>
-  <resource name="mm_createGenerator" type="RESOURCE"/>
 </resources>

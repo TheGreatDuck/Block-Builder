@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="blockGraph_addCube" type="RESOURCE"/>
-  <resource name="blockGraph_addFromFunction" type="RESOURCE"/>
-  <resource name="blockGraph_addTubePlot" type="RESOURCE"/>
   <resource name="blockGraph_update" type="RESOURCE"/>
   <resource name="blockGraph_create3DModel" type="RESOURCE"/>
   <resource name="blockGraph_createSubmodel" type="RESOURCE"/>

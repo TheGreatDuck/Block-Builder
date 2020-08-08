@@ -39,6 +39,8 @@
 		</Build>
 		<Unit filename="delayed_function_calls.cpp" />
 		<Unit filename="delayed_function_calls.h" />
+		<Unit filename="linkedCycle.cpp" />
+		<Unit filename="loadWorld.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
