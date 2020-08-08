@@ -13,5 +13,4 @@
   <resource name="blockGraph_getSideClosestToDirection" type="RESOURCE"/>
   <resource name="blockGraph_loadFromFile" type="RESOURCE"/>
   <resource name="blockGraph_saveToFile" type="RESOURCE"/>
-  <resource name="blockGraph_connectBlocks" type="RESOURCE"/>
 </resources>
