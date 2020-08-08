@@ -45,20 +45,37 @@ GMEXPORT double setPrevious(double node, double previous)
     return 1.0;
 }
 
+GMEXPORT double setDataDestructor(double node, double dataDestructor)
+{
+    HEAP_SPACE[argument[0]+3] = argument[1];
+}
+
 GMEXPORT double getData(double node)
 {
     linkedNode* node_pointer = (linkedNode*)(int)node;
     return node_pointer->data;
 }
 
-GMEXPORT double getNext(double node, double next)
+GMEXPORT double getNext(double node)
 {
     linkedNode* node_pointer = (linkedNode*)(int)node;
     return (double)(int)node_pointer->next;
 }
 
-GMEXPORT double getPrevious(double node, double previous)
+GMEXPORT double getPrevious(double node)
 {
     linkedNode* node_pointer = (linkedNode*)(int)node;
     return (double)(int)node_pointer->previous;
+}
+
+GMEXPORT double getDataDestructor(double node)
+{
+    return HEAP_SPACE[argument[0]+3];
+}
+
+GMEXPORT double deleteNode(double node)
+{
+    script_execute(node_getDataDestructor(argument[0]),node_getData(argument[0]));
+    mm_free(argument[0]);
+    return 1.0;
 }

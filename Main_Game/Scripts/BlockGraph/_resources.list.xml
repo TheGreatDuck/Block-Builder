@@ -10,7 +10,5 @@
   <resource name="blockGraph_addToTempBlockUpdateList" type="RESOURCE"/>
   <resource name="blockGraph_addSquare" type="RESOURCE"/>
   <resource name="blockGraph_getSideWithPoint" type="RESOURCE"/>
-  <resource name="blockGraph_getSideClosestToDirection" type="RESOURCE"/>
   <resource name="blockGraph_loadFromFile" type="RESOURCE"/>
-  <resource name="blockGraph_saveToFile" type="RESOURCE"/>
 </resources>

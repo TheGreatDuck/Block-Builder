@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="node_createNode" type="RESOURCE"/>
-  <resource name="node_setDataDestructor" type="RESOURCE"/>
-  <resource name="node_getDataDestructor" type="RESOURCE"/>
-  <resource name="node_deleteNode" type="RESOURCE"/>
   <resource name="node_byteDataDestructor" type="RESOURCE"/>
 </resources>
