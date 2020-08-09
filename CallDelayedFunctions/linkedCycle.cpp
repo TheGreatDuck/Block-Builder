@@ -47,7 +47,9 @@ GMEXPORT double setPrevious(double node, double previous)
 
 GMEXPORT double setDataDestructor(double node, double dataDestructor)
 {
-    HEAP_SPACE[argument[0]+3] = argument[1];
+    linkedNode* node_pointer = (linkedNode*)(int)node;
+    node_pointer->dataDestructor = dataDestructor;
+    return 1.0;
 }
 
 GMEXPORT double getData(double node)
@@ -70,12 +72,121 @@ GMEXPORT double getPrevious(double node)
 
 GMEXPORT double getDataDestructor(double node)
 {
-    return HEAP_SPACE[argument[0]+3];
+    linkedNode* node_pointer = (linkedNode*)(int)node;
+    return node_pointer->dataDestructor;
 }
 
 GMEXPORT double deleteNode(double node)
 {
-    script_execute(node_getDataDestructor(argument[0]),node_getData(argument[0]));
-    mm_free(argument[0]);
+    //script_execute(getDataDestructor(node), getData(node));
+    free((linkedNode*)(int)node);
     return 1.0;
+}
+
+typedef struct linkedCycle
+{
+    linkedNode* current;
+    double      dataDestructor;
+    double      length;
+} linkedCycle;
+
+GMEXPORT double createCycle(double dataDestructor)
+{
+    linkedCycle* cycle = (linkedCycle*) malloc(sizeof(linkedCycle));
+    cycle->current        = NULL;
+    cycle->dataDestructor = dataDestructor;
+    cycle->length         = 0;
+    return (double)(int)cycle;
+}
+
+GMEXPORT double insertAfterCurrent(double double_cycle, double data)
+{
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    linkedNode* node = (linkedNode*)(int)createNode();
+
+    node->data = data;
+    node->dataDestructor = cycle->dataDestructor;
+
+    if (cycle->length == 0)
+    {
+        node->next     = node;
+        node->previous = node;
+        cycle->current = node;
+    } else
+    {
+        linkedNode* current = cycle->current;
+        linkedNode* next    = current->next;
+
+        current->next  = node;
+        next->previous = node;
+
+        node->previous = current;
+        node->next     = next;
+    }
+
+    cycle->length += 1;
+}
+
+GMEXPORT double removeAfterCurrent(double cycle)
+{
+    if (linkedCycle_getLength(argument[0]) > 1)
+    {
+        argument[1] = node_getNext(linkedCycle_getCurrentNode(argument[0]));
+
+        node_setPrevious(node_getNext(argument[1]),node_getPrevious(argument[1]));
+        node_setNext(node_getPrevious(argument[1]),node_getNext(argument[1]));
+
+        deleteNode(argument[1]);
+    } else if (linkedCycle_getLength(argument[0]) == 1)
+    {
+        node_deleteNode(linkedCycle_getCurrentNode(argument[0]));
+        linkedCycle_setCurrentNode(argument[0], NULL);
+    }
+
+    linkedCycle_setLength(argument[0],linkedCycle_getLength(argument[0])-1);
+}
+
+GMEXPORT double getLength(double cycle)
+{
+    return HEAP_SPACE[argument[0]+2];
+}
+
+GMEXPORT double getCurrentData(double cycle)
+{
+    return getData(getCurrentNode(argument[0]));
+}
+
+GMEXPORT double next(double cycle)
+{
+    setCurrentNode(argument[0],node_getNext(getCurrentNode(argument[0])));
+}
+
+GMEXPORT double previous(double cycle)
+{
+    setCurrentNode(cycle,node_getPrevious(getCurrentNode(cycle)));
+}
+
+GMEXPORT double getCurrentNode(double cycle)
+{
+    return HEAP_SPACE[cycle];
+}
+
+GMEXPORT double getDataDestructor(double cycle)
+{
+    return HEAP_SPACE[cycle+1];
+}
+
+GMEXPORT double setCurrentNode(double cycle)
+{
+    HEAP_SPACE[cycle] = argument[1];
+}
+
+GMEXPORT double setDataDestructor(double cycle)
+{
+    HEAP_SPACE[cycle+1] = argument[1];
+}
+
+GMEXPORT double setLength(double cycle)
+{
+    HEAP_SPACE[cycle+2] = argument[1];
 }

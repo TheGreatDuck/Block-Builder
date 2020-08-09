@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="line_createLine" type="RESOURCE"/>
-  <resource name="line_setPointOne" type="RESOURCE"/>
-  <resource name="line_setPointTwo" type="RESOURCE"/>
-  <resource name="line_getPointOne" type="RESOURCE"/>
-  <resource name="line_getPointTwo" type="RESOURCE"/>
-  <resource name="line_perpendicularFoot" type="RESOURCE"/>
-</resources>

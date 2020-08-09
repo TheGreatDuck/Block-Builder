@@ -101,16 +101,23 @@ static void load_collision(char* program_directory, char* worldName)
 
 static void load_player(char* program_directory, char* worldName)
 {
-    file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".play");
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.play")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.play"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\overworld.play");
+    FILE* file = fopen(fileName, "r");
 
-width = file_text_read_real(file);
-file_text_readln(file);
-height = file_text_read_real(file);
-file_text_readln(file);
+    unsigned int width;
+    unsigned int height;
 
-instance_create(32*width, 32*height, obj_mapPlayer);
+    fscanf(file, "%u\n", &width);
+    fscanf(file, "%u\n", &height);
 
-file_text_close(file);
+    //instance_create(32*width, 32*height, obj_mapPlayer);
+
+    fclose(file);
 }
 
 static void load_path(char* program_directory, char* worldName)
@@ -156,8 +163,8 @@ static void load_level(char* program_directory, char* worldName)
 {
     file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".lev");
 
-numberOfLevels = file_text_read_real(file);
-file_text_readln(file);
+    numberOfLevels = file_text_read_real(file);
+    file_text_readln(file);
 
 for (i = 0; i < numberOfLevels; i += 1)
 {

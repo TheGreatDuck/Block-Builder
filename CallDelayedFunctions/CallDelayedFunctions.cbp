@@ -41,6 +41,8 @@
 		<Unit filename="delayed_function_calls.h" />
 		<Unit filename="linkedCycle.cpp" />
 		<Unit filename="loadWorld.cpp" />
+		<Unit filename="vector.cpp" />
+		<Unit filename="vector.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
