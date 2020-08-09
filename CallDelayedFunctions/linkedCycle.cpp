@@ -45,13 +45,6 @@ GMEXPORT double setPrevious(double node, double previous)
     return 1.0;
 }
 
-GMEXPORT double setDataDestructor(double node, double dataDestructor)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    node_pointer->dataDestructor = dataDestructor;
-    return 1.0;
-}
-
 GMEXPORT double getData(double node)
 {
     linkedNode* node_pointer = (linkedNode*)(int)node;
@@ -70,12 +63,6 @@ GMEXPORT double getPrevious(double node)
     return (double)(int)node_pointer->previous;
 }
 
-GMEXPORT double getDataDestructor(double node)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    return node_pointer->dataDestructor;
-}
-
 GMEXPORT double deleteNode(double node)
 {
     //script_execute(getDataDestructor(node), getData(node));
@@ -87,7 +74,7 @@ typedef struct linkedCycle
 {
     linkedNode* current;
     double      dataDestructor;
-    double      length;
+    int         length;
 } linkedCycle;
 
 GMEXPORT double createCycle(double dataDestructor)
@@ -127,66 +114,80 @@ GMEXPORT double insertAfterCurrent(double double_cycle, double data)
     cycle->length += 1;
 }
 
-GMEXPORT double removeAfterCurrent(double cycle)
+GMEXPORT double removeAfterCurrent(double double_cycle)
 {
-    if (linkedCycle_getLength(argument[0]) > 1)
-    {
-        argument[1] = node_getNext(linkedCycle_getCurrentNode(argument[0]));
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
 
-        node_setPrevious(node_getNext(argument[1]),node_getPrevious(argument[1]));
-        node_setNext(node_getPrevious(argument[1]),node_getNext(argument[1]));
-
-        deleteNode(argument[1]);
-    } else if (linkedCycle_getLength(argument[0]) == 1)
+    if (cycle->length > 1)
     {
-        node_deleteNode(linkedCycle_getCurrentNode(argument[0]));
-        linkedCycle_setCurrentNode(argument[0], NULL);
+        linkedNode* next = cycle->current->next;
+        next->next->previous = next->previous;
+        next->previous->next = next->next;
+        deleteNode((double)(int)next);
+    } else if (cycle->length == 1)
+    {
+        deleteNode((double)(int)cycle->current);
+        cycle->current = NULL;
     }
 
-    linkedCycle_setLength(argument[0],linkedCycle_getLength(argument[0])-1);
+    cycle->length -= 1;
 }
 
-GMEXPORT double getLength(double cycle)
+GMEXPORT double getLength(double double_cycle)
 {
-    return HEAP_SPACE[argument[0]+2];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    return cycle->length;
 }
 
-GMEXPORT double getCurrentData(double cycle)
+GMEXPORT double getCurrentData(double double_cycle)
 {
-    return getData(getCurrentNode(argument[0]));
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    return cycle->current->data;
 }
 
-GMEXPORT double next(double cycle)
+GMEXPORT double next(double double_cycle)
 {
-    setCurrentNode(argument[0],node_getNext(getCurrentNode(argument[0])));
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    cycle->current = cycle->current->next;
+    return 1.0;
 }
 
-GMEXPORT double previous(double cycle)
+GMEXPORT double previous(double double_cycle)
 {
-    setCurrentNode(cycle,node_getPrevious(getCurrentNode(cycle)));
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    cycle->current = cycle->current->previous;
+    return 1.0;
 }
 
-GMEXPORT double getCurrentNode(double cycle)
+GMEXPORT double getCurrentNode(double double_cycle)
 {
-    return HEAP_SPACE[cycle];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    return (double)(int)cycle->current;
 }
 
-GMEXPORT double getDataDestructor(double cycle)
+GMEXPORT double getDataDestructor(double double_cycle)
 {
-    return HEAP_SPACE[cycle+1];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    return cycle->dataDestructor;
 }
 
-GMEXPORT double setCurrentNode(double cycle)
+GMEXPORT double setCurrentNode(double double_cycle, double node)
 {
-    HEAP_SPACE[cycle] = argument[1];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    cycle->current = (linkedNode*)(int)node;
+    return 1.0;
 }
 
-GMEXPORT double setDataDestructor(double cycle)
+GMEXPORT double setDataDestructor(double double_cycle, double dataDestructor)
 {
-    HEAP_SPACE[cycle+1] = argument[1];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    cycle->dataDestructor = dataDestructor;
+    return 1.0;
 }
 
-GMEXPORT double setLength(double cycle)
+GMEXPORT double setLength(double double_cycle, double length)
 {
-    HEAP_SPACE[cycle+2] = argument[1];
+    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
+    cycle->length = length;
+    return 1.0;
 }
