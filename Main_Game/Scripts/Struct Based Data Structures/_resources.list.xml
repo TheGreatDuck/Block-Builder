@@ -2,8 +2,6 @@
 <resources>
   <resource name="Heap Interface" type="GROUP"/>
   <resource name="Nodes" type="GROUP"/>
-  <resource name="Combatant" type="GROUP"/>
   <resource name="Battle" type="GROUP"/>
   <resource name="StoneSerpentSegments" type="GROUP"/>
-  <resource name="Square" type="GROUP"/>
 </resources>

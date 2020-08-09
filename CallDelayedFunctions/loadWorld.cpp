@@ -122,93 +122,127 @@ static void load_player(char* program_directory, char* worldName)
 
 static void load_path(char* program_directory, char* worldName)
 {
-    file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".pat");
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.pat")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\overworld.pat");
+    FILE* file = fopen(fileName, "r");
 
-width = file_text_read_real(file);
-file_text_readln(file);
-height = file_text_read_real(file);
-file_text_readln(file);
+    unsigned int width;
+    unsigned int height;
 
-for (i = 0; i < height; i += 1)
-{
-    for (j = 0; j < width; j += 1)
+    fscanf(file, "%u\n", &width);
+    fscanf(file, "%u\n", &height);
+
+    for (unsigned int i = 0; i < height; i += 1)
     {
-        type = file_text_read_real(file);
-        if (type & (1 << 0))
+        for (unsigned int j = 0; j < width; j += 1)
         {
-            instance_create(j*32, i*32, obj_mapWestMapPath);
-        }
+            unsigned int type;
+            fscanf(file, "%u", &type);
 
-        if (type & (1 << 1))
-        {
-            instance_create(j*32, i*32, obj_mapEastMapPath);
-        }
+            if (type & (1 << 0))
+            {
+                //instance_create(j*32, i*32, obj_mapWestMapPath);
+            }
 
-        if (type & (1 << 2))
-        {
-            instance_create(j*32, i*32, obj_mapNorthMapPath);
-        }
+            if (type & (1 << 1))
+            {
+                //instance_create(j*32, i*32, obj_mapEastMapPath);
+            }
 
-        if (type & (1 << 3))
-        {
-            instance_create(j*32, i*32, obj_mapSouthMapPath);
+            if (type & (1 << 2))
+            {
+                //instance_create(j*32, i*32, obj_mapNorthMapPath);
+            }
+
+            if (type & (1 << 3))
+            {
+                //instance_create(j*32, i*32, obj_mapSouthMapPath);
+            }
         }
     }
-    file_text_readln(file);
-}
-file_text_close(file);
+    fclose(file);
 }
 
 static void load_level(char* program_directory, char* worldName)
 {
-    file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".lev");
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.lev")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\overworld.lev");
+    FILE* file = fopen(fileName, "r");
 
-    numberOfLevels = file_text_read_real(file);
-    file_text_readln(file);
+    unsigned int numberOfLevels;
+    fscanf(file, "%u\n", &numberOfLevels);
 
-for (i = 0; i < numberOfLevels; i += 1)
-{
-    xPos = file_text_read_real(file);
-    yPos = file_text_read_real(file);
+    for (unsigned int i = 0; i < numberOfLevels; i += 1)
+    {
+        unsigned int xPos;
+        unsigned int yPos;
 
-    createdLevel = instance_create(32*xPos, 32*yPos, obj_mapLevel);
+        unsigned int level;
 
-    createdLevel.level = file_text_read_real(file);
+        unsigned int north;
+        unsigned int west;
+        unsigned int east;
+        unsigned int south;
 
-    createdLevel.north = file_text_read_real(file);
-    createdLevel.west  = file_text_read_real(file);
-    createdLevel.east  = file_text_read_real(file);
-    createdLevel.south = file_text_read_real(file);
+        fscanf(file, "%u %u %u %u %u %u %u\n", &xPos, &yPos, &level, &north, &west, &east, &south);
 
-    file_text_readln(file);
-}
-file_text_close(file);
+        /*createdLevel = instance_create(32*xPos, 32*yPos, obj_mapLevel);
+
+        createdLevel.level = file_text_read_real(file);
+
+        createdLevel.north = file_text_read_real(file);
+        createdLevel.west  = file_text_read_real(file);
+        createdLevel.east  = file_text_read_real(file);
+        createdLevel.south = file_text_read_real(file);*/
+    }
+    fclose(file);
 }
 
 static void load_lock(char* program_directory, char* worldName)
 {
-    file = file_text_open_read(program_directory + "\Worlds\" + global.worldName + "\overworld" + ".loc");
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.loc")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\overworld.loc");
+    FILE* file = fopen(fileName, "r");
 
-numberOfLocks = file_text_read_real(file);
-file_text_readln(file);
+    unsigned int numberOfLocks;
+    fscanf(file, "%u\n", &numberOfLocks);
 
-for (i = 0; i < numberOfLocks; i += 1)
-{
-    xPos = file_text_read_real(file);
-    yPos = file_text_read_real(file);
+    for (unsigned int i = 0; i < numberOfLocks; i += 1)
+    {
+        unsigned int xPos;
+        unsigned int yPos;
 
-    createdLock = instance_create(32*xPos, 32*yPos, obj_mapLock);
+        unsigned int level;
 
-    createdLock.level = file_text_read_real(file);
+        unsigned int north;
+        unsigned int west;
+        unsigned int east;
+        unsigned int south;
 
-    createdLock.north = file_text_read_real(file);
-    createdLock.west  = file_text_read_real(file);
-    createdLock.east  = file_text_read_real(file);
-    createdLock.south = file_text_read_real(file);
+        fscanf(file, "%u %u %u %u %u %u %u\n", &xPos, &yPos, &level, &north, &west, &east, &south);
 
-    file_text_readln(file);
-}
-file_text_close(file);
+        /*createdLock = instance_create(32*xPos, 32*yPos, obj_mapLock);
+
+        createdLock.level = file_text_read_real(file);
+
+        createdLock.north = file_text_read_real(file);
+        createdLock.west  = file_text_read_real(file);
+        createdLock.east  = file_text_read_real(file);
+        createdLock.south = file_text_read_real(file);*/
+    }
+    fclose(file);
 }
 
 GMEXPORT double load_world(char* program_directory, char* worldName)

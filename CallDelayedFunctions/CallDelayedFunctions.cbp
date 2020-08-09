@@ -38,6 +38,7 @@
 			</Target>
 		</Build>
 		<Unit filename="blockGraph.cpp" />
+		<Unit filename="combatant.cpp" />
 		<Unit filename="delayed_function_calls.cpp" />
 		<Unit filename="delayed_function_calls.h" />
 		<Unit filename="linkedCycle.cpp" />
