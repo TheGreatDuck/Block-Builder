@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="Barycentric Models" type="GROUP"/>
   <resource name="scr_updateBlockNetwork" type="RESOURCE"/>
   <resource name="Improved Block Network" type="GROUP"/>
   <resource name="scr_changeBlock" type="RESOURCE"/>
@@ -10,5 +9,4 @@
   <resource name="scr_exportLevel" type="RESOURCE"/>
   <resource name="d3d_transform_add_rotation_matrix" type="RESOURCE"/>
   <resource name="Player 3D" type="GROUP"/>
-  <resource name="Stone Serpent 3D" type="GROUP"/>
 </resources>

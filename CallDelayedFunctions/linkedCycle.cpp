@@ -24,27 +24,6 @@ GMEXPORT double createNode()
     return (double)(int)node;
 }
 
-GMEXPORT double setData(double node, double data)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    node_pointer->data = data;
-    return 1.0;
-}
-
-GMEXPORT double setNext(double node, double next)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    node_pointer->next = (linkedNode*)(int)next;
-    return 1.0;
-}
-
-GMEXPORT double setPrevious(double node, double previous)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    node_pointer->previous = (linkedNode*)(int)previous;
-    return 1.0;
-}
-
 GMEXPORT double getData(double node)
 {
     linkedNode* node_pointer = (linkedNode*)(int)node;
@@ -175,13 +154,6 @@ GMEXPORT double setCurrentNode(double double_cycle, double node)
 {
     linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     cycle->current = (linkedNode*)(int)node;
-    return 1.0;
-}
-
-GMEXPORT double setDataDestructor(double double_cycle, double dataDestructor)
-{
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    cycle->dataDestructor = dataDestructor;
     return 1.0;
 }
 

@@ -14,64 +14,71 @@ typedef struct combatant
     double objectActivator;
 } combatant;
 
-GMEXPORT double combatant_createCombatant()
+GMEXPORT double combatant_createCombatant(double active, double instanceID, double objectType, double objectActivator)
 {
-    // active
-    // instance ID
-    // objectType
-    // objectActivator
+    combatant* combat = (combatant*) malloc(sizeof(combatant));
 
-    argument[4] = mm_malloc(4);
+    combat->active = active;
+    combat->instanceID = instanceID;
+    combat->objectType = objectType;
+    combat->objectActivator = objectActivator;
 
-    combatant_setActive(argument[4],argument[0]);
-    combatant_setInstanceID(argument[4],argument[1]);
-    combatant_setObjectType(argument[4],argument[2]);
-    combatant_setObjectActivator(argument[4],argument[3]);
-
-    return argument[4];
+    return (double)(int)combat;
 }
 
-GMEXPORT double combatant_setActive()
+GMEXPORT double combatant_setActive(double double_combat, double active)
 {
-    HEAP_SPACE[argument[0]] = argument[1];
+    combatant* combat = (combatant*)(int)double_combat;
+    combat->active = active;
+    return 0.1;
 }
 
-GMEXPORT double combatant_setInstanceID()
+GMEXPORT double combatant_setInstanceID(double double_combat, double instanceID)
 {
-    HEAP_SPACE[argument[0]+1] = argument[1];
+    combatant* combat = (combatant*)(int)double_combat;
+    combat->instanceID = instanceID;
+    return 0.1;
 }
 
-GMEXPORT double combatant_setObjectType()
+GMEXPORT double combatant_setObjectType(double double_combat, double objectType)
 {
-    HEAP_SPACE[argument[0]+2] = argument[1];
+    combatant* combat = (combatant*)(int)double_combat;
+    combat->objectType = objectType;
+    return 0.1;
 }
 
-GMEXPORT double combatant_setObjectActivator()
+GMEXPORT double combatant_setObjectActivator(double double_combat, double objectActivator)
 {
-    HEAP_SPACE[argument[0]+3] = argument[1];
+    combatant* combat = (combatant*)(int)double_combat;
+    combat->objectActivator = objectActivator;
+    return 0.1;
 }
 
-GMEXPORT double combatant_getActive()
+GMEXPORT double combatant_getActive(double double_combat)
 {
-    return HEAP_SPACE[argument[0]];
+    combatant* combat = (combatant*)(int)double_combat;
+    return combat->active;
 }
 
-GMEXPORT double combatant_getInstanceID()
+GMEXPORT double combatant_getInstanceID(double double_combat)
 {
-    return HEAP_SPACE[argument[0]+1];
+    combatant* combat = (combatant*)(int)double_combat;
+    return combat->instanceID;
 }
 
-GMEXPORT double combatant_getObjectType()
+GMEXPORT double combatant_getObjectType(double double_combat)
 {
-    return HEAP_SPACE[argument[0]+2];
+    combatant* combat = (combatant*)(int)double_combat;
+    return combat->objectType;
 }
 
-GMEXPORT double combatant_getObjectActivator()
+GMEXPORT double combatant_getObjectActivator(double double_combat)
 {
-    return HEAP_SPACE[argument[0]+3];
+    combatant* combat = (combatant*)(int)double_combat;
+    return combat->objectActivator;
 }
 
-GMEXPORT double combatant_deleteCombatant()
+GMEXPORT double combatant_deleteCombatant(double double_combat)
 {
-    mm_free(argument[0]);
+    free((combatant*)(int)double_combat);
 }
