@@ -14,39 +14,20 @@ typedef struct linkedNode
     double      dataDestructor;
 } linkedNode;
 
-GMEXPORT double createNode()
+static linkedNode* createNode()
 {
     linkedNode* node     = (linkedNode*) malloc(sizeof(linkedNode));
     node->data           = 0;
     node->next           = NULL;
     node->previous       = NULL;
     node->dataDestructor = 0;
-    return (double)(int)node;
+    return node;
 }
 
-GMEXPORT double getData(double node)
+static void deleteNode(linkedNode* node)
 {
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    return node_pointer->data;
-}
-
-GMEXPORT double getNext(double node)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    return (double)(int)node_pointer->next;
-}
-
-GMEXPORT double getPrevious(double node)
-{
-    linkedNode* node_pointer = (linkedNode*)(int)node;
-    return (double)(int)node_pointer->previous;
-}
-
-GMEXPORT double deleteNode(double node)
-{
-    //script_execute(getDataDestructor(node), getData(node));
-    free((linkedNode*)(int)node);
-    return 1.0;
+    //script_execute(node->dataDestructor, node->data);
+    free(node);
 }
 
 typedef struct linkedCycle
@@ -102,10 +83,10 @@ GMEXPORT double removeAfterCurrent(double double_cycle)
         linkedNode* next = cycle->current->next;
         next->next->previous = next->previous;
         next->previous->next = next->next;
-        deleteNode((double)(int)next);
+        deleteNode(next);
     } else if (cycle->length == 1)
     {
-        deleteNode((double)(int)cycle->current);
+        deleteNode(cycle->current);
         cycle->current = NULL;
     }
 
@@ -131,23 +112,10 @@ GMEXPORT double next(double double_cycle)
     return 1.0;
 }
 
-GMEXPORT double previous(double double_cycle)
-{
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    cycle->current = cycle->current->previous;
-    return 1.0;
-}
-
 GMEXPORT double getCurrentNode(double double_cycle)
 {
     linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     return (double)(int)cycle->current;
-}
-
-GMEXPORT double getDataDestructor(double double_cycle)
-{
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    return cycle->dataDestructor;
 }
 
 GMEXPORT double setCurrentNode(double double_cycle, double node)

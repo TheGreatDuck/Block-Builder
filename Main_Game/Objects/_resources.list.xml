@@ -8,9 +8,6 @@
   <resource name="obj_efficientNetworkUpdater" type="RESOURCE"/>
   <resource name="obj_threeMonthsLater" type="RESOURCE"/>
   <resource name="obj_inGameMenu" type="RESOURCE"/>
-  <resource name="obj_battleMenuMain" type="RESOURCE"/>
-  <resource name="obj_battleMenuMove" type="RESOURCE"/>
-  <resource name="obj_buttonMove" type="RESOURCE"/>
   <resource name="Saving System" type="GROUP"/>
   <resource name="Map Icons" type="GROUP"/>
   <resource name="Cutscenes" type="GROUP"/>

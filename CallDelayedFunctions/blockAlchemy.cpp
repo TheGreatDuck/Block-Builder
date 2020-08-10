@@ -1,11 +1,21 @@
-///scr_changeBlock(a,b,c,d,e)
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <math.h>
+#include "delayed_function_calls.h"
+
+GMEXPORT double scr_changeBlock()
+{
+    ///scr_changeBlock(a,b,c,d,e)
 /* An ideal version of this would be a mathematical function.
  *
  * Control statements can be expensive as the processor will
  * attempt to 'predict' which path is taken and work ahead whilst
  * waiting for exact details. A bad predication wastes time. Therefore,
  * we will desire a version that uses explicit logic in a simple manner.
- * 
+ *
  * While the graphics and everything are helpful, this function truly
  * defines each of the blocks. They each do different things and so there
  * is never any two blocks with the same properties.
@@ -77,17 +87,17 @@ if (argument[0] < 1000 && argument[0] != 34)
     {
         return argument[0] + 1000;
     }
-    
+
     if ((darknessBaseW || darknessSpreadW) && !light)
     {
         return argument[0] + 2000;
     }
-    
+
     if ((darknessBaseE || darknessSpreadE) && !light)
     {
         return argument[0] + 3000;
     }
-    
+
     if ((darknessBaseS || darknessSpreadS) && !light)
     {
         return argument[0] + 4000;
@@ -100,17 +110,17 @@ if (argument[0] >= 1000)
     {
         return (argument[0] mod 1000) + 4000000;
     }
-    
+
     if ((floor(argument[0]/1000) == 2) && !(darknessBaseW || darknessSpreadW))
     {
         return (argument[0] mod 1000) + 4000000;
     }
-    
+
     if ((floor(argument[0]/1000) == 3) && !(darknessBaseE || darknessSpreadE))
     {
         return (argument[0] mod 1000) + 4000000;
     }
-    
+
     if ((floor(argument[0]/1000) == 4) && !(darknessBaseS || darknessSpreadS))
     {
         return (argument[0] mod 1000) + 4000000;
@@ -125,29 +135,29 @@ if (argument[0] == 1)
 {
     var returnValue;
     var waterSource;
-    
+
     waterSource = (water || wetSand);
-    
+
     if (waterSource && !lava && !poison)
     {
         return 2 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (!waterSource && lava && !poison)
     {
         return 3 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (poison && !lava)
     {
         return 7 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (lava && (waterSource || poison))
     {
         return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (!waterSource && !lava && !poison)
     {
         return 1 + (shadowCounter-1000000)*(shadowCounter > 0);
@@ -160,12 +170,12 @@ if (argument[0] == 2)
     {
         return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (grass || tree)
     {
         return 6 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (poison)
     {
         return 7 + (shadowCounter-1000000)*(shadowCounter > 0);
@@ -210,7 +220,7 @@ if (argument[0] == 8)
     {
         return 10 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if ((water || poison) && !lava)
     {
         return 9 + (shadowCounter-1000000)*(shadowCounter > 0);
@@ -223,7 +233,7 @@ if (argument[0] == 9)
     {
         return 8 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (lava)
     {
         return 10 + (shadowCounter-1000000)*(shadowCounter > 0);
@@ -236,7 +246,7 @@ if (argument[0] == 11)
     {
         return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
     }
-    
+
     if (poison)
     {
         return 12 + (shadowCounter-1000000)*(shadowCounter > 0);
@@ -260,3 +270,4 @@ if (argument[0] == 21)
 }
 
 return argument[0] + (shadowCounter-1000000)*(shadowCounter > 0);
+}

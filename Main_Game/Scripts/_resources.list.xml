@@ -2,7 +2,6 @@
 <resources>
   <resource name="scr_updateBlockNetwork" type="RESOURCE"/>
   <resource name="Improved Block Network" type="GROUP"/>
-  <resource name="scr_changeBlock" type="RESOURCE"/>
   <resource name="scr_walkableBlockExists" type="RESOURCE"/>
   <resource name="scr_isBlockType" type="RESOURCE"/>
   <resource name="Struct Based Data Structures" type="GROUP"/>
