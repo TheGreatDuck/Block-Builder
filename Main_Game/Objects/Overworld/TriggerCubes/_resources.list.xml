@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="obj_checkBlock" type="RESOURCE"/>
-  <resource name="obj_masterCheck" type="RESOURCE"/>
-  <resource name="obj_hiddenHole" type="RESOURCE"/>
-  <resource name="obj_adjustPlayer" type="RESOURCE"/>
-</resources>

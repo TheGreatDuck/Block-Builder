@@ -6,7 +6,7 @@
 #include <math.h>
 #include "delayed_function_calls.h"
 
-GMEXPORT double scr_changeBlock()
+GMEXPORT double scr_changeBlock(double blockType, double north, double west, double east, double south)
 {
     ///scr_changeBlock(a,b,c,d,e)
 /* An ideal version of this would be a mathematical function.
@@ -27,57 +27,57 @@ GMEXPORT double scr_changeBlock()
   * argument 4 = south
   */
 
-argument[1] = argument[1] mod 1000000;
-argument[2] = argument[2] mod 1000000;
-argument[3] = argument[3] mod 1000000;
-argument[4] = argument[4] mod 1000000;
+north = north mod 1000000;
+west = west mod 1000000;
+east = east mod 1000000;
+south = south mod 1000000;
 
-channel = (argument[1] == 1) || (argument[2] == 1) || (argument[3] == 1) || (argument[4] == 1);
-water = (argument[1] == 2) || (argument[2] == 2) || (argument[3] == 2) || (argument[4] == 2);
-lava = (argument[1] == 3) || (argument[2] == 3) || (argument[3] == 3) || (argument[4] == 3);
-dirt = (argument[1] == 4) || (argument[2] == 4) || (argument[3] == 4) || (argument[4] == 4);
-ice = (argument[1] == 5) || (argument[2] == 5) || (argument[3] == 5) || (argument[4] == 5);
-grass = (argument[1] == 6) || (argument[2] == 6) || (argument[3] == 6) || (argument[4] == 6);
-poison = (argument[1] == 7) || (argument[2] == 7) || (argument[3] == 7) || (argument[4] == 7);
-sand = (argument[1] == 8) || (argument[2] == 8) || (argument[3] == 8) || (argument[4] == 8);
-wetSand = (argument[1] == 9) || (argument[2] == 9) || (argument[3] == 9) || (argument[4] == 9);
-glass = (argument[1] == 10) || (argument[2] == 10) || (argument[3] == 10) || (argument[4] == 10);
-tree = (argument[1] == 11) || (argument[2] == 11) || (argument[3] == 11) || (argument[4] == 11);
-petrifiedTree = (argument[1] == 12) || (argument[2] == 12) || (argument[3] == 12) || (argument[4] == 12);
-waterEyeSwitch = (argument[1] == 13) || (argument[2] == 13) || (argument[3] == 13) || (argument[4] == 13);
-lavaEyeSwitch = (argument[1] == 14) || (argument[2] == 14) || (argument[3] == 14) || (argument[4] == 14);
-poisonEyeSwitch = (argument[1] == 15) || (argument[2] == 15) || (argument[3] == 15) || (argument[4] == 15);
+channel = (north == 1) || (west == 1) || (east == 1) || (south == 1);
+water = (north == 2) || (west == 2) || (east == 2) || (south == 2);
+lava = (north == 3) || (west == 3) || (east == 3) || (south == 3);
+dirt = (north == 4) || (west == 4) || (east == 4) || (south == 4);
+ice = (north == 5) || (west == 5) || (east == 5) || (south == 5);
+grass = (north == 6) || (west == 6) || (east == 6) || (south == 6);
+poison = (north == 7) || (west == 7) || (east == 7) || (south == 7);
+sand = (north == 8) || (west == 8) || (east == 8) || (south == 8);
+wetSand = (north == 9) || (west == 9) || (east == 9) || (south == 9);
+glass = (north == 10) || (west == 10) || (east == 10) || (south == 10);
+tree = (north == 11) || (west == 11) || (east == 11) || (south == 11);
+petrifiedTree = (north == 12) || (west == 12) || (east == 12) || (south == 12);
+waterEyeSwitch = (north == 13) || (west == 13) || (east == 13) || (south == 13);
+lavaEyeSwitch = (north == 14) || (west == 14) || (east == 14) || (south == 14);
+poisonEyeSwitch = (north == 15) || (west == 15) || (east == 15) || (south == 15);
 
 
 
-pushable = (argument[1] == 19) || (argument[2] == 19) || (argument[3] == 19) || (argument[4] == 19);
-metal = (argument[1] == 20) || (argument[2] == 20) || (argument[3] == 20) || (argument[4] == 20);
-hotMetal = (argument[1] == 21) || (argument[2] == 21) || (argument[3] == 21) || (argument[4] == 21);
-hole = (argument[1] == 22) || (argument[2] == 22) || (argument[3] == 22) || (argument[4] == 22);
-underworldFlame = (argument[1] == 23) || (argument[2] == 23) || (argument[3] == 23) || (argument[4] == 23);
-bomb = (argument[1] == 24) || (argument[2] == 24) || (argument[3] == 24) || (argument[4] == 24);
-explosion = (argument[1] == 25) || (argument[2] == 25) || (argument[3] == 25) || (argument[4] == 25);
-electricalSource = (argument[1] == 26) || (argument[2] == 26) || (argument[3] == 26) || (argument[4] == 26);
-pitdoorOpen = (argument[1] == 27) || (argument[2] == 27) || (argument[3] == 27) || (argument[4] == 27);
-pitdoorShut = (argument[1] == 28) || (argument[2] == 28) || (argument[3] == 28) || (argument[4] == 28);
-wood = (argument[1] == 29) || (argument[2] == 29) || (argument[3] == 29) || (argument[4] == 29);
-burningWood = (argument[1] == 30) || (argument[2] == 30) || (argument[3] == 30) || (argument[4] == 30);
-sandstone = (argument[1] == 31) || (argument[2] == 31) || (argument[3] == 31) || (argument[4] == 31);
-stoneBrick = (argument[1] == 32) || (argument[2] == 32) || (argument[3] == 32) || (argument[4] == 32);
-prism = (argument[1] == 33) || (argument[2] == 33) || (argument[3] == 33) || (argument[4] == 33);
+pushable = (north == 19) || (west == 19) || (east == 19) || (south == 19);
+metal = (north == 20) || (west == 20) || (east == 20) || (south == 20);
+hotMetal = (north == 21) || (west == 21) || (east == 21) || (south == 21);
+hole = (north == 22) || (west == 22) || (east == 22) || (south == 22);
+underworldFlame = (north == 23) || (west == 23) || (east == 23) || (south == 23);
+bomb = (north == 24) || (west == 24) || (east == 24) || (south == 24);
+explosion = (north == 25) || (west == 25) || (east == 25) || (south == 25);
+electricalSource = (north == 26) || (west == 26) || (east == 26) || (south == 26);
+pitdoorOpen = (north == 27) || (west == 27) || (east == 27) || (south == 27);
+pitdoorShut = (north == 28) || (west == 28) || (east == 28) || (south == 28);
+wood = (north == 29) || (west == 29) || (east == 29) || (south == 29);
+burningWood = (north == 30) || (west == 30) || (east == 30) || (south == 30);
+sandstone = (north == 31) || (west == 31) || (east == 31) || (south == 31);
+stoneBrick = (north == 32) || (west == 32) || (east == 32) || (south == 32);
+prism = (north == 33) || (west == 33) || (east == 33) || (south == 33);
 
 //if we try to have multiple directions power a
 //shadow at once then we can get infinite propogation
-darknessBaseN = (argument[1] == 34);
-darknessBaseW = (argument[2] == 34);
-darknessBaseE = (argument[3] == 34);
-darknessBaseS = (argument[4] == 34);
-darknessSpreadN = (floor(argument[1]/1000) != 4)*(floor(argument[1]/1000) != 0)*(floor(argument[1]/1000000) == 0);
-darknessSpreadW = (floor(argument[2]/1000) != 3)*(floor(argument[2]/1000) != 0)*(floor(argument[2]/1000000) == 0);
-darknessSpreadE = (floor(argument[3]/1000) != 2)*(floor(argument[3]/1000) != 0)*(floor(argument[3]/1000000) == 0);
-darknessSpreadS = (floor(argument[4]/1000) != 1)*(floor(argument[4]/1000) != 0)*(floor(argument[4]/1000000) == 0);
+darknessBaseN = (north == 34);
+darknessBaseW = (west == 34);
+darknessBaseE = (east == 34);
+darknessBaseS = (south == 34);
+darknessSpreadN = (floor(north/1000) != 4)*(floor(north/1000) != 0)*(floor(north/1000000) == 0);
+darknessSpreadW = (floor(west/1000) != 3)*(floor(west/1000) != 0)*(floor(west/1000000) == 0);
+darknessSpreadE = (floor(east/1000) != 2)*(floor(east/1000) != 0)*(floor(east/1000000) == 0);
+darknessSpreadS = (floor(south/1000) != 1)*(floor(south/1000) != 0)*(floor(south/1000000) == 0);
 
-light = (argument[1] == 35) || (argument[2] == 35) || (argument[3] == 35) || (argument[4] == 35);
+light = (north == 35) || (west == 35) || (east == 35) || (south == 35);
 
 
 

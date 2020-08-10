@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="obj_battleLavaTurret" type="RESOURCE"/>
-  <resource name="obj_battleIceTurret" type="RESOURCE"/>
-  <resource name="obj_battleIceBeetleCannon" type="RESOURCE"/>
-  <resource name="obj_battleFireBeetleCannon" type="RESOURCE"/>
-</resources>

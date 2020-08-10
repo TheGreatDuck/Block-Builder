@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="obj_idleBasic" type="RESOURCE"/>
-  <resource name="obj_iceTurretIdle" type="RESOURCE"/>
-  <resource name="obj_fireTurretIdle" type="RESOURCE"/>
-  <resource name="obj_shadowIdle" type="RESOURCE"/>
-  <resource name="obj_playerIdle" type="RESOURCE"/>
-  <resource name="obj_stoneSerpentIdle" type="RESOURCE"/>
-  <resource name="obj_cerberusIdle" type="RESOURCE"/>
 </resources>

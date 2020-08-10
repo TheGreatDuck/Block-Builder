@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="Stone Serpent" type="GROUP"/>
-  <resource name="Cerberus" type="GROUP"/>
-  <resource name="Ymir" type="GROUP"/>
-  <resource name="Nidhogg" type="GROUP"/>
-</resources>

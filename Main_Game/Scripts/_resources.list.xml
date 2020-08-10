@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="scr_updateBlockNetwork" type="RESOURCE"/>
-  <resource name="Improved Block Network" type="GROUP"/>
-  <resource name="scr_walkableBlockExists" type="RESOURCE"/>
   <resource name="scr_isBlockType" type="RESOURCE"/>
   <resource name="Struct Based Data Structures" type="GROUP"/>
   <resource name="scr_exportLevel" type="RESOURCE"/>

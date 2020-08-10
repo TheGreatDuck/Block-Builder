@@ -40,7 +40,6 @@
 		<Unit filename="blockAlchemy.cpp" />
 		<Unit filename="blockGraph.cpp" />
 		<Unit filename="blockGraph.h" />
-		<Unit filename="blockNetwork.cpp" />
 		<Unit filename="combatant.cpp" />
 		<Unit filename="delayed_function_calls.cpp" />
 		<Unit filename="delayed_function_calls.h" />

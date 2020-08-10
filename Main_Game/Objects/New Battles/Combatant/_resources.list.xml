@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="obj_combatantBasic" type="RESOURCE"/>
-  <resource name="obj_iceTurretCombatant" type="RESOURCE"/>
-  <resource name="obj_fireTurretCombatant" type="RESOURCE"/>
-  <resource name="obj_shadowCombatant" type="RESOURCE"/>
-  <resource name="obj_playerCombatant" type="RESOURCE"/>
-  <resource name="obj_stoneSerpentCombatant" type="RESOURCE"/>
-  <resource name="obj_cerberusCombatant" type="RESOURCE"/>
 </resources>

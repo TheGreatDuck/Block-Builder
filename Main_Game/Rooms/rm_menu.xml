@@ -146,14 +146,14 @@
   </views>
   <instances>
     <instance>
-      <object>obj_menuIcon</object>
-      <position x="128" y="128"/>
+      <object>obj_blockItem</object>
+      <position x="320" y="128"/>
       <creationCode/>
       <locked>false</locked>
     </instance>
     <instance>
-      <object>obj_blockItem</object>
-      <position x="320" y="128"/>
+      <object>obj_menuIcon</object>
+      <position x="128" y="128"/>
       <creationCode/>
       <locked>false</locked>
     </instance>

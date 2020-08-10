@@ -3,19 +3,14 @@
   <resource name="Blocks" type="GROUP"/>
   <resource name="Tiles" type="GROUP"/>
   <resource name="Player" type="GROUP"/>
-  <resource name="Enemies" type="GROUP"/>
-  <resource name="Bosses" type="GROUP"/>
   <resource name="Private Implementation" type="GROUP"/>
   <resource name="Block Menu" type="GROUP"/>
   <resource name="Pause Menu" type="GROUP"/>
-  <resource name="Cutscenes" type="GROUP"/>
-  <resource name="Battle Menu" type="GROUP"/>
   <resource name="spr_fireball" type="RESOURCE"/>
   <resource name="spr_iceball" type="RESOURCE"/>
   <resource name="spr_shadowball" type="RESOURCE"/>
   <resource name="Map Icons" type="GROUP"/>
   <resource name="Main Game Menu" type="GROUP"/>
-  <resource name="spr_battleMenuBack" type="RESOURCE"/>
   <resource name="spr_blockCollisions" type="RESOURCE"/>
   <resource name="spr_numbers" type="RESOURCE"/>
   <resource name="spr_healthBox" type="RESOURCE"/>

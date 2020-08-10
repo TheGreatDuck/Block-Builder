@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="blockAlchemy.cpp" open="1" top="1" tabpos="9">
+	<File name="blockAlchemy.cpp" open="1" top="1" tabpos="8">
 		<Cursor position="157" topLine="0" />
 	</File>
 	<File name="blockGraph.cpp" open="1" top="0" tabpos="6">
@@ -9,9 +9,6 @@
 	</File>
 	<File name="blockGraph.h" open="1" top="0" tabpos="7">
 		<Cursor position="761" topLine="0" />
-	</File>
-	<File name="blockNetwork.cpp" open="1" top="0" tabpos="8">
-		<Cursor position="434" topLine="0" />
 	</File>
 	<File name="combatant.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="159" topLine="0" />
