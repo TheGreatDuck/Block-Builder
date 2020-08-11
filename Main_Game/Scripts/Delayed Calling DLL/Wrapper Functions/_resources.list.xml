@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="scr_wrapper_d3d_draw_block" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_draw_cylinder" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_draw_cone" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_draw_ellipsoid" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_draw_wall" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_draw_floor" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_set_identity" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_rotation_x" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_rotation_y" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_rotation_z" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_translation" type="RESOURCE"/>
+  <resource name="scr_wrapper_sprite_get_texture" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_primitive_begin" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_vertex" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_vertex_color" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_primitive_end" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_draw" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_create" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_load" type="RESOURCE"/>
+  <resource name="scr_wrapper_sprite_add" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_scaling" type="RESOURCE"/>
+</resources>

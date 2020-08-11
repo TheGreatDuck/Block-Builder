@@ -5,14 +5,7 @@
 #include <sstream>
 #include <math.h>
 #include "delayed_function_calls.h"
-
-typedef struct linkedNode
-{
-    double      data;
-    struct linkedNode* next;
-    struct linkedNode* previous;
-    double      dataDestructor;
-} linkedNode;
+#include "linkedCycle.h"
 
 static linkedNode* createNode()
 {
@@ -30,26 +23,18 @@ static void deleteNode(linkedNode* node)
     free(node);
 }
 
-typedef struct linkedCycle
-{
-    linkedNode* current;
-    double      dataDestructor;
-    int         length;
-} linkedCycle;
-
-GMEXPORT double createCycle(double dataDestructor)
+linkedCycle* createCycle(double dataDestructor)
 {
     linkedCycle* cycle = (linkedCycle*) malloc(sizeof(linkedCycle));
     cycle->current        = NULL;
     cycle->dataDestructor = dataDestructor;
     cycle->length         = 0;
-    return (double)(int)cycle;
+    return cycle;
 }
 
-GMEXPORT double insertAfterCurrent(double double_cycle, double data)
+void insertAfterCurrent(linkedCycle* cycle, double data)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    linkedNode* node = (linkedNode*)(int)createNode();
+    linkedNode* node = createNode();
 
     node->data = data;
     node->dataDestructor = cycle->dataDestructor;
@@ -74,10 +59,8 @@ GMEXPORT double insertAfterCurrent(double double_cycle, double data)
     cycle->length += 1;
 }
 
-GMEXPORT double removeAfterCurrent(double double_cycle)
+void removeAfterCurrent(linkedCycle* cycle)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-
     if (cycle->length > 1)
     {
         linkedNode* next = cycle->current->next;
@@ -93,41 +76,32 @@ GMEXPORT double removeAfterCurrent(double double_cycle)
     cycle->length -= 1;
 }
 
-GMEXPORT double getLength(double double_cycle)
+int getLength(linkedCycle* cycle)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     return cycle->length;
 }
 
-GMEXPORT double getCurrentData(double double_cycle)
+double getCurrentData(linkedCycle* cycle)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     return cycle->current->data;
 }
 
-GMEXPORT double next(double double_cycle)
+double next(linkedCycle* cycle)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     cycle->current = cycle->current->next;
-    return 1.0;
 }
 
-GMEXPORT double getCurrentNode(double double_cycle)
+linkedNode* getCurrentNode(linkedCycle* cycle)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    return (double)(int)cycle->current;
+    return cycle->current;
 }
 
-GMEXPORT double setCurrentNode(double double_cycle, double node)
+void setCurrentNode(linkedCycle* cycle, linkedNode* node)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
-    cycle->current = (linkedNode*)(int)node;
-    return 1.0;
+    cycle->current = node;
 }
 
-GMEXPORT double setLength(double double_cycle, double length)
+void setLength(linkedCycle* cycle, double length)
 {
-    linkedCycle* cycle = (linkedCycle*)(int)double_cycle;
     cycle->length = length;
-    return 1.0;
 }

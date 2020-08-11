@@ -6,78 +6,15 @@
 #include <math.h>
 #include "delayed_function_calls.h"
 #include "blockGraph.h"
+#include "blockAlchemy.h"
 
 #define blockModelCapacity 5000
 #define numberOfBlocks_3D  5000
 
-typedef struct block3D
+blockGraph* blkGph;
+
+static double blockGraph_createSubmodel(double modelID)
 {
-    double type;
-
-    double v1x;
-    double v1y;
-    double v1z;
-    double v2x;
-    double v2y;
-    double v2z;
-    double v3x;
-    double v3y;
-    double v3z;
-    double v4x;
-    double v4y;
-    double v4z;
-
-    double n1x;
-    double n1y;
-    double n1z;
-    double n2x;
-    double n2y;
-    double n2z;
-    double n3x;
-    double n3y;
-    double n3z;
-    double n4x;
-    double n4y;
-    double n4z;
-
-    double removable;
-
-    double adj1;
-    double adj2;
-    double adj3;
-    double adj4;
-} block3D;
-
-typedef struct blockGraph
-{
-    unsigned int numberOfBlockModels;
-    block3D* blockGraph;
-    unsigned int numberOfModels;
-    double* surfaceModel;
-    unsigned int blockUpdateListLength;
-    unsigned int* blockUpdateList;
-    unsigned int blockUpdateListTempLength;
-    unsigned int* blockUpdateListTemp;
-} blockGraph;
-
-GMEXPORT double blockGraph_create3DModel(double double_blockGraph)
-{
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
-    //fillerModel = d3d_model_create();
-    blkGph->numberOfModels = ceil(blkGph->numberOfBlockModels/blockModelCapacity);
-    for (unsigned int i = 0; i < blkGph->numberOfModels; i+=1)
-    {
-        blkGph->surfaceModel[i] = blockGraph_createSubmodel((double)(int)blkGph, i);
-    }
-
-    return 1.0;
-}
-
-GMEXPORT double blockGraph_createSubmodel(double double_blockGraph, double modelID)
-{
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     int model;
     d3d_model_create(&model);
     //d3d_model_primitive_begin(model,pr_trianglelist);
@@ -134,23 +71,33 @@ GMEXPORT double blockGraph_createSubmodel(double double_blockGraph, double model
     return model;
 }
 
-GMEXPORT double blockGraph_blockArithmetic(double double_blockGraph, double blockID)
+GMEXPORT double blockGraph_create3DModel()
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
+    //fillerModel = d3d_model_create();
+    blkGph->numberOfModels = ceil(blkGph->numberOfBlockModels/blockModelCapacity);
+    for (unsigned int i = 0; i < blkGph->numberOfModels; i+=1)
+    {
+        blkGph->surfaceModel[i] = blockGraph_createSubmodel(i);
+    }
 
-    double s1 = blkGph->blockGraph[(int)blockID].adj1;
-    double s2 = blkGph->blockGraph[(int)blockID].adj2;
-    double s3 = blkGph->blockGraph[(int)blockID].adj3;
-    double s4 = blkGph->blockGraph[(int)blockID].adj4;
+    return 1.0;
+}
 
-    double b1;
-    double b2;
-    double b3;
-    double b4;
+static int blockGraph_blockArithmetic(int blockID)
+{
+    int s1 = blkGph->blockGraph[blockID].adj1;
+    int s2 = blkGph->blockGraph[blockID].adj2;
+    int s3 = blkGph->blockGraph[blockID].adj3;
+    int s4 = blkGph->blockGraph[blockID].adj4;
+
+    int b1;
+    int b2;
+    int b3;
+    int b4;
 
     if (s1 != -1)
     {
-        b1 = blkGph->blockGraph[(int)s1].type;
+        b1 = blkGph->blockGraph[s1].type;
     } else
     {
         b1 = -1;
@@ -158,7 +105,7 @@ GMEXPORT double blockGraph_blockArithmetic(double double_blockGraph, double bloc
 
     if (s2 != -1)
     {
-        b2 = blkGph->blockGraph[(int)s2].type;
+        b2 = blkGph->blockGraph[s2].type;
     } else
     {
         b2 = -1;
@@ -166,7 +113,7 @@ GMEXPORT double blockGraph_blockArithmetic(double double_blockGraph, double bloc
 
     if (s3 != -1)
     {
-        b3 = blkGph->blockGraph[(int)s3].type;
+        b3 = blkGph->blockGraph[s3].type;
     } else
     {
         b3 = -1;
@@ -174,81 +121,79 @@ GMEXPORT double blockGraph_blockArithmetic(double double_blockGraph, double bloc
 
     if (s4 != -1)
     {
-        b4 = blkGph->blockGraph[(int)s4].type;
+        b4 = blkGph->blockGraph[s4].type;
     } else
     {
         b4 = -1;
     }
 
-    return 1.0;//(blkGph->blockGraph[(int)blockID].type,b1,b2,b3,b4);
+    return scr_changeBlock(blkGph->blockGraph[blockID].type,b1,b2,b3,b4);
 }
 
-GMEXPORT double blockGraph_setUpBlockGraphList(double double_blockGraph)
+GMEXPORT double blockGraph_setUpBlockGraphList()
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     blkGph->blockUpdateListLength = 0;
 
     double tempBlocks[blkGph->numberOfBlockModels];
 
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i+=1)
     {
-        if (blkGph->blockGraph[i].type != blockGraph_blockArithmetic((double)(int)blkGph, i))
+        if (blkGph->blockGraph[i].type != blockGraph_blockArithmetic(i))
         {
-            blockGraph_addToBlockUpdateList((double)(int)blkGph, i);
-            blockGraph_addToBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj1);
-            blockGraph_addToBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj2);
-            blockGraph_addToBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj3);
-            blockGraph_addToBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj4);
+            blockGraph_addToBlockUpdateList(i);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj1);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj2);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj3);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj4);
         }
 
-        tempBlocks[i] = blockGraph_blockArithmetic((double)(int)blkGph, i);
+        tempBlocks[i] = blockGraph_blockArithmetic(i);
     }
 
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i += 1)
     {
         blkGph->blockGraph[i].type = tempBlocks[i];
     }
+
+    return 1.0;
 }
 
-GMEXPORT double blockGraph_addToBlockUpdateList(double double_blockGraph, double blockID)
+GMEXPORT double blockGraph_addToBlockUpdateList(double blockID)
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     if (blockID >= 0)
     {
         blkGph->blockUpdateList[blkGph->blockUpdateListLength] = blockID;
         blkGph->blockUpdateListLength += 1;
     }
+
+    return 1.0;
 }
 
-GMEXPORT double blockGraph_updateBlockGraphWithList(double double_blockGraph)
+GMEXPORT double blockGraph_updateBlockGraphWithList()
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     unsigned int changed[(int)ceil(blkGph->numberOfBlockModels/blockModelCapacity)];
     for (unsigned int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
     {
         changed[i] = 0;
     }
 
-    double tempBlocks[blkGph->numberOfBlockModels];
+    int tempBlocks[blkGph->numberOfBlockModels];
 
     for (unsigned int k = 0; k < blkGph->blockUpdateListLength; k += 1)
     {
         unsigned int i = blkGph->blockUpdateList[k];
 
-        if (tempBlocks[i] != blockGraph_blockArithmetic((double)(int)blkGph, i))
+        if (tempBlocks[i] != blockGraph_blockArithmetic(i))
         {
-            blockGraph_addToTempBlockUpdateList((double)(int)blkGph, i);
-            blockGraph_addToTempBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj1);
-            blockGraph_addToTempBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj2);
-            blockGraph_addToTempBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj3);
-            blockGraph_addToTempBlockUpdateList((double)(int)blkGph, blkGph->blockGraph[i].adj4);
+            blockGraph_addToTempBlockUpdateList(i);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj1);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj2);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj3);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj4);
             changed[(int)floor(i/blockModelCapacity)] = 1;
         }
 
-        tempBlocks[i] = blockGraph_blockArithmetic((double)(int)blkGph, i);
+        tempBlocks[i] = blockGraph_blockArithmetic(i);
     }
 
     for (unsigned int k = 0; k < blkGph->blockUpdateListLength; k += 1)
@@ -271,26 +216,26 @@ GMEXPORT double blockGraph_updateBlockGraphWithList(double double_blockGraph)
         if (changed[i] == 1)
         {
             //d3d_model_destroy(blkGph->surfaceModel[i]);
-            blkGph->surfaceModel[i] = blockGraph_createSubmodel((double)(int)blkGph, i);
+            blkGph->surfaceModel[i] = blockGraph_createSubmodel(i);
         }
     }
+
+    return 1.0;
 }
 
-GMEXPORT double blockGraph_addToTempBlockUpdateList(double double_blockGraph, double blockID)
+GMEXPORT double blockGraph_addToTempBlockUpdateList(double blockID)
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     if (blockID >= 0)
     {
         blkGph->blockUpdateListTemp[blkGph->blockUpdateListTempLength] = blockID;
         blkGph->blockUpdateListTempLength += 1;
     }
+
+    return 1.0;
 }
 
-GMEXPORT double blockGraph_getSideWithPoint(double double_blockGraph, double blockID, double x, double y, double z)
+GMEXPORT double blockGraph_getSideWithPoint(double blockID, double x, double y, double z)
 {
-    blockGraph* blkGph = (blockGraph*)(int)double_blockGraph;
-
     double p1x = blkGph->blockGraph[(int)blockID].v1x;
     double p1y = blkGph->blockGraph[(int)blockID].v1y;
     double p1z = blkGph->blockGraph[(int)blockID].v1z;
@@ -338,7 +283,16 @@ GMEXPORT double blockGraph_loadFromFile(char* fileName)
 {
     FILE* file = fopen(fileName, "r");
 
-    blockGraph* blkGph = (blockGraph*)malloc(sizeof(blockGraph));
+    if (blkGph)
+    {
+        free(blkGph->blockGraph);
+        free(blkGph->surfaceModel);
+        free(blkGph->blockUpdateList);
+        free(blkGph->blockUpdateListTemp);
+        free(blkGph);
+    }
+
+    blkGph = (blockGraph*)malloc(sizeof(blockGraph));
 
     fscanf(file, "%u\n", &blkGph->numberOfBlockModels);
 
@@ -355,7 +309,7 @@ GMEXPORT double blockGraph_loadFromFile(char* fileName)
 
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i += 1)
     {
-        fscanf(file, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf \n",
+        fscanf(file, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %u %u %u %u %u %u %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf \n",
                      &blkGph->blockGraph[i].v1x, &blkGph->blockGraph[i].v1y, &blkGph->blockGraph[i].v1z,
                      &blkGph->blockGraph[i].v2x, &blkGph->blockGraph[i].v2y, &blkGph->blockGraph[i].v2z,
                      &blkGph->blockGraph[i].v3x, &blkGph->blockGraph[i].v3y, &blkGph->blockGraph[i].v3z,

@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Release" />
-	<File name="blockAlchemy.cpp" open="1" top="1" tabpos="8">
-		<Cursor position="157" topLine="0" />
+	<File name="battle.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="207" topLine="2" />
 	</File>
-	<File name="blockGraph.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="1226" topLine="48" />
+	<File name="blockAlchemy.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="3423" topLine="54" />
 	</File>
-	<File name="blockGraph.h" open="1" top="0" tabpos="7">
-		<Cursor position="761" topLine="0" />
+	<File name="blockGraph.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="297" topLine="1" />
 	</File>
-	<File name="combatant.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="159" topLine="0" />
+	<File name="blockGraph.h" open="1" top="0" tabpos="4">
+		<Cursor position="552" topLine="29" />
 	</File>
-	<File name="delayed_function_calls.cpp" open="1" top="0" tabpos="2">
+	<File name="combatant.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="1451" topLine="46" />
+	</File>
+	<File name="combatant.h" open="0" top="0" tabpos="0">
+		<Cursor position="24" topLine="0" />
+	</File>
+	<File name="delayed_function_calls.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="134" topLine="0" />
 	</File>
-	<File name="delayed_function_calls.h" open="1" top="0" tabpos="3">
-		<Cursor position="3634" topLine="44" />
+	<File name="delayed_function_calls.h" open="1" top="0" tabpos="2">
+		<Cursor position="205" topLine="0" />
 	</File>
-	<File name="linkedCycle.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="2742" topLine="105" />
+	<File name="linkedCycle.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="536" topLine="6" />
 	</File>
-	<File name="loadWorld.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="6874" topLine="209" />
+	<File name="linkedCycle.h" open="0" top="0" tabpos="0">
+		<Cursor position="300" topLine="5" />
 	</File>
-	<File name="vector.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1066" topLine="44" />
+	<File name="loadWorld.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="6874" topLine="198" />
+	</File>
+	<File name="player.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="1131" topLine="29" />
+	</File>
+	<File name="vector.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="64" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

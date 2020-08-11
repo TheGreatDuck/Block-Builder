@@ -13,10 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">for (i = 0; i  &lt; ceil(numberOfBlockModels/blockModelCapacity); i+=1)
-{
-    d3d_model_draw(surfaceModel[i],0,0,0,sprite_get_texture(spr_blockTexture,0));
-}
+        <argument kind="STRING">blockGraph_drawEvent();
 </argument>
       </arguments>
     </action>

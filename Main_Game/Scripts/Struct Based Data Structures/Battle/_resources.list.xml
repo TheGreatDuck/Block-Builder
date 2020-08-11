@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="battle_initialize" type="RESOURCE"/>
-  <resource name="battle_manageTurn" type="RESOURCE"/>
-</resources>
