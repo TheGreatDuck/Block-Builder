@@ -48,12 +48,13 @@ typedef struct blockGraph
     unsigned int* blockUpdateListTemp;
 } blockGraph;
 
-GMEXPORT double blockGraph_create3DModel();
-GMEXPORT double blockGraph_setUpBlockGraphList();
-GMEXPORT double blockGraph_addToBlockUpdateList(double blockID);
-GMEXPORT double blockGraph_updateBlockGraphWithList();
-GMEXPORT double blockGraph_addToTempBlockUpdateList(double blockID);
-GMEXPORT double blockGraph_getSideWithPoint(double blockID, double x, double y, double z);
-GMEXPORT double blockGraph_loadFromFile(char* fileName);
+double blockGraph_create3DModel();
+double blockGraph_setUpBlockGraphList();
+double blockGraph_addToBlockUpdateList(double blockID);
+double blockGraph_updateBlockGraphWithList();
+double blockGraph_addToTempBlockUpdateList(double blockID);
+double blockGraph_getSideWithPoint(double blockID, double x, double y, double z);
+double blockGraph_loadFromFile(char* fileName);
+double blockGraph_drawEvent();
 
 extern blockGraph* blkGph;

@@ -13,14 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">blockGraph = instance_create(0,0,obj_blockGraph);
-
-with (blockGraph)
-{
-    blockGraph_loadFromFile(program_directory + "\Worlds\" + global.worldName + "\Level " + string(global.levelLoading) + "\level.ter");
-    blockGraph_setUpBlockGraphList();
-    surfaceModel = blockGraph_create3DModel();
-}
+        <argument kind="STRING">
 
 
 

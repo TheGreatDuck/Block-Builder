@@ -9,7 +9,6 @@
 #include "blockAlchemy.h"
 
 #define blockModelCapacity 5000
-#define numberOfBlocks_3D  5000
 
 blockGraph* blkGph;
 
@@ -71,7 +70,7 @@ static double blockGraph_createSubmodel(double modelID)
     return model;
 }
 
-GMEXPORT double blockGraph_create3DModel()
+double blockGraph_create3DModel()
 {
     //fillerModel = d3d_model_create();
     blkGph->numberOfModels = ceil(blkGph->numberOfBlockModels/blockModelCapacity);
@@ -130,7 +129,7 @@ static int blockGraph_blockArithmetic(int blockID)
     return scr_changeBlock(blkGph->blockGraph[blockID].type,b1,b2,b3,b4);
 }
 
-GMEXPORT double blockGraph_setUpBlockGraphList()
+double blockGraph_setUpBlockGraphList()
 {
     blkGph->blockUpdateListLength = 0;
 
@@ -158,7 +157,7 @@ GMEXPORT double blockGraph_setUpBlockGraphList()
     return 1.0;
 }
 
-GMEXPORT double blockGraph_addToBlockUpdateList(double blockID)
+double blockGraph_addToBlockUpdateList(double blockID)
 {
     if (blockID >= 0)
     {
@@ -169,7 +168,7 @@ GMEXPORT double blockGraph_addToBlockUpdateList(double blockID)
     return 1.0;
 }
 
-GMEXPORT double blockGraph_updateBlockGraphWithList()
+double blockGraph_updateBlockGraphWithList()
 {
     unsigned int changed[(int)ceil(blkGph->numberOfBlockModels/blockModelCapacity)];
     for (unsigned int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
@@ -223,7 +222,7 @@ GMEXPORT double blockGraph_updateBlockGraphWithList()
     return 1.0;
 }
 
-GMEXPORT double blockGraph_addToTempBlockUpdateList(double blockID)
+double blockGraph_addToTempBlockUpdateList(double blockID)
 {
     if (blockID >= 0)
     {
@@ -234,7 +233,7 @@ GMEXPORT double blockGraph_addToTempBlockUpdateList(double blockID)
     return 1.0;
 }
 
-GMEXPORT double blockGraph_getSideWithPoint(double blockID, double x, double y, double z)
+double blockGraph_getSideWithPoint(double blockID, double x, double y, double z)
 {
     double p1x = blkGph->blockGraph[(int)blockID].v1x;
     double p1y = blkGph->blockGraph[(int)blockID].v1y;
@@ -279,7 +278,7 @@ GMEXPORT double blockGraph_getSideWithPoint(double blockID, double x, double y, 
     return -1;
 }
 
-GMEXPORT double blockGraph_loadFromFile(char* fileName)
+double blockGraph_loadFromFile(char* fileName)
 {
     FILE* file = fopen(fileName, "r");
 
@@ -326,4 +325,12 @@ GMEXPORT double blockGraph_loadFromFile(char* fileName)
     fclose(file);
 
     return (double)(int)blkGph;
+}
+
+double blockGraph_drawEvent()
+{
+    for (int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
+    {
+        //d3d_model_draw(blkGph->surfaceModel[i],0,0,0,sprite_get_texture(spr_blockTexture,0));
+    }
 }

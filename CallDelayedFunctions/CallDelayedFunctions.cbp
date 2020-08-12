@@ -44,12 +44,18 @@
 		<Unit filename="blockGraph.h" />
 		<Unit filename="combatant.cpp" />
 		<Unit filename="combatant.h" />
+		<Unit filename="controls.cpp" />
+		<Unit filename="controls.h" />
 		<Unit filename="delayed_function_calls.cpp" />
 		<Unit filename="delayed_function_calls.h" />
+		<Unit filename="gameLoop.cpp" />
+		<Unit filename="gameLoop.h" />
 		<Unit filename="linkedCycle.cpp" />
 		<Unit filename="linkedCycle.h" />
+		<Unit filename="loadLevel.cpp" />
 		<Unit filename="loadWorld.cpp" />
 		<Unit filename="player.cpp" />
+		<Unit filename="player.h" />
 		<Unit filename="vector.cpp" />
 		<Unit filename="vector.h" />
 		<Extensions>
