@@ -12,7 +12,12 @@
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
 					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 					<Add option="-Wshadow" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
@@ -42,6 +47,8 @@
 		<Unit filename="blockAlchemy.h" />
 		<Unit filename="blockGraph.cpp" />
 		<Unit filename="blockGraph.h" />
+		<Unit filename="camera.cpp" />
+		<Unit filename="camera.h" />
 		<Unit filename="combatant.cpp" />
 		<Unit filename="combatant.h" />
 		<Unit filename="controls.cpp" />
@@ -50,9 +57,12 @@
 		<Unit filename="delayed_function_calls.h" />
 		<Unit filename="gameLoop.cpp" />
 		<Unit filename="gameLoop.h" />
+		<Unit filename="gameMakerFunctions\d3d_function.cpp" />
+		<Unit filename="gameMakerFunctions\d3d_function.h" />
 		<Unit filename="linkedCycle.cpp" />
 		<Unit filename="linkedCycle.h" />
 		<Unit filename="loadLevel.cpp" />
+		<Unit filename="loadLevel.h" />
 		<Unit filename="loadWorld.cpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />

@@ -41,20 +41,24 @@ typedef struct blockGraph
     unsigned int numberOfBlockModels;
     block3D* blockGraph;
     unsigned int numberOfModels;
-    double* surfaceModel;
+    int* surfaceModel;
+    int  fillerModel;
+    int* blockGraphDirtyBit;
     unsigned int blockUpdateListLength;
     unsigned int* blockUpdateList;
     unsigned int blockUpdateListTempLength;
     unsigned int* blockUpdateListTemp;
+    int spr_blockTexture;
+    int tex_blockTexture;
 } blockGraph;
 
 double blockGraph_create3DModel();
-double blockGraph_setUpBlockGraphList();
-double blockGraph_addToBlockUpdateList(double blockID);
+void blockGraph_setUpBlockGraphList();
+void blockGraph_addToBlockUpdateList(int blockID);
 double blockGraph_updateBlockGraphWithList();
-double blockGraph_addToTempBlockUpdateList(double blockID);
-double blockGraph_getSideWithPoint(double blockID, double x, double y, double z);
-double blockGraph_loadFromFile(char* fileName);
-double blockGraph_drawEvent();
+void blockGraph_addToTempBlockUpdateList(int blockID);
+int blockGraph_getSideWithPoint(int blockID, double x, double y, double z);
+void blockGraph_loadFromFile(char* fileName);
+void blockGraph_drawEvent();
 
 extern blockGraph* blkGph;

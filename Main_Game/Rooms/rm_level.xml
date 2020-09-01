@@ -119,19 +119,7 @@ global.inventoryBlock[22] += 100000000000;
   <enableViews>false</enableViews>
   <instances>
     <instance>
-      <object>obj_camera</object>
-      <position x="0" y="64"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-    <instance>
-      <object>obj_player3D</object>
-      <position x="64" y="0"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-    <instance>
-      <object>obj_loadLevel</object>
+      <object>obj_level3D</object>
       <position x="0" y="0"/>
       <creationCode/>
       <locked>false</locked>

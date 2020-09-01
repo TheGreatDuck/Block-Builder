@@ -13,7 +13,8 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">//spin += 1;
+        <argument kind="STRING">/*
+//spin += 1;
 x = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3x]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4x])/4;
 y = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3y]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4y])/4;
 z = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v2z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v3z]+obj_blockGraph.blockGraph[currentSpace,Block3D_v4z])/4;
@@ -36,8 +37,8 @@ ny /= norm;
 nz /= norm;
 
 sideX = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1x + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
-sideY = /*(obj_blockGraph.blockGraph[currentSpace,Block3D_v1y] + obj_blockGraph.blockGraph[currentSpace,Block3D_v3y])/2;*/(obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
-sideZ = /*(obj_blockGraph.blockGraph[currentSpace,Block3D_v1z] + obj_blockGraph.blockGraph[currentSpace,Block3D_v3z])/2;*/(obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
+sideY = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1y + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
+sideZ = (obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((sideFacing mod 3) + sign(sideFacing))] + obj_blockGraph.blockGraph[currentSpace,Block3D_v1z + 3*((((sideFacing+1) mod 4) mod 3) + sign((sideFacing+1) mod 4))])/2;
 
 dirX = sideX-x;
 dirY = sideY-y;
@@ -163,7 +164,7 @@ if (moving == 1)
         moving = 0;
         motion = 0;
     }
-}
+}*/
 </argument>
       </arguments>
     </action>

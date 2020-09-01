@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">d3d_transform_set_identity();
+        <argument kind="STRING">/*d3d_transform_set_identity();
 d3d_transform_add_translation(0,0,2.5);
 //d3d_transform_add_rotation_axis(rx,ry,rz,angle);
 d3d_transform_add_rotation_matrix(axisX_x,dirX,nx,
@@ -22,7 +22,7 @@ d3d_transform_add_rotation_matrix(axisX_x,dirX,nx,
 d3d_transform_add_translation(x,y,z);
 d3d_draw_ellipsoid(-2.5,-2.5,-2.5,2.5,2.5,2.5,sprite_get_texture(spr_tileGreen,0),2,1,60);
 
-d3d_transform_set_identity();
+d3d_transform_set_identity();*/
 </argument>
       </arguments>
     </action>

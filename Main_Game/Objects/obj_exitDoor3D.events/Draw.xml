@@ -13,13 +13,13 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">d3d_transform_set_identity();
+        <argument kind="STRING">/*d3d_transform_set_identity();
 d3d_transform_add_rotation_matrix(axisX_x,dirX,nx,
                                   axisX_y,dirY,ny,
                                   axisX_z,dirZ,nz);
 d3d_transform_add_translation(x,y,z);
 d3d_model_draw(model,0,0,0,sprite_get_texture(spr_levelDoor,0));
-d3d_transform_set_identity();
+d3d_transform_set_identity();*/
 </argument>
       </arguments>
     </action>

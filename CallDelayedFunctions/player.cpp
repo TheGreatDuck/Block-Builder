@@ -231,7 +231,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z, player.dirZ, player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x, player.y, player.z);
-    //d3d_draw_ellipsoid(-1,-1,2,1,1,5,sprite_get_texture(spr_tileGrey,0),2,1,60);
+    d3d_draw_ellipsoid(-1,-1,2,1,1,5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
@@ -240,7 +240,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z, player.dirZ, player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x, player.y, player.z);
-    //d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,sprite_get_texture(spr_tileGrey,0),2,1,60);
+    d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
@@ -249,7 +249,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,sprite_get_texture(spr_tileGrey,0),2,1,true,60);
+    d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
@@ -258,7 +258,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,sprite_get_texture(spr_tileGrey,0),2,1,60);
+    d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
@@ -267,7 +267,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,sprite_get_texture(spr_tileGrey,0),2,1,true,60);
+    d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
@@ -276,7 +276,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,sprite_get_texture(spr_tileGrey,0),2,1,60);
+    d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
@@ -292,7 +292,7 @@ GMEXPORT double player3D_drawEvent()
     d3d_transform_add_rotation_z(
                                  player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,sprite_get_texture(spr_tileGrey,0),2,1,true,60);
+    d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
@@ -301,7 +301,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,sprite_get_texture(spr_tileGrey,0),2,1,60);player.
+    d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
@@ -310,7 +310,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,sprite_get_texture(spr_tileGrey,0),2,1,true,60);
+    d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
@@ -324,7 +324,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-1,-1,-1,1,1,1,sprite_get_texture(spr_tileGrey,0),2,1,60);
+    d3d_draw_ellipsoid(-1,-1,-1,1,1,1,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
@@ -334,7 +334,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,sprite_get_texture(spr_tileGreen,0),2,1,60);
+    d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player.texEye,2,1,60);
 
 
     d3d_transform_set_identity();
@@ -345,7 +345,7 @@ GMEXPORT double player3D_drawEvent()
                                       player.axisX_z,player.dirZ,player.nz);
     d3d_transform_add_rotation_z(player.spin);
     d3d_transform_add_translation(player.x,player.y,player.z);
-    //d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,sprite_get_texture(spr_tileGreen,0),2,1,60);
+    d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player.texEye,2,1,60);
 
     d3d_transform_set_identity();
 }
@@ -447,13 +447,13 @@ GMEXPORT double player3D_stepEvent()
 
     if (gameControl.control_blockLeft.gameControlPress)
     {
-        player.type = (player.type - 1 + (numberOfBlocks_3D - 1)) % (numberOfBlocks_3D-1);
+        player.type = (player.type - 1 + ((int)numberOfBlocks_3D - 1)) % ((int)numberOfBlocks_3D-1);
         player.blockLeftPressed = 1;
     }
 
     if (gameControl.control_blockRight.gameControlPress)
     {
-        player.type = (player.type + 1 + (numberOfBlocks_3D - 1)) % (numberOfBlocks_3D-1);
+        player.type = (player.type + 1 + ((int)numberOfBlocks_3D - 1)) % ((int)numberOfBlocks_3D-1);
         player.blockRightPressed = 1;
     }
 

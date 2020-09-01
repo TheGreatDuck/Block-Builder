@@ -6,6 +6,7 @@
 #include <math.h>
 #include "delayed_function_calls.h"
 #include "blockGraph.h"
+#include "loadLevel.h"
 
 static void load_blockGraph(char* program_directory, char* worldName, char* levelLoading)
 {

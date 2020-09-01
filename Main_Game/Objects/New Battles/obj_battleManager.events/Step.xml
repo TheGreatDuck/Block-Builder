@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">if (battleBegun)
+        <argument kind="STRING">/*if (battleBegun)
 {
     battle_manageTurn();
 }
@@ -21,7 +21,7 @@
 if (linkedCycle_getLength(battleCycle) == 1)
 {
     room_goto(battleComplete);
-}
+}*/
 </argument>
       </arguments>
     </action>

@@ -11,6 +11,7 @@
   <resource name="scr_wrapper_d3d_transform_add_rotation_y" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_transform_add_rotation_z" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_transform_add_translation" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_transform_add_rotation_axis" type="RESOURCE"/>
   <resource name="scr_wrapper_sprite_get_texture" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_primitive_begin" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_vertex" type="RESOURCE"/>
@@ -21,4 +22,14 @@
   <resource name="scr_wrapper_d3d_model_load" type="RESOURCE"/>
   <resource name="scr_wrapper_sprite_add" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_transform_add_scaling" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_set_projection_ortho" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_set_projection_perspective" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_set_projection" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_primitive_begin" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_vertex_texture" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_primitive_end" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_model_destroy" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_start" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_set_fog" type="RESOURCE"/>
+  <resource name="scr_wrapper_d3d_set_lighting" type="RESOURCE"/>
 </resources>

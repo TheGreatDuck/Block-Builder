@@ -41,6 +41,9 @@ external_call(global.delayCallDLL_export_d3d_transform_add_rotation_z, scr_wrapp
 global.delayCallDLL_export_d3d_transform_add_translation = external_define("CallDelayedFunctions.dll", "export_d3d_transform_add_translation", dll_cdecl, ty_real, 1, ty_real);
 external_call(global.delayCallDLL_export_d3d_transform_add_translation, scr_wrapper_d3d_transform_add_translation);
 
+global.delayCallDLL_export_d3d_transform_add_rotation_axis = external_define("CallDelayedFunctions.dll", "export_d3d_transform_add_rotation_axis", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_transform_add_rotation_axis, scr_wrapper_d3d_transform_add_rotation_axis);
+
 global.delayCallDLL_export_sprite_get_texture = external_define("CallDelayedFunctions.dll", "export_sprite_get_texture", dll_cdecl, ty_real, 1, ty_real);
 external_call(global.delayCallDLL_export_sprite_get_texture, scr_wrapper_sprite_get_texture);
 
@@ -70,3 +73,37 @@ external_call(global.delayCallDLL_export_sprite_add, scr_wrapper_sprite_add);
 
 global.delayCallDLL_export_d3d_transform_add_scaling = external_define("CallDelayedFunctions.dll", "export_d3d_transform_add_scaling", dll_cdecl, ty_real, 1, ty_real);
 external_call(global.delayCallDLL_export_d3d_transform_add_scaling, scr_wrapper_d3d_transform_add_scaling);
+
+global.delayCallDLL_export_d3d_set_projection_ortho = external_define("CallDelayedFunctions.dll", "export_d3d_set_projection_ortho", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_set_projection_ortho, scr_wrapper_d3d_set_projection_ortho);
+
+global.delayCallDLL_export_d3d_set_projection_perspective = external_define("CallDelayedFunctions.dll", "export_d3d_set_projection_perspective", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_set_projection_perspective, scr_wrapper_d3d_set_projection_perspective);
+
+global.delayCallDLL_export_d3d_set_projection = external_define("CallDelayedFunctions.dll", "export_d3d_set_projection", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_set_projection, scr_wrapper_d3d_set_projection);
+
+global.delayCallDLL_export_d3d_model_primitive_begin = external_define("CallDelayedFunctions.dll", "export_d3d_model_primitive_begin", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_model_primitive_begin, scr_wrapper_d3d_model_primitive_begin);
+
+global.delayCallDLL_export_d3d_model_vertex_texture = external_define("CallDelayedFunctions.dll", "export_d3d_model_vertex_texture", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_model_vertex_texture, scr_wrapper_d3d_model_vertex_texture);
+
+global.delayCallDLL_export_d3d_model_primitive_end = external_define("CallDelayedFunctions.dll", "export_d3d_model_primitive_end", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_model_primitive_end, scr_wrapper_d3d_model_primitive_end);
+
+global.delayCallDLL_export_d3d_model_destroy = external_define("CallDelayedFunctions.dll", "export_d3d_model_destroy", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_model_destroy, scr_wrapper_d3d_model_destroy);
+
+global.delayCallDLL_export_d3d_start = external_define("CallDelayedFunctions.dll", "export_d3d_start", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_start, scr_wrapper_d3d_start);
+
+global.delayCallDLL_export_d3d_set_fog = external_define("CallDelayedFunctions.dll", "export_d3d_set_fog", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_set_fog, scr_wrapper_d3d_set_fog);
+
+global.delayCallDLL_export_d3d_set_lighting = external_define("CallDelayedFunctions.dll", "export_d3d_set_lighting", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_d3d_set_lighting, scr_wrapper_d3d_set_lighting);
+
+global.gameLoopInit = external_define("CallDelayedFunctions.dll", "gameLoopInit", dll_cdecl, ty_real, 0);
+global.gameLoopStep = external_define("CallDelayedFunctions.dll", "gameLoopStep", dll_cdecl, ty_real, 0);
+global.gameLoopDraw = external_define("CallDelayedFunctions.dll", "gameLoopDraw", dll_cdecl, ty_real, 0);

@@ -13,9 +13,9 @@ typedef struct player3D
     unsigned int movingSideOne;
     unsigned int movingSideTwo;
 
-    unsigned int x;
-    unsigned int y;
-    unsigned int z;
+    double x;
+    double y;
+    double z;
 
     double axisX_x;
     double axisX_y;
@@ -30,6 +30,9 @@ typedef struct player3D
     double nz;
 
     double spin;
+
+    int texBody;
+    int texEye;
 } player3D;
 
 extern player3D player;

@@ -1,4 +1,4 @@
-d3d_transform_set_identity();
+/*d3d_transform_set_identity();
 //d3d_transform_add_rotation_axis(rx,ry,rz,angle);
 d3d_transform_add_rotation_matrix(axisX_x,dirX,nx,
                                   axisX_y,dirY,ny,
@@ -119,4 +119,4 @@ d3d_transform_add_rotation_z(spin);
 d3d_transform_add_translation(x,y,z);
 d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,sprite_get_texture(spr_tileGreen,0),2,1,60);
 
-d3d_transform_set_identity();
+d3d_transform_set_identity();*/
