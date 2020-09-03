@@ -214,6 +214,27 @@ static void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutp
     functionQueueEnd->input[13] = input13;
 }
 
+delayedInput convertToDelayedInput(double input)
+{
+    delayedInput returnValue;
+    returnValue.number = input;
+    returnValue.type = 0;
+}
+
+delayedInput convertToDelayedInput(char* input)
+{
+    delayedInput returnValue;
+    returnValue.text = input;
+    returnValue.type = 1;
+}
+
+delayedInput convertToDelayedInput(int* input)
+{
+    delayedInput returnValue;
+    returnValue.delayedVariable = input;
+    returnValue.type = 2;
+}
+
 #define ADD_FUNCTION(name)\
 static int FP_##name;\
 GMEXPORT double export_##name(double functionPointer)\
