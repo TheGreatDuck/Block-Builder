@@ -224,7 +224,8 @@ delayedInput convertToDelayedInput(double input)
 delayedInput convertToDelayedInput(char* input)
 {
     delayedInput returnValue;
-    returnValue.text = input;
+    returnValue.text = (char*) malloc(strlen(input) + 1);
+    strcpy(returnValue.text, input);
     returnValue.type = 1;
 }
 
