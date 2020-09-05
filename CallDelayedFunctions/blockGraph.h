@@ -1,32 +1,18 @@
+#include "vector.h"
+
 typedef struct block3D
 {
     int type;
 
-    double v1x;
-    double v1y;
-    double v1z;
-    double v2x;
-    double v2y;
-    double v2z;
-    double v3x;
-    double v3y;
-    double v3z;
-    double v4x;
-    double v4y;
-    double v4z;
+    vector v1;
+    vector v2;
+    vector v3;
+    vector v4;
 
-    double n1x;
-    double n1y;
-    double n1z;
-    double n2x;
-    double n2y;
-    double n2z;
-    double n3x;
-    double n3y;
-    double n3z;
-    double n4x;
-    double n4y;
-    double n4z;
+    vector n1;
+    vector n2;
+    vector n3;
+    vector n4;
 
     int removable;
 
