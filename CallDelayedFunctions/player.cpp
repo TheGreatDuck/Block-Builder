@@ -353,17 +353,10 @@ GMEXPORT double player3D_drawEvent()
 GMEXPORT double player3D_stepEvent()
 {
     //spin += 1;
-    player.x = (blkGph->blockGraph[player.currentSpace].v1x + blkGph->blockGraph[player.currentSpace].v2x + blkGph->blockGraph[player.currentSpace].v3x + blkGph->blockGraph[player.currentSpace].v4x)/4;
-    player.y = (blkGph->blockGraph[player.currentSpace].v1y + blkGph->blockGraph[player.currentSpace].v2y + blkGph->blockGraph[player.currentSpace].v3y + blkGph->blockGraph[player.currentSpace].v4y)/4;
-    player.z = (blkGph->blockGraph[player.currentSpace].v1z + blkGph->blockGraph[player.currentSpace].v2z + blkGph->blockGraph[player.currentSpace].v3z + blkGph->blockGraph[player.currentSpace].v4z)/4;
+    player.position = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v2 + blkGph->blockGraph[player.currentSpace].v3 + blkGph->blockGraph[player.currentSpace].v4)/4;
 
-    double dir1x = blkGph->blockGraph[player.currentSpace].v3x - blkGph->blockGraph[player.currentSpace].v1x;
-    double dir1y = blkGph->blockGraph[player.currentSpace].v3y - blkGph->blockGraph[player.currentSpace].v1y;
-    double dir1z = blkGph->blockGraph[player.currentSpace].v3z - blkGph->blockGraph[player.currentSpace].v1z;
-
-    double dir2x = blkGph->blockGraph[player.currentSpace].v4x - blkGph->blockGraph[player.currentSpace].v1x;
-    double dir2y = blkGph->blockGraph[player.currentSpace].v4y - blkGph->blockGraph[player.currentSpace].v1y;
-    double dir2z = blkGph->blockGraph[player.currentSpace].v4z - blkGph->blockGraph[player.currentSpace].v1z;
+    vector dir1 = blkGph->blockGraph[player.currentSpace].v3 - blkGph->blockGraph[player.currentSpace].v1;
+    vector dir2 = blkGph->blockGraph[player.currentSpace].v4 - blkGph->blockGraph[player.currentSpace].v1;
 
     player.nx = dir1y*dir2z - dir1z*dir2y;
     player.ny = dir1z*dir2x - dir1x*dir2z;
