@@ -1,3 +1,5 @@
+#include <vector.h>
+
 typedef struct player3D
 {
     unsigned int type;
@@ -13,21 +15,13 @@ typedef struct player3D
     unsigned int movingSideOne;
     unsigned int movingSideTwo;
 
-    double x;
-    double y;
-    double z;
+    vector position;
 
-    double axisX_x;
-    double axisX_y;
-    double axisX_z;
+    vector axisX;
 
-    double dirX;
-    double dirY;
-    double dirZ;
+    vector dir;
 
-    double nx;
-    double ny;
-    double nz;
+    vector n;
 
     double spin;
 
