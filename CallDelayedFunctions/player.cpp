@@ -362,20 +362,17 @@ GMEXPORT double player3D_stepEvent()
     player.ny = dir1z*dir2x - dir1x*dir2z;
     player.nz = dir1x*dir2y - dir1y*dir2x;
 
-    double norm = sqrt(player.nx*player.nx + player.ny*player.ny + player.nz*player.nz);
-    player.nx /= norm;
-    player.ny /= norm;
-    player.nz /= norm;
+    double norm = sqrt(player.n*player.n);
+    player.n /= norm;
 
-    double sideX = 0;
-    double sideY = 0;
-    double sideZ = 0;
+    vector side;
+    side.x = 0;
+    side.y = 0;
+    side.z = 0;
 
     if (player.sideFacing == 0)
     {
-        sideX = (blkGph->blockGraph[player.currentSpace].v1x + blkGph->blockGraph[player.currentSpace].v3x)/2;
-        sideY = (blkGph->blockGraph[player.currentSpace].v1y + blkGph->blockGraph[player.currentSpace].v3y)/2;
-        sideZ = (blkGph->blockGraph[player.currentSpace].v1z + blkGph->blockGraph[player.currentSpace].v3z)/2;
+        side = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v3)/2;
     } else if (player.sideFacing == 1)
     {
         sideX = (blkGph->blockGraph[player.currentSpace].v3x + blkGph->blockGraph[player.currentSpace].v4x)/2;
@@ -393,14 +390,10 @@ GMEXPORT double player3D_stepEvent()
         sideZ = (blkGph->blockGraph[player.currentSpace].v2z + blkGph->blockGraph[player.currentSpace].v1z)/2;
     }
 
-    player.dirX = sideX-player.x;
-    player.dirY = sideY-player.y;
-    player.dirZ = sideZ-player.z;
+    player.dir = side-player.position;
 
-    norm = sqrt(player.dirX*player.dirX + player.dirY*player.dirY + player.dirZ*player.dirZ);
-    player.dirX /= norm;
-    player.dirY /= norm;
-    player.dirZ /= norm;
+    norm = sqrt(player.dir*player.dir);
+    player.dir /= norm;
 
     player.axisX_x = (player.dirY*player.nz - player.dirZ*player.ny);
     player.axisX_y = (player.dirZ*player.nx - player.dirX*player.nz);
