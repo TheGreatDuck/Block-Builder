@@ -1,7 +1,7 @@
 CC = g++ 
-SRC = *.cpp
+SRC = player.cpp blockAlchemy.cpp
 OUT = bin/CallDelayedFunctions.dll
-OBJ = build
+OBJ = player.o blockAlchemy.o
 INC= -I include
 
 all: bin/CallDelayedFunctions.dll
