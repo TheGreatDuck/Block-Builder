@@ -95,35 +95,28 @@ GMEXPORT double player3D_moveInDirection(double double_sideMoving)
     {
         if ((blkGph->blockGraph[proposedSpace].type > 3 && blkGph->blockGraph[proposedSpace].type < 7) || (blkGph->blockGraph[proposedSpace].type > 7 && blkGph->blockGraph[proposedSpace].type < 11))
         {
-            double sideX = 0;
-            double sideY = 0;
-            double sideZ = 0;
+            vector side;
+            side.x = 0;
+            side.y = 0;
+            side.z = 0;
 
             if (sideMoving == 0)
             {
-                sideX = (blkGph->blockGraph[player.currentSpace].v1x + blkGph->blockGraph[player.currentSpace].v3x)/2;
-                sideY = (blkGph->blockGraph[player.currentSpace].v1y + blkGph->blockGraph[player.currentSpace].v3y)/2;
-                sideZ = (blkGph->blockGraph[player.currentSpace].v1z + blkGph->blockGraph[player.currentSpace].v3z)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v3)/2;
             } else if (sideMoving == 1)
             {
-                sideX = (blkGph->blockGraph[player.currentSpace].v3x + blkGph->blockGraph[player.currentSpace].v4x)/2;
-                sideY = (blkGph->blockGraph[player.currentSpace].v3y + blkGph->blockGraph[player.currentSpace].v4y)/2;
-                sideZ = (blkGph->blockGraph[player.currentSpace].v3z + blkGph->blockGraph[player.currentSpace].v4z)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v3 + blkGph->blockGraph[player.currentSpace].v4)/2;
             } else if (sideMoving == 2)
             {
-                sideX = (blkGph->blockGraph[player.currentSpace].v4x + blkGph->blockGraph[player.currentSpace].v2x)/2;
-                sideY = (blkGph->blockGraph[player.currentSpace].v4y + blkGph->blockGraph[player.currentSpace].v2y)/2;
-                sideZ = (blkGph->blockGraph[player.currentSpace].v4z + blkGph->blockGraph[player.currentSpace].v2z)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v4 + blkGph->blockGraph[player.currentSpace].v2)/2;
             } else if (sideMoving == 3)
             {
-                sideX = (blkGph->blockGraph[player.currentSpace].v2x + blkGph->blockGraph[player.currentSpace].v1x)/2;
-                sideY = (blkGph->blockGraph[player.currentSpace].v2y + blkGph->blockGraph[player.currentSpace].v1y)/2;
-                sideZ = (blkGph->blockGraph[player.currentSpace].v2z + blkGph->blockGraph[player.currentSpace].v1z)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v2 + blkGph->blockGraph[player.currentSpace].v1)/2;
             }
 
             player.movingSpace = proposedSpace;
             player.movingSideOne = sideMoving;
-            player.movingSideTwo = blockGraph_getSideWithPoint(proposedSpace,sideX,sideY,sideZ);
+            player.movingSideTwo = blockGraph_getSideWithPoint(proposedSpace,side.x,side.y,side.z);
 
             if ((player.sideFacing - sideMoving + 4) % 4 == 0)//up
             {
