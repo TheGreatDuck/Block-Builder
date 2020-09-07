@@ -1,4 +1,4 @@
-#define GMEXPORT extern "C" __declspec(dllexport)
+#define GMEXPORT extern "C"
 
 #define pr_pointlist 1
 #define pr_linelist 2
