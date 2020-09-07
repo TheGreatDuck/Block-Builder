@@ -1,6 +1,6 @@
 CC = g++ 
 OUT = bin/CallDelayedFunctions.dll
-OBJ = player.o blockAlchemy.o call_delayed_functions.o
+OBJ = player.o blockAlchemy.o call_delayed_functions.o battle.o
 INC= -I include
 
 all: bin/CallDelayedFunctions.dll
@@ -16,3 +16,6 @@ build/blockAlchemy.o: blockAlchemy.cpp
 
 build/delayed_function_calls.o: delayed_function_calls.cpp
 	$(CC) $(INC) -DBDLL -c delayed_function_calls.cpp -o build/delayed_function_calls.o
+
+build/battle.o: battle.cpp
+	$(CC) $(INC) -DBDLL -c battle.cpp -o build/battle.o
