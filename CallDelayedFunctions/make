@@ -1,0 +1,13 @@
+CC = g++ 
+SRC = src/strings.cpp
+OUT = bin/strings.dll
+OBJ = build/strings.o 
+INC= -I include
+
+all: strings.dll
+
+strings.dll: strings.o
+    $(CC) -shared -o $(OUT) $(OBJ) 
+
+strings.o: $(SRC) 
+    $(CC) $(INC) -DBDLL -c $(SRC) -o $(OBJ)
