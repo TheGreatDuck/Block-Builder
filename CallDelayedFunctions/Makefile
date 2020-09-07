@@ -9,5 +9,5 @@ all: bin/CallDelayedFunctions.dll
 bin/CallDelayedFunctions.dll: build/*.o
 	$(CC) -shared -o $(OUT) $(OBJ) 
 
-build: $(SRC) 
+build/*.o: $(SRC) 
 	$(CC) $(INC) -DBDLL -c $(SRC) -o $(OBJ)
