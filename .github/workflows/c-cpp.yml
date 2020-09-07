@@ -13,5 +13,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: CallDelayedFunctions/make
-      run: CallDelayedFunctions/make
+    - name: CallDelayedFunctions/Makefile
+      run: CallDelayedFunctions/Makefile
