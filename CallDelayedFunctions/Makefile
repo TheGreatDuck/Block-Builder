@@ -1,13 +1,13 @@
 CC = g++ 
-SRC = player.cpp
+SRC = *.cpp
 OUT = bin/CallDelayedFunctions.dll
-OBJ = build/player.o 
+OBJ = build
 INC= -I include
 
 all: bin/CallDelayedFunctions.dll
 
-bin/CallDelayedFunctions.dll: build/player.o
+bin/CallDelayedFunctions.dll: build/*.o
 	$(CC) -shared -o $(OUT) $(OBJ) 
 
-build/player.o: $(SRC) 
+build: $(SRC) 
 	$(CC) $(INC) -DBDLL -c $(SRC) -o $(OBJ)
