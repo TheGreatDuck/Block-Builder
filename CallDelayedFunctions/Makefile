@@ -7,7 +7,7 @@ INC= -I include
 all: bin/CallDelayedFunctions.dll
 
 bin/CallDelayedFunctions.dll: build/player.o
-    $(CC) -shared -o $(OUT) $(OBJ) 
+	$(CC) -shared -o $(OUT) $(OBJ) 
 
 build/player.o: $(SRC) 
-    $(CC) $(INC) -DBDLL -c $(SRC) -o $(OBJ)
+	$(CC) $(INC) -DBDLL -c $(SRC) -o $(OBJ)
