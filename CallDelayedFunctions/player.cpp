@@ -219,20 +219,20 @@ GMEXPORT double player3D_moveInDirectionWithoutCollision(double double_sideMovin
 GMEXPORT double player3D_drawEvent()
 {
     d3d_transform_set_identity();
-    d3d_transform_add_rotation_matrix(player.axisX_x, player.dirX, player.nx,
-                                      player.axisX_y, player.dirY, player.ny,
-                                      player.axisX_z, player.dirZ, player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x, player.dir.x, player.n.x,
+                                      player.axisX.y, player.dir.y, player.n.y,
+                                      player.axisX.z, player.dir.z, player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x, player.y, player.z);
+    d3d_transform_add_translation(player.position.x, player.position.y, player.position.z);
     d3d_draw_ellipsoid(-1,-1,2,1,1,5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
-    d3d_transform_add_rotation_matrix(player.axisX_x, player.dirX, player.nx,
-                                      player.axisX_y, player.dirY, player.ny,
-                                      player.axisX_z, player.dirZ, player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x, player.dir.x, player.n.x,
+                                      player.axisX.y, player.dir.y, player.n.y,
+                                      player.axisX.z, player.dir.z, player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x, player.y, player.z);
+    d3d_transform_add_translation(player.position.x, player.position.y, player.position.z);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
