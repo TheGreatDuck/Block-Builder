@@ -42,7 +42,7 @@ loadLevel.o: loadLevel.cpp
 	$(CC) $(INC) -DBDLL -fPIC -c loadLevel.cpp -o loadLevel.o
 
 loadWorld.o: loadWorld.cpp
-	$(CC) $(INC) -DBDLL -c loadWorld.cpp -o loadWorld.o
+	$(CC) $(INC) -DBDLL -fPIC -c loadWorld.cpp -o loadWorld.o
 
 vector.o: vector.cpp
-	$(CC) $(INC) -DBDLL -c vector.cpp -o vector.o
+	$(CC) $(INC) -DBDLL -fPIC -c vector.cpp -o vector.o
