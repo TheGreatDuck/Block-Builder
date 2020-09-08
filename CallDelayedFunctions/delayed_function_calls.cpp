@@ -141,7 +141,7 @@ void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Inp
     addDelayedFunctionCall_helper(0, input...);
 }
 
-ADD_FUNCTION(sprite_get_texture)
+/*ADD_FUNCTION(sprite_get_texture)
 ADD_FUNCTION(sprite_add)
 
 void sprite_get_texture(int* spr, double subimg, int* returnValue)
@@ -152,4 +152,4 @@ void sprite_get_texture(int* spr, double subimg, int* returnValue)
 void sprite_add(const char* fname, int imgnumb, int removeback, int smooth, int xorig, int yorig, int* ind)
 {
     addDelayedFunctionCall(FP_sprite_add, ind, 1, fname, imgnumb, removeback, smooth, xorig, yorig);
-}
+}*/
