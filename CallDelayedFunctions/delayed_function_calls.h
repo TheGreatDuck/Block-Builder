@@ -34,8 +34,8 @@ GMEXPORT double setDelayedOutput(double value);
 GMEXPORT double getHasOutput();
 GMEXPORT double isThereDelayedFunctionCall();
 
-void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
-template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
+//void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
+//template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
 
 /*GMEXPORT double export_d3d_draw_block(double functionPointer);
 GMEXPORT double export_d3d_draw_cylinder(double functionPointer);
