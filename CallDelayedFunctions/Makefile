@@ -1,11 +1,11 @@
 CC = g++ 
-OUT = bin/CallDelayedFunctions.dll
+OUT = CallDelayedFunctions.dll
 OBJ = player.o blockAlchemy.o delayed_function_calls.o battle.o blockGraph.o camera.o combatant.o controls.o gameLoop.o linkedCycle.o loadLevel.o loadWorld.o vector.o
 INC= -I include
 
-all: bin/CallDelayedFunctions.dll
+all: CallDelayedFunctions.dll
 
-bin/CallDelayedFunctions.dll: $(OBJ)
+CallDelayedFunctions.dll: $(OBJ)
 	$(CC) -shared -o $(OBJ) 
 
 player.o: player.cpp
