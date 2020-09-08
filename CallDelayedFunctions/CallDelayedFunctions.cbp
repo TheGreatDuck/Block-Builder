@@ -32,6 +32,7 @@
 					<Add option="-Wswitch-default" />
 					<Add option="-Weffc++" />
 					<Add option="-Wmain" />
+					<Add option="-std=c++0x" />
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-DBUILD_DLL" />
@@ -57,8 +58,7 @@
 		<Unit filename="delayed_function_calls.h" />
 		<Unit filename="gameLoop.cpp" />
 		<Unit filename="gameLoop.h" />
-		<Unit filename="gameMakerFunctions\d3d_function.cpp" />
-		<Unit filename="gameMakerFunctions\d3d_function.h" />
+		<Unit filename="gameMakerFunctions\3DGraphics\d3d_model.cpp" />
 		<Unit filename="linkedCycle.cpp" />
 		<Unit filename="linkedCycle.h" />
 		<Unit filename="loadLevel.cpp" />

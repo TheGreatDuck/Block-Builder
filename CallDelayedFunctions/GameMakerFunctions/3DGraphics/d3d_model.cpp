@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "delayed_function_calls.h"
+#include "../../delayed_function_calls.h"
 
 ADD_FUNCTION(d3d_model_create)
 ADD_FUNCTION(d3d_model_destroy)

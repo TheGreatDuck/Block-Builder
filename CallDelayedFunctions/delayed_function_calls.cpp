@@ -2,16 +2,6 @@
 #include <string.h>
 #include "delayed_function_calls.h"
 
-#define GMEXPORT extern "C" __declspec(dllexport)
-
-typedef struct
-{
-    double number;
-    char*  text;
-    int*   delayedVariable;
-    int    type;
-} delayedInput;
-
 typedef struct delayedFunctionCall
 {
     delayedInput                input[14];
@@ -95,7 +85,7 @@ delayedInput convertToDelayedInput(double input)
     returnValue.type = 0;
 }
 
-delayedInput convertToDelayedInput(char* input)
+delayedInput convertToDelayedInput(const char* input)
 {
     delayedInput returnValue;
     returnValue.text = (char*) malloc(strlen(input) + 1);
@@ -121,7 +111,7 @@ static void addDelayedFunctionCall_helper(int argument, T input0, Input... input
 {
     functionQueueEnd->input[argument] = convertToDelayedInput(input0);
     argument++;
-    addDelayedFunctionCall_helper(argument, input...)
+    addDelayedFunctionCall_helper(argument, input...);
 }
 
 void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput)
@@ -149,14 +139,6 @@ void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Inp
 {
     addDelayedFunctionCall(function, delayedOutput, hasOutput);
     addDelayedFunctionCall_helper(0, input...);
-}
-
-#define ADD_FUNCTION(name)\
-static int FP_##name;\
-GMEXPORT double export_##name(double functionPointer)\
-{\
-    FP_##name = functionPointer;\
-    return functionPointer;\
 }
 
 ADD_FUNCTION(sprite_get_texture)

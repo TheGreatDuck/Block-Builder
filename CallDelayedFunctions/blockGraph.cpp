@@ -19,29 +19,29 @@ static void blockGraph_createSubmodel(int modelID)
 
     for (unsigned int i = modelID*blockModelCapacity; i < blkGph->numberOfBlockModels && i < (modelID+1)*blockModelCapacity; i += 1)
     {
-        vector p1 = blkGph->blockGraph[i].v1;
-        double p2x = blkGph->blockGraph[i].v2.x;
-        double p2y = blkGph->blockGraph[i].v2.y;
-        double p2z = blkGph->blockGraph[i].v2.z;
-        double p3x = blkGph->blockGraph[i].v3.x;
-        double p3y = blkGph->blockGraph[i].v3.y;
-        double p3z = blkGph->blockGraph[i].v3.z;
-        double p4x = blkGph->blockGraph[i].v4.x;
-        double p4y = blkGph->blockGraph[i].v4.y;
-        double p4z = blkGph->blockGraph[i].v4.z;
+        vector p1 = blkGph->blockGraph[i].v[1];
+        double p2x = blkGph->blockGraph[i].v[2].x;
+        double p2y = blkGph->blockGraph[i].v[2].y;
+        double p2z = blkGph->blockGraph[i].v[2].z;
+        double p3x = blkGph->blockGraph[i].v[3].x;
+        double p3y = blkGph->blockGraph[i].v[3].y;
+        double p3z = blkGph->blockGraph[i].v[3].z;
+        double p4x = blkGph->blockGraph[i].v[4].x;
+        double p4y = blkGph->blockGraph[i].v[4].y;
+        double p4z = blkGph->blockGraph[i].v[4].z;
 
-        double pn1x = -blkGph->blockGraph[i].n1.x;
-        double pn1y = -blkGph->blockGraph[i].n1.y;
-        double pn1z = -blkGph->blockGraph[i].n1.z;
-        double pn2x = -blkGph->blockGraph[i].n2.x;
-        double pn2y = -blkGph->blockGraph[i].n2.y;
-        double pn2z = -blkGph->blockGraph[i].n2.z;
-        double pn3x = -blkGph->blockGraph[i].n3.x;
-        double pn3y = -blkGph->blockGraph[i].n3.y;
-        double pn3z = -blkGph->blockGraph[i].n3.z;
-        double pn4x = -blkGph->blockGraph[i].n4.x;
-        double pn4y = -blkGph->blockGraph[i].n4.y;
-        double pn4z = -blkGph->blockGraph[i].n4.z;
+        double pn1x = -blkGph->blockGraph[i].n[1].x;
+        double pn1y = -blkGph->blockGraph[i].n[1].y;
+        double pn1z = -blkGph->blockGraph[i].n[1].z;
+        double pn2x = -blkGph->blockGraph[i].n[2].x;
+        double pn2y = -blkGph->blockGraph[i].n[2].y;
+        double pn2z = -blkGph->blockGraph[i].n[2].z;
+        double pn3x = -blkGph->blockGraph[i].n[3].x;
+        double pn3y = -blkGph->blockGraph[i].n[3].y;
+        double pn3z = -blkGph->blockGraph[i].n[3].z;
+        double pn4x = -blkGph->blockGraph[i].n[4].x;
+        double pn4y = -blkGph->blockGraph[i].n[4].y;
+        double pn4z = -blkGph->blockGraph[i].n[4].z;
 
         double bt = blkGph->blockGraph[i].type;
 
@@ -98,10 +98,10 @@ double blockGraph_create3DModel()
 
 static int blockGraph_blockArithmetic(int blockID)
 {
-    int s1 = blkGph->blockGraph[blockID].adj1;
-    int s2 = blkGph->blockGraph[blockID].adj2;
-    int s3 = blkGph->blockGraph[blockID].adj3;
-    int s4 = blkGph->blockGraph[blockID].adj4;
+    int s1 = blkGph->blockGraph[blockID].adj[1];
+    int s2 = blkGph->blockGraph[blockID].adj[2];
+    int s3 = blkGph->blockGraph[blockID].adj[3];
+    int s4 = blkGph->blockGraph[blockID].adj[4];
 
     int b1;
     int b2;
@@ -156,10 +156,10 @@ void blockGraph_setUpBlockGraphList()
         if (blkGph->blockGraph[i].type != newType)
         {
             blockGraph_addToBlockUpdateList(i);
-            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj1);
-            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj2);
-            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj3);
-            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj4);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj[1]);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj[2]);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj[3]);
+            blockGraph_addToBlockUpdateList(blkGph->blockGraph[i].adj[4]);
         }
 
         tempBlocks[i] = newType;
@@ -202,10 +202,10 @@ double blockGraph_updateBlockGraphWithList()
         if (blkGph->blockGraph[i].type != blockGraph_blockArithmetic(i))
         {
             blockGraph_addToTempBlockUpdateList(i);
-            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj1);
-            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj2);
-            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj3);
-            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj4);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj[1]);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj[2]);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj[3]);
+            blockGraph_addToTempBlockUpdateList(blkGph->blockGraph[i].adj[4]);
             changed[(int)floor(i/blockModelCapacity)] = 1;
         }
 
@@ -256,21 +256,21 @@ void blockGraph_addToTempBlockUpdateList(int blockID)
 
 int blockGraph_getSideWithPoint(int blockID, double x, double y, double z)
 {
-    double p1x = blkGph->blockGraph[(int)blockID].v1.x;
-    double p1y = blkGph->blockGraph[(int)blockID].v1.y;
-    double p1z = blkGph->blockGraph[(int)blockID].v1.z;
+    double p1x = blkGph->blockGraph[(int)blockID].v[1].x;
+    double p1y = blkGph->blockGraph[(int)blockID].v[1].y;
+    double p1z = blkGph->blockGraph[(int)blockID].v[1].z;
 
-    double p2x = blkGph->blockGraph[(int)blockID].v2.x;
-    double p2y = blkGph->blockGraph[(int)blockID].v2.y;
-    double p2z = blkGph->blockGraph[(int)blockID].v2.z;
+    double p2x = blkGph->blockGraph[(int)blockID].v[2].x;
+    double p2y = blkGph->blockGraph[(int)blockID].v[2].y;
+    double p2z = blkGph->blockGraph[(int)blockID].v[2].z;
 
-    double p3x = blkGph->blockGraph[(int)blockID].v3.x;
-    double p3y = blkGph->blockGraph[(int)blockID].v3.y;
-    double p3z = blkGph->blockGraph[(int)blockID].v3.z;
+    double p3x = blkGph->blockGraph[(int)blockID].v[3].x;
+    double p3y = blkGph->blockGraph[(int)blockID].v[3].y;
+    double p3z = blkGph->blockGraph[(int)blockID].v[3].z;
 
-    double p4x = blkGph->blockGraph[(int)blockID].v4.x;
-    double p4y = blkGph->blockGraph[(int)blockID].v4.y;
-    double p4z = blkGph->blockGraph[(int)blockID].v4.z;
+    double p4x = blkGph->blockGraph[(int)blockID].v[4].x;
+    double p4y = blkGph->blockGraph[(int)blockID].v[4].y;
+    double p4z = blkGph->blockGraph[(int)blockID].v[4].z;
 
     double vx = x;
     double vy = y;
@@ -334,17 +334,17 @@ void blockGraph_loadFromFile(char* fileName)
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i += 1)
     {
         fscanf(file, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %d %d %d %d %d %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf \n",
-                     &blkGph->blockGraph[i].v1.x, &blkGph->blockGraph[i].v1.y, &blkGph->blockGraph[i].v1.z,
-                     &blkGph->blockGraph[i].v2.x, &blkGph->blockGraph[i].v2.y, &blkGph->blockGraph[i].v2.z,
-                     &blkGph->blockGraph[i].v3.x, &blkGph->blockGraph[i].v3.y, &blkGph->blockGraph[i].v3.z,
-                     &blkGph->blockGraph[i].v4.x, &blkGph->blockGraph[i].v4.y, &blkGph->blockGraph[i].v4.z,
-                     &blkGph->blockGraph[i].adj1, &blkGph->blockGraph[i].adj2, &blkGph->blockGraph[i].adj3, &blkGph->blockGraph[i].adj4,
+                     &blkGph->blockGraph[i].v[1].x, &blkGph->blockGraph[i].v[1].y, &blkGph->blockGraph[i].v[1].z,
+                     &blkGph->blockGraph[i].v[2].x, &blkGph->blockGraph[i].v[2].y, &blkGph->blockGraph[i].v[2].z,
+                     &blkGph->blockGraph[i].v[3].x, &blkGph->blockGraph[i].v[3].y, &blkGph->blockGraph[i].v[3].z,
+                     &blkGph->blockGraph[i].v[4].x, &blkGph->blockGraph[i].v[4].y, &blkGph->blockGraph[i].v[4].z,
+                     &blkGph->blockGraph[i].adj[1], &blkGph->blockGraph[i].adj[2], &blkGph->blockGraph[i].adj[3], &blkGph->blockGraph[i].adj[4],
                      &blkGph->blockGraph[i].type,
                      &blkGph->blockGraph[i].removable,
-                     &blkGph->blockGraph[i].n1.x, &blkGph->blockGraph[i].n1.y, &blkGph->blockGraph[i].n1.z,
-                     &blkGph->blockGraph[i].n2.x, &blkGph->blockGraph[i].n2.y, &blkGph->blockGraph[i].n2.z,
-                     &blkGph->blockGraph[i].n3.x, &blkGph->blockGraph[i].n3.y, &blkGph->blockGraph[i].n3.z,
-                     &blkGph->blockGraph[i].n4.x, &blkGph->blockGraph[i].n4.y, &blkGph->blockGraph[i].n4.z);
+                     &blkGph->blockGraph[i].n[1].x, &blkGph->blockGraph[i].n[1].y, &blkGph->blockGraph[i].n[1].z,
+                     &blkGph->blockGraph[i].n[2].x, &blkGph->blockGraph[i].n[2].y, &blkGph->blockGraph[i].n[2].z,
+                     &blkGph->blockGraph[i].n[3].x, &blkGph->blockGraph[i].n[3].y, &blkGph->blockGraph[i].n[3].z,
+                     &blkGph->blockGraph[i].n[4].x, &blkGph->blockGraph[i].n[4].y, &blkGph->blockGraph[i].n[4].z);
     }
 
     fclose(file);

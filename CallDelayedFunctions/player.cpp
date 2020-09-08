@@ -1,9 +1,11 @@
+#define _USE_MATH_DEFINES
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <string>
 #include <sstream>
 #include <math.h>
+#include <cmath>
 #include "delayed_function_calls.h"
 #include "blockGraph.h"
 #include "blockAlchemy.h"
@@ -22,7 +24,7 @@ GMEXPORT double d3d_transform_add_rotation_matrix(double a11, double a12, double
         rot_angle = 0;
     } else if ((a11 + a22 + a33 - 1)/2 < -1)
     {
-        rot_angle = M_PI;
+        //rot_angle = M_PI;
     } else
     {
         rot_angle = acos((a11 + a22 + a33 - 1)/2);
@@ -65,7 +67,7 @@ GMEXPORT double d3d_transform_add_rotation_matrix(double a11, double a12, double
         rot_z /= rot_norm;
     }
 
-    rot_angle = (2*(rot_angle == M_PI) - 1)*rot_angle*(180/M_PI);
+    //rot_angle = (2*(rot_angle == M_PI) - 1)*rot_angle*(180/M_PI);
     d3d_transform_add_rotation_axis(rot_x,rot_y,rot_z,rot_angle);
 }
 
@@ -75,21 +77,7 @@ GMEXPORT double player3D_moveInDirection(double double_sideMoving)
 {
     int sideMoving = (int)double_sideMoving;
 
-    int proposedSpace = -1;
-
-    if (sideMoving == 0)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj1;
-    } else if (sideMoving == 1)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj2;
-    } else if (sideMoving == 2)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj3;
-    } else if (sideMoving == 3)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj4;
-    }
+    int proposedSpace = blkGph->blockGraph[player.currentSpace].adj[sideMoving];
 
     if (proposedSpace != -1)
     {
@@ -102,16 +90,16 @@ GMEXPORT double player3D_moveInDirection(double double_sideMoving)
 
             if (sideMoving == 0)
             {
-                side = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v3)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v[1] + blkGph->blockGraph[player.currentSpace].v[3])/2;
             } else if (sideMoving == 1)
             {
-                side = (blkGph->blockGraph[player.currentSpace].v3 + blkGph->blockGraph[player.currentSpace].v4)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v[3] + blkGph->blockGraph[player.currentSpace].v[4])/2;
             } else if (sideMoving == 2)
             {
-                side = (blkGph->blockGraph[player.currentSpace].v4 + blkGph->blockGraph[player.currentSpace].v2)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v[4] + blkGph->blockGraph[player.currentSpace].v[2])/2;
             } else if (sideMoving == 3)
             {
-                side = (blkGph->blockGraph[player.currentSpace].v2 + blkGph->blockGraph[player.currentSpace].v1)/2;
+                side = (blkGph->blockGraph[player.currentSpace].v[2] + blkGph->blockGraph[player.currentSpace].v[1])/2;
             }
 
             player.movingSpace = proposedSpace;
@@ -148,21 +136,7 @@ GMEXPORT double player3D_moveInDirectionWithoutCollision(double double_sideMovin
 {
     int sideMoving = (int)double_sideMoving;
 
-    int proposedSpace = -1;
-
-    if (sideMoving == 0)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj1;
-    } else if (sideMoving == 1)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj2;
-    } else if (sideMoving == 2)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj3;
-    } else if (sideMoving == 3)
-    {
-        proposedSpace = blkGph->blockGraph[player.currentSpace].adj4;
-    }
+    int proposedSpace = blkGph->blockGraph[player.currentSpace].adj[sideMoving];
 
     if (proposedSpace != -1)
     {
@@ -172,24 +146,24 @@ GMEXPORT double player3D_moveInDirectionWithoutCollision(double double_sideMovin
 
         if (sideMoving == 0)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v1.x + blkGph->blockGraph[player.currentSpace].v3.x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v1.y + blkGph->blockGraph[player.currentSpace].v3.y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v1.z + blkGph->blockGraph[player.currentSpace].v3.z)/2;
+            sideX = (blkGph->blockGraph[player.currentSpace].v[1].x + blkGph->blockGraph[player.currentSpace].v[3].x)/2;
+            sideY = (blkGph->blockGraph[player.currentSpace].v[1].y + blkGph->blockGraph[player.currentSpace].v[3].y)/2;
+            sideZ = (blkGph->blockGraph[player.currentSpace].v[1].z + blkGph->blockGraph[player.currentSpace].v[3].z)/2;
         } else if (sideMoving == 1)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v3.x + blkGph->blockGraph[player.currentSpace].v4.x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v3.y + blkGph->blockGraph[player.currentSpace].v4.y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v3.z + blkGph->blockGraph[player.currentSpace].v4.z)/2;
+            sideX = (blkGph->blockGraph[player.currentSpace].v[3].x + blkGph->blockGraph[player.currentSpace].v[4].x)/2;
+            sideY = (blkGph->blockGraph[player.currentSpace].v[3].y + blkGph->blockGraph[player.currentSpace].v[4].y)/2;
+            sideZ = (blkGph->blockGraph[player.currentSpace].v[3].z + blkGph->blockGraph[player.currentSpace].v[4].z)/2;
         } else if (sideMoving == 2)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v4.x + blkGph->blockGraph[player.currentSpace].v2.x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v4.y + blkGph->blockGraph[player.currentSpace].v2.y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v4.z + blkGph->blockGraph[player.currentSpace].v2.z)/2;
+            sideX = (blkGph->blockGraph[player.currentSpace].v[4].x + blkGph->blockGraph[player.currentSpace].v[2].x)/2;
+            sideY = (blkGph->blockGraph[player.currentSpace].v[4].y + blkGph->blockGraph[player.currentSpace].v[2].y)/2;
+            sideZ = (blkGph->blockGraph[player.currentSpace].v[4].z + blkGph->blockGraph[player.currentSpace].v[2].z)/2;
         } else if (sideMoving == 3)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v2.x + blkGph->blockGraph[player.currentSpace].v1.x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v2.y + blkGph->blockGraph[player.currentSpace].v1.y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v2.z + blkGph->blockGraph[player.currentSpace].v1.z)/2;
+            sideX = (blkGph->blockGraph[player.currentSpace].v[2].x + blkGph->blockGraph[player.currentSpace].v[1].x)/2;
+            sideY = (blkGph->blockGraph[player.currentSpace].v[2].y + blkGph->blockGraph[player.currentSpace].v[1].y)/2;
+            sideZ = (blkGph->blockGraph[player.currentSpace].v[2].z + blkGph->blockGraph[player.currentSpace].v[1].z)/2;
         }
 
         player.movingSpace = proposedSpace;
@@ -237,107 +211,96 @@ GMEXPORT double player3D_drawEvent()
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
-    d3d_transform_add_rotation_matrix(
-                                      player.axisX_x,
-                                      player.dirX,
-                                      player.nx,
-
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,
-                                      player.dirZ,
-                                      player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(
                                  player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player.texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,
-                                      player.dirY,
-                                      player.ny,
-
-                                      player.axisX_z,
-                                      player.dirZ,
-                                      player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-1,-1,-1,1,1,1,&player.texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
     d3d_transform_add_translation(-0.25,1,0.25);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player.texEye,2,1,60);
 
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
     d3d_transform_add_translation(0.25,1,0.25);
-    d3d_transform_add_rotation_matrix(player.axisX_x,player.dirX,player.nx,
-                                      player.axisX_y,player.dirY,player.ny,
-                                      player.axisX_z,player.dirZ,player.nz);
+    d3d_transform_add_rotation_matrix(player.axisX.x,player.dir.x,player.n.x,
+                                      player.axisX.y,player.dir.y,player.n.y,
+                                      player.axisX.z,player.dir.z,player.n.z);
     d3d_transform_add_rotation_z(player.spin);
-    d3d_transform_add_translation(player.x,player.y,player.z);
+    d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player.texEye,2,1,60);
 
     d3d_transform_set_identity();
@@ -346,17 +309,17 @@ GMEXPORT double player3D_drawEvent()
 GMEXPORT double player3D_stepEvent()
 {
     //spin += 1;
-    player.position = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v2 + blkGph->blockGraph[player.currentSpace].v3 + blkGph->blockGraph[player.currentSpace].v4)/4;
+    player.position = (blkGph->blockGraph[player.currentSpace].v[1] + blkGph->blockGraph[player.currentSpace].v[2] + blkGph->blockGraph[player.currentSpace].v[3] + blkGph->blockGraph[player.currentSpace].v[4])/4;
 
-    vector dir1 = blkGph->blockGraph[player.currentSpace].v3 - blkGph->blockGraph[player.currentSpace].v1;
-    vector dir2 = blkGph->blockGraph[player.currentSpace].v4 - blkGph->blockGraph[player.currentSpace].v1;
+    vector dir1 = blkGph->blockGraph[player.currentSpace].v[3] - blkGph->blockGraph[player.currentSpace].v[1];
+    vector dir2 = blkGph->blockGraph[player.currentSpace].v[4] - blkGph->blockGraph[player.currentSpace].v[1];
 
-    player.nx = dir1y*dir2z - dir1z*dir2y;
-    player.ny = dir1z*dir2x - dir1x*dir2z;
-    player.nz = dir1x*dir2y - dir1y*dir2x;
+    player.n.x = dir1.y*dir2.z - dir1.z*dir2.y;
+    player.n.y = dir1.z*dir2.x - dir1.x*dir2.z;
+    player.n.z = dir1.x*dir2.y - dir1.y*dir2.x;
 
     double norm = sqrt(player.n*player.n);
-    player.n /= norm;
+    player.n = (1/norm)*player.n;
 
     vector side;
     side.x = 0;
@@ -365,32 +328,26 @@ GMEXPORT double player3D_stepEvent()
 
     if (player.sideFacing == 0)
     {
-        side = (blkGph->blockGraph[player.currentSpace].v1 + blkGph->blockGraph[player.currentSpace].v3)/2;
+        side = (blkGph->blockGraph[player.currentSpace].v[1] + blkGph->blockGraph[player.currentSpace].v[3])/2;
     } else if (player.sideFacing == 1)
     {
-        sideX = (blkGph->blockGraph[player.currentSpace].v3x + blkGph->blockGraph[player.currentSpace].v4x)/2;
-        sideY = (blkGph->blockGraph[player.currentSpace].v3y + blkGph->blockGraph[player.currentSpace].v4y)/2;
-        sideZ = (blkGph->blockGraph[player.currentSpace].v3z + blkGph->blockGraph[player.currentSpace].v4z)/2;
+        side = (blkGph->blockGraph[player.currentSpace].v[3] + blkGph->blockGraph[player.currentSpace].v[4])/2;
     } else if (player.sideFacing == 2)
     {
-        sideX = (blkGph->blockGraph[player.currentSpace].v4x + blkGph->blockGraph[player.currentSpace].v2x)/2;
-        sideY = (blkGph->blockGraph[player.currentSpace].v4y + blkGph->blockGraph[player.currentSpace].v2y)/2;
-        sideZ = (blkGph->blockGraph[player.currentSpace].v4z + blkGph->blockGraph[player.currentSpace].v2z)/2;
+        side = (blkGph->blockGraph[player.currentSpace].v[4] + blkGph->blockGraph[player.currentSpace].v[2])/2;
     } else if (player.sideFacing == 3)
     {
-        sideX = (blkGph->blockGraph[player.currentSpace].v2x + blkGph->blockGraph[player.currentSpace].v1x)/2;
-        sideY = (blkGph->blockGraph[player.currentSpace].v2y + blkGph->blockGraph[player.currentSpace].v1y)/2;
-        sideZ = (blkGph->blockGraph[player.currentSpace].v2z + blkGph->blockGraph[player.currentSpace].v1z)/2;
+        side = (blkGph->blockGraph[player.currentSpace].v[2] + blkGph->blockGraph[player.currentSpace].v[1])/2;
     }
 
     player.dir = side-player.position;
 
     norm = sqrt(player.dir*player.dir);
-    player.dir /= norm;
+    player.dir = (1/norm)*player.dir;
 
-    player.axisX_x = (player.dirY*player.nz - player.dirZ*player.ny);
-    player.axisX_y = (player.dirZ*player.nx - player.dirX*player.nz);
-    player.axisX_z = (player.dirX*player.ny - player.dirY*player.nx);
+    player.axisX.x = (player.dir.y*player.n.z - player.dir.z*player.n.y);
+    player.axisX.y = (player.dir.z*player.n.x - player.dir.x*player.n.z);
+    player.axisX.z = (player.dir.x*player.n.y - player.dir.y*player.n.x);
 
     if (gameControl.control_moveUp.gameControlPressed)
     {
@@ -475,29 +432,19 @@ GMEXPORT double player3D_stepEvent()
 
         if (player.sideFacing == 0)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v1x + blkGph->blockGraph[player.currentSpace].v3x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v1y + blkGph->blockGraph[player.currentSpace].v3y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v1z + blkGph->blockGraph[player.currentSpace].v3z)/2;
+            side = (blkGph->blockGraph[player.currentSpace].v[1] + blkGph->blockGraph[player.currentSpace].v[3])/2;
         } else if (player.sideFacing == 1)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v3x + blkGph->blockGraph[player.currentSpace].v4x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v3y + blkGph->blockGraph[player.currentSpace].v4y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v3z + blkGph->blockGraph[player.currentSpace].v4z)/2;
+            side = (blkGph->blockGraph[player.currentSpace].v[3] + blkGph->blockGraph[player.currentSpace].v[4])/2;
         } else if (player.sideFacing == 2)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v4x + blkGph->blockGraph[player.currentSpace].v2x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v4y + blkGph->blockGraph[player.currentSpace].v2y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v4z + blkGph->blockGraph[player.currentSpace].v2z)/2;
+            side = (blkGph->blockGraph[player.currentSpace].v[4] + blkGph->blockGraph[player.currentSpace].v[2])/2;
         } else if (player.sideFacing == 3)
         {
-            sideX = (blkGph->blockGraph[player.currentSpace].v2x + blkGph->blockGraph[player.currentSpace].v1x)/2;
-            sideY = (blkGph->blockGraph[player.currentSpace].v2y + blkGph->blockGraph[player.currentSpace].v1y)/2;
-            sideZ = (blkGph->blockGraph[player.currentSpace].v2z + blkGph->blockGraph[player.currentSpace].v1z)/2;
+            side = (blkGph->blockGraph[player.currentSpace].v[2] + blkGph->blockGraph[player.currentSpace].v[1])/2;
         }
 
-        player.x = (player.motion <= 4)*((4-player.motion)*player.x + player.motion*sideX)/4 + (player.motion > 4)*((player.motion-5)*player.x + (9-player.motion)*sideX)/4;
-        player.y = (player.motion <= 4)*((4-player.motion)*player.y + player.motion*sideY)/4 + (player.motion > 4)*((player.motion-5)*player.y + (9-player.motion)*sideY)/4;
-        player.z = (player.motion <= 4)*((4-player.motion)*player.z + player.motion*sideZ)/4 + (player.motion > 4)*((player.motion-5)*player.z + (9-player.motion)*sideZ)/4;
+        player.position = (player.motion <= 4)*((4-player.motion)*player.position + player.motion*side)/4 + (player.motion > 4)*((player.motion-5)*player.position + (9-player.motion)*side)/4;
 
         if (player.motion == 4)
         {

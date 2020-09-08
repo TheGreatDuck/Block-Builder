@@ -1,3 +1,4 @@
+//define GMEXPORT extern "C" __declspec(dllexport)
 #define GMEXPORT extern "C"
 
 #define pr_pointlist 1
@@ -6,6 +7,22 @@
 #define pr_trianglelist 4
 #define pr_trianglestrip 5
 #define pr_trianglefan 6
+
+#define ADD_FUNCTION(name)\
+static int FP_##name;\
+GMEXPORT double export_##name(double functionPointer)\
+{\
+    FP_##name = functionPointer;\
+    return functionPointer;\
+}
+
+typedef struct
+{
+    double number;
+    char*  text;
+    int*   delayedVariable;
+    int    type;
+} delayedInput;
 
 GMEXPORT double removeDelayedFunctionCall();
 GMEXPORT double getInputDelayedVariable(double input);
@@ -16,6 +33,9 @@ GMEXPORT double getFunction();
 GMEXPORT double setDelayedOutput(double value);
 GMEXPORT double getHasOutput();
 GMEXPORT double isThereDelayedFunctionCall();
+
+void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
+template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
 
 GMEXPORT double export_d3d_draw_block(double functionPointer);
 GMEXPORT double export_d3d_draw_cylinder(double functionPointer);
