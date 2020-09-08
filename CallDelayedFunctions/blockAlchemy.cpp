@@ -1,5 +1,3 @@
-#include <math.h>
-#include "delayed_function_calls.h"
 #include "blockAlchemy.h"
 
 int scr_changeBlock(int blockType, int north, int west, int east, int south)
