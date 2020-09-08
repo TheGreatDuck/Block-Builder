@@ -14,7 +14,7 @@ blockGraph* blkGph;
 
 static void blockGraph_createSubmodel(int modelID)
 {
-    /*d3d_model_create(&blkGph->surfaceModel[modelID]);
+    d3d_model_create(&blkGph->surfaceModel[modelID]);
     d3d_model_primitive_begin(&blkGph->surfaceModel[modelID],pr_trianglelist);
 
     for (unsigned int i = modelID*blockModelCapacity; i < blkGph->numberOfBlockModels && i < (modelID+1)*blockModelCapacity; i += 1)
@@ -81,12 +81,12 @@ static void blockGraph_createSubmodel(int modelID)
         d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2x+pn2x,p2y+pn2y,p2z+pn2z,(0+1)/numberOfBlocks_3D,0);
     }
 
-    d3d_model_primitive_end(&blkGph->surfaceModel[modelID]);*/
+    d3d_model_primitive_end(&blkGph->surfaceModel[modelID]);
 }
 
 double blockGraph_create3DModel()
 {
-    //d3d_model_create(&blkGph->fillerModel);
+    d3d_model_create(&blkGph->fillerModel);
     blkGph->numberOfModels = ceil(blkGph->numberOfBlockModels/blockModelCapacity);
     for (unsigned int i = 0; i < blkGph->numberOfModels; i+=1)
     {
@@ -233,7 +233,7 @@ double blockGraph_updateBlockGraphWithList()
     {
         if (changed[i] == 1)
         {
-            //d3d_model_destroy(blkGph->surfaceModel[i]);
+            d3d_model_destroy(blkGph->surfaceModel[i]);
             blockGraph_createSubmodel(i);
         }
     }
@@ -354,6 +354,6 @@ void blockGraph_drawEvent()
 {
     for (int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
     {
-        //d3d_model_draw(&blkGph->surfaceModel[i],0,0,0, &blkGph->tex_blockTexture);
+        d3d_model_draw(&blkGph->surfaceModel[i],0,0,0, &blkGph->tex_blockTexture);
     }
 }
