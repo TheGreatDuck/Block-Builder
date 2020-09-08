@@ -63,10 +63,10 @@ int scr_changeBlock(int blockType, int north, int west, int east, int south)
     int darknessBaseW = (west == 34);
     int darknessBaseE = (east == 34);
     int darknessBaseS = (south == 34);
-    int darknessSpreadN = (floor(north/1000) != 4)*(floor(north/1000) != 0)*(floor(north/1000000) == 0);
-    int darknessSpreadW = (floor(west/1000) != 3)*(floor(west/1000) != 0)*(floor(west/1000000) == 0);
-    int darknessSpreadE = (floor(east/1000) != 2)*(floor(east/1000) != 0)*(floor(east/1000000) == 0);
-    int darknessSpreadS = (floor(south/1000) != 1)*(floor(south/1000) != 0)*(floor(south/1000000) == 0);
+    int darknessSpreadN = ((north/1000) != 4)*((north/1000) != 0)*((north/1000000) == 0);
+    int darknessSpreadW = ((west/1000) != 3)*((west/1000) != 0)*((west/1000000) == 0);
+    int darknessSpreadE = ((east/1000) != 2)*((east/1000) != 0)*((east/1000000) == 0);
+    int darknessSpreadS = ((south/1000) != 1)*((south/1000) != 0)*((south/1000000) == 0);
 
     int light = (north == 35) || (west == 35) || (east == 35) || (south == 35);
 
