@@ -4,22 +4,12 @@ typedef struct block3D
 {
     int type;
 
-    vector v1;
-    vector v2;
-    vector v3;
-    vector v4;
-
-    vector n1;
-    vector n2;
-    vector n3;
-    vector n4;
+    vector v[4];
+    vector n[4];
 
     int removable;
 
-    int adj1;
-    int adj2;
-    int adj3;
-    int adj4;
+    int adj[4];
 } block3D;
 
 typedef struct blockGraph
