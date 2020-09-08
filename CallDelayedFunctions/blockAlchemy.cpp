@@ -97,22 +97,22 @@ int scr_changeBlock(int blockType, int north, int west, int east, int south)
 
     if (blockType >= 1000)
     {
-        if ((floor(blockType/1000) == 1) && !(darknessBaseN || darknessSpreadN))
+        if (((blockType/1000) == 1) && !(darknessBaseN || darknessSpreadN))
         {
             return (blockType % 1000) + 4000000;
         }
 
-        if ((floor(blockType/1000) == 2) && !(darknessBaseW || darknessSpreadW))
+        if (((blockType/1000) == 2) && !(darknessBaseW || darknessSpreadW))
         {
             return (blockType % 1000) + 4000000;
         }
 
-        if ((floor(blockType/1000) == 3) && !(darknessBaseE || darknessSpreadE))
+        if (((blockType/1000) == 3) && !(darknessBaseE || darknessSpreadE))
         {
             return (blockType % 1000) + 4000000;
         }
 
-        if ((floor(blockType/1000) == 4) && !(darknessBaseS || darknessSpreadS))
+        if (((blockType/1000) == 4) && !(darknessBaseS || darknessSpreadS))
         {
             return (blockType % 1000) + 4000000;
         }
