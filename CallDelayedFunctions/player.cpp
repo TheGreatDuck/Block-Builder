@@ -24,7 +24,7 @@ GMEXPORT double d3d_transform_add_rotation_matrix(double a11, double a12, double
         rot_angle = 0;
     } else if ((a11 + a22 + a33 - 1)/2 < -1)
     {
-        //rot_angle = M_PI;
+        rot_angle = M_PI;
     } else
     {
         rot_angle = acos((a11 + a22 + a33 - 1)/2);
@@ -67,8 +67,8 @@ GMEXPORT double d3d_transform_add_rotation_matrix(double a11, double a12, double
         rot_z /= rot_norm;
     }
 
-    //rot_angle = (2*(rot_angle == M_PI) - 1)*rot_angle*(180/M_PI);
-    //d3d_transform_add_rotation_axis(rot_x,rot_y,rot_z,rot_angle);
+    rot_angle = (2*(rot_angle == M_PI) - 1)*rot_angle*(180/M_PI);
+    d3d_transform_add_rotation_axis(rot_x,rot_y,rot_z,rot_angle);
 }
 
 player3D player;
@@ -192,7 +192,7 @@ GMEXPORT double player3D_moveInDirectionWithoutCollision(double double_sideMovin
 
 GMEXPORT double player3D_drawEvent()
 {
-    /*d3d_transform_set_identity();
+    d3d_transform_set_identity();
     d3d_transform_add_rotation_matrix(player.axisX.x, player.dir.x, player.n.x,
                                       player.axisX.y, player.dir.y, player.n.y,
                                       player.axisX.z, player.dir.z, player.n.z);
@@ -303,7 +303,7 @@ GMEXPORT double player3D_drawEvent()
     d3d_transform_add_translation(player.position.x,player.position.y,player.position.z);
     d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player.texEye,2,1,60);
 
-    d3d_transform_set_identity();*/
+    d3d_transform_set_identity();
 }
 
 GMEXPORT double player3D_stepEvent()
