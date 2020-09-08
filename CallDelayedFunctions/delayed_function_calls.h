@@ -34,10 +34,10 @@ GMEXPORT double setDelayedOutput(double value);
 GMEXPORT double getHasOutput();
 GMEXPORT double isThereDelayedFunctionCall();
 
-//void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
-//template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
+void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
+template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
 
-/*GMEXPORT double export_d3d_draw_block(double functionPointer);
+GMEXPORT double export_d3d_draw_block(double functionPointer);
 GMEXPORT double export_d3d_draw_cylinder(double functionPointer);
 GMEXPORT double export_d3d_draw_cone(double functionPointer);
 GMEXPORT double export_d3d_draw_ellipsoid(double functionPointer);
@@ -91,4 +91,4 @@ void d3d_model_primitive_end(int* ind);
 void d3d_model_destroy(double ind);
 void d3d_start();
 void d3d_set_fog(double enable, double color, double start, double end);
-void d3d_set_lighting(double enable);*/
+void d3d_set_lighting(double enable);
