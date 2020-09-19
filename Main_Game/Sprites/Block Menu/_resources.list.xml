@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="spr_menuCollision" type="RESOURCE"/>
-  <resource name="spr_menuUp" type="RESOURCE"/>
-  <resource name="spr_menuDown" type="RESOURCE"/>
-</resources>

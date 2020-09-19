@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-  <resource name="player3DStalling" type="GROUP"/>
-  <resource name="Player 3D" type="GROUP"/>
   <resource name="Delayed Calling DLL" type="GROUP"/>
   <resource name="scr_initControlInterface" type="RESOURCE"/>
 </resources>

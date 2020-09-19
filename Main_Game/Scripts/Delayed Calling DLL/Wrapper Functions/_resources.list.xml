@@ -21,6 +21,7 @@
   <resource name="scr_wrapper_d3d_model_create" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_model_load" type="RESOURCE"/>
   <resource name="scr_wrapper_sprite_add" type="RESOURCE"/>
+  <resource name="scr_wrapper_draw_sprite" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_transform_add_scaling" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_set_projection_ortho" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_set_projection_perspective" type="RESOURCE"/>

@@ -13,10 +13,8 @@ typedef struct battleManager
     linkedCycle* battleCycle;
 } battleManager;
 
-GMEXPORT double battle_manageTurn(double double_battle)
+void battle_manageTurn(battleManager* battle)
 {
-    battleManager* battle = (battleManager*)(int)double_battle;
-
     combatant* combatantData = (combatant*)(int)getCurrentData(battle->battleCycle);
 
     if (combatant_getActive(combatantData) == 0)
@@ -60,10 +58,8 @@ GMEXPORT double battle_manageTurn(double double_battle)
     }
 }
 
-GMEXPORT double battle_initialize(double double_battle)
+void battle_initialize(battleManager* battle)
 {
-    battleManager* battle = (battleManager*)(int)double_battle;
-
     battle->battleCycle = createCycle(1.0);//combatant_deleteCombatant);
 
     /*with (obj_idleBasic)

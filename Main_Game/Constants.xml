@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="blockModelCapacity" value="5000"/>
   <constant name="control_cancel" value="10"/>
   <constant name="control_confirm" value="9"/>
   <constant name="control_itemTwo" value="8"/>
@@ -31,36 +30,4 @@
   <constant name="controlType_controller" value="1"/>
   <constant name="controlType_keyboard" value="0"/>
   <constant name="numberOfControls" value="11"/>
-  <constant name="numberOfBlocks_2D" value="36"/>
-  <constant name="numberOfBlocks_3D" value="13"/>
-  <constant name="Block3D_n4z" value="29"/>
-  <constant name="Block3D_n4y" value="28"/>
-  <constant name="Block3D_n4x" value="27"/>
-  <constant name="Block3D_n3z" value="26"/>
-  <constant name="Block3D_n3y" value="25"/>
-  <constant name="Block3D_n3x" value="24"/>
-  <constant name="Block3D_n2z" value="23"/>
-  <constant name="Block3D_n2y" value="22"/>
-  <constant name="Block3D_n2x" value="21"/>
-  <constant name="Block3D_n1z" value="20"/>
-  <constant name="Block3D_n1y" value="19"/>
-  <constant name="Block3D_n1x" value="18"/>
-  <constant name="Block3D_removable" value="17"/>
-  <constant name="Block3D_type" value="16"/>
-  <constant name="Block3D_adj4" value="15"/>
-  <constant name="Block3D_adj3" value="14"/>
-  <constant name="Block3D_adj2" value="13"/>
-  <constant name="Block3D_adj1" value="12"/>
-  <constant name="Block3D_v4z" value="11"/>
-  <constant name="Block3D_v4y" value="10"/>
-  <constant name="Block3D_v4x" value="9"/>
-  <constant name="Block3D_v3z" value="8"/>
-  <constant name="Block3D_v3y" value="7"/>
-  <constant name="Block3D_v3x" value="6"/>
-  <constant name="Block3D_v2z" value="5"/>
-  <constant name="Block3D_v2y" value="4"/>
-  <constant name="Block3D_v2x" value="3"/>
-  <constant name="Block3D_v1z" value="2"/>
-  <constant name="Block3D_v1y" value="1"/>
-  <constant name="Block3D_v1x" value="0"/>
 </constants>

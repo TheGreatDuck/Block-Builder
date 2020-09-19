@@ -5,25 +5,62 @@
 #include <sstream>
 #include <math.h>
 #include "delayed_function_calls.h"
+#include "controls.h"
 #include "player.h"
 #include "camera.h"
+#include "blockGraph.h"
 
-double camera_drawEvent()
+extern int spr_selectBlock;
+
+#ifdef RELEASE_DLL
+extern entity entityList[1];
+extern entityType entityTypeList[1];
+extern int entityID;
+#endif
+
+#ifdef RELEASE_DLL
+void camera_drawEvent()
 {
     d3d_set_projection_ortho(0,0,1280,1024,0);
     //draw_sprite(spr_itemIcons,global.itemOne,64,0);
     //draw_sprite(spr_itemIcons,global.itemTwo,192,0);
-    //draw_sprite(spr_selectBlock,global.type,1024 + 64,0);
-    //draw_sprite(spr_numbers,floor(global.inventoryBlock[global.type+1]/10),1024 + 64,0);
-    //draw_sprite(spr_numbers,floor(global.inventoryBlock[global.type+1])-10*floor(global.inventoryBlock[global.type+1]/10),1024 + 128,0);
-    d3d_set_projection_perspective(0,0,1280,1024,0);
-    double camX = player.position.x+12*player.n.x - 40*player.dir.x;
-    double camY = player.position.y+12*player.n.y - 40*player.dir.y;
-    double camZ = player.position.z+12*player.n.z - 40*player.dir.z;
-    double playX = player.position.x+5*player.n.x;
-    double playY = player.position.y+5*player.n.y;
-    double playZ = player.position.z+5*player.n.z;
-    d3d_set_projection(camX,camY,camZ,playX,playY,playZ,player.n.x,player.n.y,player.n.z);
+    //draw_sprite(&spr_selectBlock,player.type,1024 + 64,0);
+    //draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1]/10),1024 + 64,0);
+    //draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1])-10*floor(global.inventoryBlock[player.type+1]/10),1024 + 128,0);
+    d3d_set_projection_perspective(0,0,640,512,0);
+
+    vector n   = blkGph->blockGraph[entityList[entityID].currentSpace].normal;
+    vector dir = blkGph->blockGraph[entityList[entityID].currentSpace].dir[entityList[entityID].sideFacing];
+
+    double camX  = entityList[entityID].position.x + 12*n.x - 40*dir.x;
+    double camY  = entityList[entityID].position.y + 12*n.y - 40*dir.y;
+    double camZ  = entityList[entityID].position.z + 12*n.z - 40*dir.z;
+    double playX = entityList[entityID].position.x +  5*n.x;
+    double playY = entityList[entityID].position.y +  5*n.y;
+    double playZ = entityList[entityID].position.z +  5*n.z;
+    d3d_set_projection(camX,camY,camZ,playX,playY,playZ,n.x,n.y,n.z);
     //d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
     //d3d_light_enable(1,true);
 }
+#endif
+
+#ifdef EDITOR_DLL
+vector cam_m[4];
+
+void camera_drawEvent()
+{
+    d3d_set_projection_perspective(0,0,1280,1024,0);
+
+    double camX  = cam_m[3].x;
+    double camY  = cam_m[3].y;
+    double camZ  = cam_m[3].z;
+    double playX = cam_m[3].x - cam_m[1].x;
+    double playY = cam_m[3].y - cam_m[1].y;
+    double playZ = cam_m[3].z - cam_m[1].z;
+    d3d_set_projection(camX,       camY,       camZ,
+                       playX,      playY,      playZ,
+                       cam_m[2].x, cam_m[2].y, cam_m[2].z);
+    //d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
+    //d3d_light_enable(1,true);
+}
+#endif

@@ -245,7 +245,7 @@ static void load_lock(char* program_directory, char* worldName)
     fclose(file);
 }
 
-GMEXPORT double load_world(char* program_directory, char* worldName)
+void load_world(char* program_directory, char* worldName)
 {
     load_map(program_directory, worldName);
     load_collision(program_directory, worldName);
@@ -253,6 +253,4 @@ GMEXPORT double load_world(char* program_directory, char* worldName)
     load_path(program_directory, worldName);
     load_level(program_directory, worldName);
     load_lock(program_directory, worldName);
-
-    return 0.1;
 }

@@ -3,13 +3,21 @@
 typedef struct block3D
 {
     int type;
+    int entityID;
 
     vector v[4];
     vector n[4];
 
+    vector position;
+    vector side[4];
+    vector axisX[4];
+    vector dir[4];
+    vector normal;
+
     int removable;
 
     int adj[4];
+    int adjSide[4];
 } block3D;
 
 typedef struct blockGraph
@@ -28,13 +36,12 @@ typedef struct blockGraph
     int tex_blockTexture;
 } blockGraph;
 
-double blockGraph_create3DModel();
+void blockGraph_create3DModel();
 void blockGraph_setUpBlockGraphList();
 void blockGraph_addToBlockUpdateList(int blockID);
-double blockGraph_updateBlockGraphWithList();
-void blockGraph_addToTempBlockUpdateList(int blockID);
-int blockGraph_getSideWithPoint(int blockID, double x, double y, double z);
-void blockGraph_loadFromFile(char* fileName);
+void blockGraph_updateBlockGraphWithList();
+void blockGraph_loadFromFile(const char* fileName);
 void blockGraph_drawEvent();
+void d3d_transform_add_block_matrix(int blockID, int sideFacing);
 
 extern blockGraph* blkGph;

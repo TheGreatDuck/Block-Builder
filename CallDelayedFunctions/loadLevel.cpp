@@ -8,7 +8,7 @@
 #include "blockGraph.h"
 #include "loadLevel.h"
 
-static void load_blockGraph(char* program_directory, char* worldName, char* levelLoading)
+static void load_blockGraph(const char* program_directory, const char* worldName, const char* levelLoading)
 {
     char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter")];
     memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter"));
@@ -24,9 +24,7 @@ static void load_blockGraph(char* program_directory, char* worldName, char* leve
     blockGraph_create3DModel();
 }
 
-GMEXPORT double load_level(char* program_directory, char* worldName, char* levelLoading)
+void load_level(const char* program_directory, const char* worldName, const char* levelLoading)
 {
     load_blockGraph(program_directory, worldName, levelLoading);
-
-    return 1.0;
 }

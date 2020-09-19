@@ -21,7 +21,7 @@ typedef struct controlSet
 
 extern controlSet gameControl;
 
-GMEXPORT double initGameControl();
+void initGameControl();
 
 GMEXPORT double setGameControl_cancel(double pressed);
 GMEXPORT double setGameControl_confirm(double pressed);

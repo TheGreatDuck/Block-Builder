@@ -7,7 +7,6 @@
   <resource name="obj_exitDoor3D" type="RESOURCE"/>
   <resource name="obj_configureControls" type="RESOURCE"/>
   <resource name="Menu" type="GROUP"/>
-  <resource name="obj_controlChecker" type="RESOURCE"/>
   <resource name="obj_loadWorld" type="RESOURCE"/>
   <resource name="obj_loadLevel" type="RESOURCE"/>
   <resource name="obj_level3D" type="RESOURCE"/>

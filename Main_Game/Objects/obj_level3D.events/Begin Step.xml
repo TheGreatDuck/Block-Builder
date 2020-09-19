@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">external_call(global.setGameControl_cancel,     player3D_isControlPressed(control_cancel));
+external_call(global.setGameControl_confirm,    player3D_isControlPressed(control_confirm));
+external_call(global.setGameControl_itemOne,    player3D_isControlPressed(control_itemOne));
+external_call(global.setGameControl_itemTwo,    player3D_isControlPressed(control_itemTwo));
+external_call(global.setGameControl_pause,      player3D_isControlPressed(control_pause));
+external_call(global.setGameControl_blockLeft,  player3D_isControlPressed(control_blockLeft));
+external_call(global.setGameControl_blockRight, player3D_isControlPressed(control_blockRight));
+external_call(global.setGameControl_moveUp,     player3D_isControlPressed(control_moveUp));
+external_call(global.setGameControl_moveLeft,   player3D_isControlPressed(control_moveLeft));
+external_call(global.setGameControl_moveRight,  player3D_isControlPressed(control_moveRight));
+external_call(global.setGameControl_moveDown,   player3D_isControlPressed(control_moveDown));
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

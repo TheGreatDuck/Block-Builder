@@ -1,3 +1,3 @@
 GMEXPORT double gameLoopInit();
-GMEXPORT double gameLoopStep();
+GMEXPORT double gameLoopStep(double x, double y);
 GMEXPORT double gameLoopDraw();

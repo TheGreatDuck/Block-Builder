@@ -1,1 +1,1 @@
-double camera_drawEvent();
+void camera_drawEvent();

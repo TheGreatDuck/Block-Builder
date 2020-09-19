@@ -2,6 +2,14 @@
 #include <string.h>
 #include "delayed_function_calls.h"
 
+typedef struct
+{
+    double number;
+    char*  text;
+    int*   delayedVariable;
+    int    type;
+} delayedInput;
+
 typedef struct delayedFunctionCall
 {
     delayedInput                input[14];
@@ -11,8 +19,8 @@ typedef struct delayedFunctionCall
     struct delayedFunctionCall* next;
 } delayedFunctionCall;
 
-static delayedFunctionCall* functionQueueStart;
-static delayedFunctionCall* functionQueueEnd;
+delayedFunctionCall* functionQueueStart;
+delayedFunctionCall* functionQueueEnd;
 
 GMEXPORT double removeDelayedFunctionCall()
 {
@@ -83,14 +91,16 @@ delayedInput convertToDelayedInput(double input)
     delayedInput returnValue;
     returnValue.number = input;
     returnValue.type = 0;
+    return returnValue;
 }
 
 delayedInput convertToDelayedInput(const char* input)
 {
     delayedInput returnValue;
-    returnValue.text = (char*) malloc(strlen(input) + 1);
+    returnValue.text = (char*) malloc((strlen(input) + 1)*sizeof(char));
     strcpy(returnValue.text, input);
     returnValue.type = 1;
+    return returnValue;
 }
 
 delayedInput convertToDelayedInput(int* input)
@@ -98,16 +108,15 @@ delayedInput convertToDelayedInput(int* input)
     delayedInput returnValue;
     returnValue.delayedVariable = input;
     returnValue.type = 2;
+    return returnValue;
 }
 
-template <typename T>
-static void addDelayedFunctionCall_helper(int argument, T input)
+template <typename T> void addDelayedFunctionCall_helper(int argument, T input)
 {
     functionQueueEnd->input[argument] = convertToDelayedInput(input);
 }
 
-template <typename T, typename... Input>
-static void addDelayedFunctionCall_helper(int argument, T input0, Input... input)
+template <typename T, typename... Input> void addDelayedFunctionCall_helper(int argument, T input0, Input... input)
 {
     functionQueueEnd->input[argument] = convertToDelayedInput(input0);
     argument++;
@@ -134,22 +143,40 @@ void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput)
     functionQueueEnd->next          = NULL;
 }
 
-template <typename... Input>
-void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input)
+template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input)
 {
     addDelayedFunctionCall(function, delayedOutput, hasOutput);
     addDelayedFunctionCall_helper(0, input...);
 }
 
-/*ADD_FUNCTION(sprite_get_texture)
+#define ADD_FUNCTION(name)\
+static int FP_##name;\
+GMEXPORT double export_##name(double functionPointer)\
+{\
+    FP_##name = functionPointer;\
+    return functionPointer;\
+}
+
+#include "gameMakerFunctions\3DGraphics\d3d_model.h"
+#include "gameMakerFunctions\3DGraphics\d3d_shape.h"
+#include "gameMakerFunctions\3DGraphics\d3d_transform.h"
+#include "gameMakerFunctions\3DGraphics\d3d_primitive.h"
+
+ADD_FUNCTION(sprite_get_texture)
 ADD_FUNCTION(sprite_add)
+ADD_FUNCTION(draw_sprite)
 
 void sprite_get_texture(int* spr, double subimg, int* returnValue)
 {
     addDelayedFunctionCall(FP_sprite_get_texture, returnValue, 1, spr, subimg);
 }
 
-void sprite_add(const char* fname, int imgnumb, int removeback, int smooth, int xorig, int yorig, int* ind)
+void sprite_add(const char* fname, double imgnumb, double removeback, double smooth, double xorig, double yorig, int* ind)
 {
     addDelayedFunctionCall(FP_sprite_add, ind, 1, fname, imgnumb, removeback, smooth, xorig, yorig);
-}*/
+}
+
+void draw_sprite(int* spr, double subimg, double x, double y)
+{
+    addDelayedFunctionCall(FP_draw_sprite, NULL, 0, spr, subimg, x, y);
+}

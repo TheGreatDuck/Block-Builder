@@ -13,7 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">external_call(global.gameLoopStep);
+        <argument kind="STRING">external_call(global.gameLoopStep, window_views_mouse_get_x(), window_views_mouse_get_y());
 scr_delayCallDLL_callQueuedFunctions();
 </argument>
       </arguments>

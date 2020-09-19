@@ -1,5 +1,5 @@
-//define GMEXPORT extern "C" __declspec(dllexport)
-#define GMEXPORT extern "C"
+#define GMEXPORT extern "C" __declspec(dllexport)
+//define GMEXPORT extern "C"
 
 #define pr_pointlist 1
 #define pr_linelist 2
@@ -7,22 +7,6 @@
 #define pr_trianglelist 4
 #define pr_trianglestrip 5
 #define pr_trianglefan 6
-
-#define ADD_FUNCTION(name)\
-static int FP_##name;\
-GMEXPORT double export_##name(double functionPointer)\
-{\
-    FP_##name = functionPointer;\
-    return functionPointer;\
-}
-
-typedef struct
-{
-    double number;
-    char*  text;
-    int*   delayedVariable;
-    int    type;
-} delayedInput;
 
 GMEXPORT double removeDelayedFunctionCall();
 GMEXPORT double getInputDelayedVariable(double input);
@@ -33,9 +17,6 @@ GMEXPORT double getFunction();
 GMEXPORT double setDelayedOutput(double value);
 GMEXPORT double getHasOutput();
 GMEXPORT double isThereDelayedFunctionCall();
-
-void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput);
-template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input);
 
 GMEXPORT double export_d3d_draw_block(double functionPointer);
 GMEXPORT double export_d3d_draw_cylinder(double functionPointer);
@@ -58,6 +39,7 @@ GMEXPORT double export_d3d_model_draw(double functionPointer);
 GMEXPORT double export_d3d_model_create(double functionPointer);
 GMEXPORT double export_d3d_model_load(double functionPointer);
 GMEXPORT double export_sprite_add(double functionPointer);
+GMEXPORT double export_draw_sprite(double functionPointer);
 GMEXPORT double export_d3d_transform_add_scaling(double functionPointer);
 
 void d3d_draw_block(double x1, double y1, double z1, double x2, double y2, double z2, int* texid, int hrepeat, int vrepeat);
@@ -80,7 +62,8 @@ void d3d_primitive_end();
 void d3d_model_draw(int* ind, double x, double y, double z, int* texid);
 void d3d_model_create(int* ind);
 void d3d_model_load(int* ind, const char* fname);
-void sprite_add(const char* fname, int imgnumb, int removeback, int smooth, int xorig, int yorig, int* ind);
+void sprite_add(const char* fname, double imgnumb, double removeback, double smooth, double xorig, double yorig, int* ind);
+void draw_sprite(int* spr, double subimg, double x, double y);
 void d3d_transform_add_scaling(double xs, double ys, double zs);
 void d3d_set_projection_ortho(double x, double y, double w, double h, double angle);
 void d3d_set_projection_perspective( double x, double y, double w, double h, double angle);

@@ -9,7 +9,7 @@
 
 controlSet gameControl;
 
-GMEXPORT double initGameControl()
+void initGameControl()
 {
     gameControl.control_cancel.gameControlPress = 0;
     gameControl.control_confirm.gameControlPress = 0;
@@ -34,14 +34,13 @@ GMEXPORT double initGameControl()
     gameControl.control_moveDown.gameControlPressed = 0;
     gameControl.control_moveRight.gameControlPressed = 0;
     gameControl.control_moveUp.gameControlPressed = 0;
-    return 1.0;
 }
 
-#define SET_CONTROL(control)\
-GMEXPORT double setGameControl_##control(double pressed)\
+#define SET_CONTROL(controlName)\
+GMEXPORT double setGameControl_##controlName(double pressed)\
 {\
-    gameControl.control_##control.gameControlPress = (pressed && !gameControl.control_##control.gameControlPressed);\
-    gameControl.control_##control.gameControlPressed = pressed;\
+    gameControl.control_##controlName.gameControlPress = (pressed && !gameControl.control_##controlName.gameControlPressed);\
+    gameControl.control_##controlName.gameControlPressed = pressed;\
     return 1.0;\
 }
 
