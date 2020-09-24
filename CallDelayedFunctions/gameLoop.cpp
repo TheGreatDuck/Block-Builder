@@ -4,12 +4,12 @@
 #include <string>
 #include <sstream>
 #include <math.h>
+#include <windows.h>
 #include "delayed_function_calls.h"
 #include "blockGraph.h"
 #include "blockAlchemy.h"
 #include "gameLoop.h"
 #include "controls.h"
-#include "player.h"
 #include "camera.h"
 #include "loadLevel.h"
 #include "entity.h"
@@ -18,61 +18,65 @@ int room;
 int spr_selectBlock;
 
 #ifdef EDITOR_DLL
-entity entityList[10];
-entityType entityTypeList[1];
 void render();
 extern int renderedBlockGraph_ID[640*512];
 extern vector cam_m[4];
 #endif
 
-#ifdef RELEASE_DLL
-entity entityList[1];
-entityType entityTypeList[1];
-#endif
-
+entity* entityList;
+entityType* entityTypeList;
+unsigned int entityTypeCount;
+unsigned int entityCount;
 int entityID;
 
-GMEXPORT double gameLoopInit()
+static void load_entityList(const char* program_directory, const char* worldName, const char* levelLoading)
 {
-    #ifdef EDITOR_DLL
-    cam_m[3].x = 0;
-    cam_m[3].y = 0;
-    cam_m[3].z = 100;
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\Level ");
+    strcat(fileName,levelLoading);
+    strcat(fileName,"\\entityList.el");
+    FILE* file = fopen(fileName, "r");
 
-    cam_m[2].x = 0;
-    cam_m[2].y = 1;
-    cam_m[2].z = 0;
+    free(entityList);
 
-    cam_m[1].x = 0;
-    cam_m[1].y = 0;
-    cam_m[1].z = 1;
+    fscanf(file, "%u\n", &entityCount);
 
-    cam_m[0].x = -1;
-    cam_m[0].y =  0;
-    cam_m[0].z =  0;
-    #endif
+    entityList = (entity*)malloc(sizeof(entity)*entityCount);
+    memset(entityList, 0, sizeof(entity)*entityCount);
 
-    load_level((char*)"C:\\Program Files (x86)\\Microsoft Games\\Age of Mythology\\1025\\data\\Savegame\\7-24-2020 hideout\\Block Builder Checkouting\\Block_Builder_3D\\Block-Builder\\Build Files", (char*)"YggdrasilQuest", (char*)"1");
+    for (unsigned int i = 0; i < entityCount; i += 1)
+    {
+        fscanf(file, "%u %u %u\n", &entityList[i].typeID, &entityList[i].currentSpace, &entityList[i].sideFacing);
+        entityList[i].internalData = entityTypeList[entityList[i].typeID].createEvent();
+        blkGph->blockGraph[entityList[i].currentSpace].entityID = i;
+    }
+}
 
-    sprite_add("C:\\Program Files (x86)\\Microsoft Games\\Age of Mythology\\1025\\data\\Savegame\\7-24-2020 hideout\\Block Builder Checkouting\\Block_Builder_3D\\Block-Builder\\Build Files\\block.png", 1, 0, 0, 0, 0, &blkGph->spr_blockTexture);
-    sprite_get_texture(&blkGph->spr_blockTexture,0,&blkGph->tex_blockTexture);
+static void load_entityType(const char* program_directory, const char* worldName, const char* typeName, unsigned entityTypeID)
+{
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\EntityData\\");
+    strcat(fileName,typeName);
+    strcat(fileName,".dll");
 
-    sprite_add("C:\\Program Files (x86)\\Microsoft Games\\Age of Mythology\\1025\\data\\Savegame\\7-24-2020 hideout\\Block Builder Checkouting\\Block_Builder_3D\\Block-Builder\\Build Files\\selectBlock.png", numberOfBlocks_3D, 0, 0, 0, 0, &spr_selectBlock);
+    HINSTANCE dllHandle = LoadLibrary(TEXT(fileName));
 
-    //sprite_add("C:\\Program Files (x86)\\Microsoft Games\\Age of Mythology\\1025\\data\\Savegame\\7-24-2020 hideout\\Block Builder Checkouting\\Block_Builder_3D\\Block-Builder\\Build Files\\block.png", 1, 0, 0, 0, 0, &player.texBody);
-    //sprite_get_texture(&blkGph->spr_blockTexture,0,&blkGph->tex_blockTexture);
-
-    initGameControl();
-
-    d3d_start();
-    d3d_set_fog(1,0,600,1000);
-    //draw_set_color(c_white);
-    //texture_set_interpolation(0);
-    //d3d_set_culling(true);
-    d3d_set_lighting(0);
+    entityTypeList[entityTypeID].createEvent  = (CREATE_EVENT) GetProcAddress(dllHandle, "createEvent");
+    entityTypeList[entityTypeID].stepEvent    = (STEP_EVENT) GetProcAddress(dllHandle, "stepEvent");
+    entityTypeList[entityTypeID].drawEvent    = (DRAW_EVENT) GetProcAddress(dllHandle, "drawEvent");
+    INSTANTIATE_ENTITY instantiate_entity_DLL = (INSTANTIATE_ENTITY) GetProcAddress(dllHandle, "instantiate_entity");
 
     entity_callback_data ecd;
     ecd.numberOfBlocks3D = numberOfBlocks_3D;
+    ecd.blkGph           = blkGph;
 
     ecd.d3d_draw_block     = d3d_draw_block;
     ecd.d3d_draw_cylinder  = d3d_draw_cylinder;
@@ -104,30 +108,79 @@ GMEXPORT double gameLoopInit()
     ecd.d3d_model_primitive_end   = d3d_model_primitive_end;
     ecd.d3d_model_destroy         = d3d_model_destroy;
 
-    instantiate_entity(&ecd);
-    entityTypeList[0].createEvent = player3D_createEvent;
-    entityTypeList[0].stepEvent   = player3D_stepEvent;
-    entityTypeList[0].drawEvent   = player3D_drawEvent;
+    ecd.d3d_transform_add_block_matrix = d3d_transform_add_block_matrix;
 
-    #ifdef EDITOR_DLL
-    for (int i = 0; i < 10; i++)
+    instantiate_entity_DLL(&ecd);
+}
+
+static void load_entityTypeList(const char* program_directory, const char* worldName)
+{
+    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\EntityData\\entityTypeList.etl")];
+    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\EntityData\\entityTypeList.etl"));
+    strcat(fileName,program_directory);
+    strcat(fileName,"\\Worlds\\");
+    strcat(fileName,worldName);
+    strcat(fileName,"\\EntityData\\entityTypeList.etl");
+    FILE* file = fopen(fileName, "r");
+
+    free(entityTypeList);
+
+    fscanf(file, "%u\n", &entityTypeCount);
+
+    entityTypeList = (entityType*)malloc(sizeof(entityType)*entityTypeCount);
+
+    for (int i = 0; i < entityTypeCount; i += 1)
     {
-        entityList[i].currentSpace = i;
-        entityList[i].sideFacing   = 2;
-        entityList[i].typeID       = 0;
-        entityList[i].internalData = entityTypeList[entityList[i].typeID].createEvent();
-        blkGph->blockGraph[i].entityID = i;
+        char typeName[1000];
+        fscanf(file, "%[^\n]", typeName);
+        fscanf(file, "\n");
+        load_entityType(program_directory, worldName, typeName, i);
     }
+}
+
+GMEXPORT double gameLoopInit(char* program_directory)
+{
+    #ifdef EDITOR_DLL
+    cam_m[3].x = 0;
+    cam_m[3].y = 0;
+    cam_m[3].z = 100;
+
+    cam_m[2].x = 0;
+    cam_m[2].y = 1;
+    cam_m[2].z = 0;
+
+    cam_m[1].x = 0;
+    cam_m[1].y = 0;
+    cam_m[1].z = 1;
+
+    cam_m[0].x = -1;
+    cam_m[0].y =  0;
+    cam_m[0].z =  0;
     #endif
 
-    #ifdef RELEASE_DLL
-    entityList[0].currentSpace = 0;
-    entityList[0].sideFacing   = 2;
-    entityList[0].typeID       = 0;
-    entityList[0].internalData = entityTypeList[entityList[0].typeID].createEvent();
-    blkGph->blockGraph[0].entityID = 0;
-    #endif
+    blockGraph_initBlockModelAssets(program_directory, (char*)"YggdrasilQuest");
+    load_level(program_directory, (char*)"YggdrasilQuest", (char*)"1");
 
+    sprite_add("block.png", 1, 0, 0, 0, 0, &blkGph->spr_blockTexture);
+    sprite_get_texture(&blkGph->spr_blockTexture,0,&blkGph->tex_blockTexture);
+
+    sprite_add("selectBlock.png", numberOfBlocks_3D, 0, 0, 0, 0, &spr_selectBlock);
+
+    //sprite_add("C:\\Program Files (x86)\\Microsoft Games\\Age of Mythology\\1025\\data\\Savegame\\7-24-2020 hideout\\Block Builder Checkouting\\Block_Builder_3D\\Block-Builder\\Build Files\\block.png", 1, 0, 0, 0, 0, &player.texBody);
+    //sprite_get_texture(&blkGph->spr_blockTexture,0,&blkGph->tex_blockTexture);
+
+    initGameControl();
+
+    d3d_start();
+    d3d_set_fog(1,0,600,1000);
+    //draw_set_color(c_white);
+    //texture_set_interpolation(0);
+    //d3d_set_culling(true);
+    d3d_set_lighting(0);
+
+    load_entityTypeList(program_directory, (char*)"YggdrasilQuest");
+    load_entityList(program_directory, (char*)"YggdrasilQuest", (char*)"1");
+    entityList[entityID].turnActive = 1;
     return 1.0;
 }
 
@@ -185,16 +238,22 @@ GMEXPORT double gameLoopStep(double double_x, double double_y)
             }
         }
     }
-
-    for (int i = 0; i < 10; i++)
-    {
-        entityList[i].position = blkGph->blockGraph[entityList[i].currentSpace].position;
-    }
     #endif
 
     #ifdef RELEASE_DLL
-    blockGraph_updateBlockGraphWithList();
-    entityTypeList[entityList[0].typeID].stepEvent(&entityList[0], gameControl);
+    if (entityList[entityID].turnActive == 1)
+    {
+        entityTypeList[entityList[entityID].typeID].stepEvent(&entityList[entityID], gameControl);
+    } else
+    {
+        entityID++;
+        if (entityID == entityCount)
+        {
+            entityID = 0;
+            blockGraph_updateBlockGraphWithList();
+        }
+        entityList[entityID].turnActive = 1;
+    }
     #endif
 
     return 1.0;
@@ -204,16 +263,10 @@ GMEXPORT double gameLoopDraw()
 {
     camera_drawEvent();
     blockGraph_drawEvent();
-    #ifdef EDITOR_DLL
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < entityCount; i++)
     {
         entityTypeList[entityList[i].typeID].drawEvent(&entityList[i]);
     }
-    #endif
-
-    #ifdef RELEASE_DLL
-    entityTypeList[entityList[0].typeID].drawEvent(&entityList[0]);
-    #endif
 
     return 1.0;
 }

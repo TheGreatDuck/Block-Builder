@@ -2,4 +2,5 @@
 <resources>
   <resource name="Delayed Calling DLL" type="GROUP"/>
   <resource name="scr_initControlInterface" type="RESOURCE"/>
+  <resource name="player3D_isControlPressed" type="RESOURCE"/>
 </resources>

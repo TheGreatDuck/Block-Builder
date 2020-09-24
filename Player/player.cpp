@@ -4,8 +4,48 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "blockGraph.h"
+#include "vector.h"
 
+#define GMEXPORT extern "C" __declspec(dllexport)
+
+typedef struct block3D
+{
+    int type;
+    int entityID;
+
+    vector v[4];
+    vector n[4];
+
+    vector position;
+    vector side[4];
+    vector motionPoints[4][5];
+    vector axisX[4];
+    vector dir[4];
+    vector normal;
+
+    int removable;
+
+    int adj[4];
+    int adjSide[4];
+} block3D;
+
+typedef struct blockGraph
+{
+    unsigned int numberOfBlockModels;
+    block3D* blockGraph;
+    unsigned int numberOfModels;
+    int* surfaceModel;
+    int  fillerModel;
+    int* blockGraphDirtyBit;
+    unsigned int blockUpdateListLength;
+    unsigned int* blockUpdateList;
+    unsigned int blockUpdateListTempLength;
+    unsigned int* blockUpdateListTemp;
+    int spr_blockTexture;
+    int tex_blockTexture;
+} blockGraph;
+
+blockGraph* blkGph;
 int numberOfBlocks_3D;
 
 void (*d3d_draw_block)(double, double, double, double, double, double, int*, int, int);
@@ -37,6 +77,8 @@ void (*d3d_model_primitive_begin)(int* ind, double kind);
 void (*d3d_model_vertex_texture)(int* ind, double x, double y, double z, double xtex, double ytex);
 void (*d3d_model_primitive_end)(int* ind);
 void (*d3d_model_destroy)(double ind);
+
+void (*d3d_transform_add_block_matrix)(int blockID, int sideFacing, int motion, int movingSide);
 
 typedef struct control
 {
@@ -79,9 +121,10 @@ typedef struct player3D
     int texEye;
 } player3D;
 
-void instantiate_entity(entity_callback_data* ecd)
+GMEXPORT void instantiate_entity(entity_callback_data* ecd)
 {
     numberOfBlocks_3D = ecd->numberOfBlocks3D;
+    blkGph = ecd->blkGph;
 
     d3d_draw_block     = ecd->d3d_draw_block;
     d3d_draw_cylinder  = ecd->d3d_draw_cylinder;
@@ -112,6 +155,8 @@ void instantiate_entity(entity_callback_data* ecd)
     d3d_model_vertex_texture  = ecd->d3d_model_vertex_texture;
     d3d_model_primitive_end   = ecd->d3d_model_primitive_end;
     d3d_model_destroy         = ecd->d3d_model_destroy;
+
+    d3d_transform_add_block_matrix = ecd->d3d_transform_add_block_matrix;
 }
 
 static void player3D_moveInDirection(int sideMoving, entity* e)
@@ -123,26 +168,32 @@ static void player3D_moveInDirection(int sideMoving, entity* e)
     {
         if ((blkGph->blockGraph[proposedSpace].type > 3 && blkGph->blockGraph[proposedSpace].type < 7) || (blkGph->blockGraph[proposedSpace].type > 7 && blkGph->blockGraph[proposedSpace].type < 11))
         {
-            vector side = blkGph->blockGraph[e->currentSpace].side[sideMoving];
+            if (blkGph->blockGraph[proposedSpace].entityID == -1)
+            {
+                vector side = blkGph->blockGraph[e->currentSpace].side[sideMoving];
 
-            player->movingSpace   = proposedSpace;
-            player->movingSideOne = sideMoving;
-            player->movingSideTwo = blkGph->blockGraph[e->currentSpace].adjSide[sideMoving];
+                player->movingSpace   = proposedSpace;
+                player->movingSideOne = sideMoving;
+                player->movingSideTwo = blkGph->blockGraph[e->currentSpace].adjSide[sideMoving];
 
-            if ((e->sideFacing - sideMoving + 4) % 4 == 0)//up
+                if ((e->sideFacing - sideMoving + 4) % 4 == 0)//up
+                {
+                    player->sideFacingAfter = (player->movingSideTwo + 2) % 4;
+                } else if ((e->sideFacing - sideMoving + 4) % 4 == 3)//left
+                {
+                    player->sideFacingAfter = (player->movingSideTwo + 1) % 4;
+                } else if ((e->sideFacing - sideMoving + 4) % 4 == 1)//right
+                {
+                    player->sideFacingAfter = (player->movingSideTwo + 3) % 4;
+                } else if ((e->sideFacing - sideMoving + 4) % 4 == 2)//down
+                {
+                    player->sideFacingAfter = (player->movingSideTwo + 0) % 4;
+                }
+                player->moving = 1;
+            } else
             {
-                player->sideFacingAfter = (player->movingSideTwo + 2) % 4;
-            } else if ((e->sideFacing - sideMoving + 4) % 4 == 3)//left
-            {
-                player->sideFacingAfter = (player->movingSideTwo + 1) % 4;
-            } else if ((e->sideFacing - sideMoving + 4) % 4 == 1)//right
-            {
-                player->sideFacingAfter = (player->movingSideTwo + 3) % 4;
-            } else if ((e->sideFacing - sideMoving + 4) % 4 == 2)//down
-            {
-                player->sideFacingAfter = (player->movingSideTwo + 0) % 4;
+                player->moving = 0;
             }
-            player->moving = 1;
         } else
         {
             player->moving = 0;
@@ -186,90 +237,77 @@ static void player3D_moveInDirectionWithoutCollision(int sideMoving, entity* e)
     }
 }
 
-void player3D_drawEvent(entity* e)
+GMEXPORT void drawEvent(entity* e)
 {
     player3D* player = (player3D*)e->internalData;
 
     d3d_transform_set_identity();
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-1,-1,2,1,1,5,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,4);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player->texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,4);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_cylinder(-0.5,-0.5,0,0.5,0.5,2,&player->texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(-1,0,2.5);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player->texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.5,-0.5,-0.5,0.5,0.5,0.5,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(1,0,2.5);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_cylinder(-0.5,-0.5,-2,0.5,0.5,0,&player->texBody,2,1,true,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-1,-1,-1,1,1,1,&player->texBody,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
     d3d_transform_add_translation(-0.25,1,0.25);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player->texEye,2,1,60);
 
     d3d_transform_set_identity();
     d3d_transform_add_translation(0,0,6);
     d3d_transform_add_translation(0.25,1,0.25);
-    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing);
-    d3d_transform_add_translation(e->position.x, e->position.y, e->position.z);
+    d3d_transform_add_block_matrix(e->currentSpace, e->sideFacing, e->motion, e->movingSide);
     d3d_draw_ellipsoid(-0.125,-0.125,-0.125,0.125,0.125,0.125,&player->texEye,2,1,60);
 
     d3d_transform_set_identity();
 }
 
-void player3D_stepEvent(entity* e, controlSet gameControl)
+GMEXPORT void stepEvent(entity* e, controlSet gameControl)
 {
     player3D* player = (player3D*)e->internalData;
-    e->position = blkGph->blockGraph[e->currentSpace].position;
 
     if (gameControl.control_moveUp.gameControlPressed)
     {
@@ -350,14 +388,20 @@ void player3D_stepEvent(entity* e, controlSet gameControl)
     {
         player->motion += 1;
 
-        int movingSide = (player->motion <= 4)*player->movingSideOne + (player->motion > 4)*player->movingSideTwo;
-
-        vector side = blkGph->blockGraph[e->currentSpace].side[movingSide];
-
-        e->position = (player->motion <= 4)*((4-player->motion)*e->position + player->motion*side)/4 + (player->motion > 4)*((player->motion-5)*e->position + (9-player->motion)*side)/4;
+        if (player->motion < 4)
+        {
+            e->movingSide = player->movingSideOne;
+            e->motion = player->motion;
+        } else
+        {
+            e->movingSide = player->movingSideTwo;
+            e->motion = 8-player->motion;
+        }
 
         if (player->motion == 4)
         {
+            blkGph->blockGraph[player->movingSpace].entityID = blkGph->blockGraph[e->currentSpace].entityID;
+            blkGph->blockGraph[e->currentSpace].entityID = -1;
             e->currentSpace = player->movingSpace;
             e->sideFacing = player->sideFacingAfter;
         }
@@ -366,10 +410,15 @@ void player3D_stepEvent(entity* e, controlSet gameControl)
         {
             if (blkGph->blockGraph[e->currentSpace].type == 5)
             {
-                player3D_moveInDirection((movingSide + 2) % 4, e);
+                player3D_moveInDirection((e->movingSide + 2) % 4, e);
+                if (player->moving == 0)
+                {
+                    e->turnActive  = 0;
+                }
             } else
             {
                 player->moving = 0;
+                e->turnActive  = 0;
             }
 
             player->motion = 0;
@@ -377,7 +426,7 @@ void player3D_stepEvent(entity* e, controlSet gameControl)
     }
 }
 
-void* player3D_createEvent()
+GMEXPORT void* createEvent()
 {
     player3D* player = (player3D*)malloc(sizeof(player3D));
     player->sideFacingAfter = 0;

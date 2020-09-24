@@ -262,10 +262,9 @@
 
 1599848490 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.h
 
-1600748960 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.cpp
+1599848450 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.cpp
 	<stdlib.h>
 	<string.h>
-	<queue>
 	"delayed_function_calls.h"
 	"gameMakerFunctions\3DGraphics\d3d_model.h"
 	"gameMakerFunctions\3DGraphics\d3d_shape.h"
@@ -306,7 +305,7 @@
 
 1582402445 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.h
 
-1600887361 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.cpp
+1600406700 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -317,7 +316,7 @@
 	"blockGraph.h"
 	"blockAlchemy.h"
 
-1600887452 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.h
+1600488111 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.h
 	"vector.h"
 
 1599611579 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.cpp
@@ -363,19 +362,19 @@
 
 1599757985 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.h
 
-1600887182 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.cpp
+1600492133 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	<string>
 	<sstream>
 	<math.h>
-	<windows.h>
 	"delayed_function_calls.h"
 	"blockGraph.h"
 	"blockAlchemy.h"
 	"gameLoop.h"
 	"controls.h"
+	"player.h"
 	"camera.h"
 	"loadLevel.h"
 	"entity.h"
@@ -391,13 +390,13 @@
 	"blockGraph.h"
 	"loadLevel.h"
 
-1600887389 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.h
+1600310821 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.h
 
 1600465227 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\player.h
 	"vector.h"
 	"entity.h"
 
-1600722109 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.cpp
+1600493348 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -408,7 +407,7 @@
 	"controls.h"
 	"camera.h"
 	"blockGraph.h"
-	"entity.h"
+	"player.h"
 
 1599841486 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.h
 
@@ -459,4 +458,54 @@
 
 1600745795 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\entity.h
 	"vector.h"
+
+1582485618 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\player\vector.cpp
+	"vector.h"
+
+1582402445 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\player\vector.h
+
+1600538722 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\player\player.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<string>
+	<sstream>
+	<math.h>
+	"vector.h"
+	"player.h"
+	"entity.h"
+
+1600535514 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\player\player.h
+	"vector.h"
+	"entity.h"
+
+1600549731 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\player\entity.h
+	"vector.h"
+
+1600558679 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\iceturret\vector.cpp
+	"..\CallDelayedFunctions\vector.cpp"
+
+1582485618 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.cpp
+	"vector.h"
+
+1600745806 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\iceturret\iceturret.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<string>
+	<sstream>
+	<math.h>
+	"vector.h"
+	"iceTurret.h"
+	"entity.h"
+
+1600558647 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\iceturret\vector.h
+	"..\CallDelayedFunctions\vector.h"
+
+1600535514 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\iceturret\iceturret.h
+	"vector.h"
+	"entity.h"
+
+1600558668 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\iceturret\entity.h
+	"..\CallDelayedFunctions\entity.h"
 

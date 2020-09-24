@@ -6,19 +6,16 @@
 #include <math.h>
 #include "delayed_function_calls.h"
 #include "controls.h"
-#include "player.h"
 #include "camera.h"
 #include "blockGraph.h"
+#include "entity.h"
 
 extern int spr_selectBlock;
 
 #ifdef RELEASE_DLL
-extern entity entityList[1];
-extern entityType entityTypeList[1];
+extern entity* entityList;
 extern int entityID;
-#endif
 
-#ifdef RELEASE_DLL
 void camera_drawEvent()
 {
     d3d_set_projection_ortho(0,0,1280,1024,0);
@@ -32,12 +29,14 @@ void camera_drawEvent()
     vector n   = blkGph->blockGraph[entityList[entityID].currentSpace].normal;
     vector dir = blkGph->blockGraph[entityList[entityID].currentSpace].dir[entityList[entityID].sideFacing];
 
-    double camX  = entityList[entityID].position.x + 12*n.x - 40*dir.x;
-    double camY  = entityList[entityID].position.y + 12*n.y - 40*dir.y;
-    double camZ  = entityList[entityID].position.z + 12*n.z - 40*dir.z;
-    double playX = entityList[entityID].position.x +  5*n.x;
-    double playY = entityList[entityID].position.y +  5*n.y;
-    double playZ = entityList[entityID].position.z +  5*n.z;
+    vector p   = blkGph->blockGraph[entityList[entityID].currentSpace].motionPoints[entityList[entityID].movingSide][entityList[entityID].motion];
+
+    double camX  = p.x + 12*n.x - 40*dir.x;
+    double camY  = p.y + 12*n.y - 40*dir.y;
+    double camZ  = p.z + 12*n.z - 40*dir.z;
+    double playX = p.x +  5*n.x;
+    double playY = p.y +  5*n.y;
+    double playZ = p.z +  5*n.z;
     d3d_set_projection(camX,camY,camZ,playX,playY,playZ,n.x,n.y,n.z);
     //d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
     //d3d_light_enable(1,true);

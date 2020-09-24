@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <queue>
 #include "delayed_function_calls.h"
 
 typedef struct
@@ -16,30 +17,24 @@ typedef struct delayedFunctionCall
     int                         function;
     int*                        delayedOutput;
     int                         hasOutput;
-    struct delayedFunctionCall* next;
 } delayedFunctionCall;
 
-delayedFunctionCall* functionQueueStart;
-delayedFunctionCall* functionQueueEnd;
+//delayedFunctionCall* functionQueueStart;
+//delayedFunctionCall* functionQueueEnd;
+std::queue<delayedFunctionCall> functionQueue;
 
 GMEXPORT double removeDelayedFunctionCall()
 {
-    if (functionQueueStart)
+    if (!functionQueue.empty())
     {
-        delayedFunctionCall* temp = functionQueueStart;
-        functionQueueStart = functionQueueStart->next;
+        delayedFunctionCall temp = functionQueue.front();
+        functionQueue.pop();
         for (int i = 0; i < 14; i++)
         {
-            if (temp->input[i].type == 1)
+            if (temp.input[i].type == 1)
             {
-                free(temp->input[i].text);
+                free(temp.input[i].text);
             }
-        }
-        free(temp);
-        if (temp == functionQueueEnd)
-        {
-            functionQueueEnd   = NULL;
-            functionQueueStart = NULL;
         }
     }
     return 1.0;
@@ -47,43 +42,43 @@ GMEXPORT double removeDelayedFunctionCall()
 
 GMEXPORT double getInputDelayedVariable(double input)
 {
-    return *functionQueueStart->input[(int)input].delayedVariable;
+    return *(functionQueue.front().input[(int)input].delayedVariable);
 }
 
 GMEXPORT char* getInputText(double input)
 {
-    return functionQueueStart->input[(int)input].text;
+    return functionQueue.front().input[(int)input].text;
 }
 
 GMEXPORT double getInputNumber(double input)
 {
-    return functionQueueStart->input[(int)input].number;
+    return functionQueue.front().input[(int)input].number;
 }
 
 GMEXPORT double getInputType(double input)
 {
-    return functionQueueStart->input[(int)input].type;
+    return functionQueue.front().input[(int)input].type;
 }
 
 GMEXPORT double getFunction()
 {
-    return functionQueueStart->function;
+    return functionQueue.front().function;
 }
 
 GMEXPORT double setDelayedOutput(double value)
 {
-    *functionQueueStart->delayedOutput = value;
+    *(functionQueue.front().delayedOutput) = value;
     return value;
 }
 
 GMEXPORT double getHasOutput()
 {
-    return functionQueueStart->hasOutput;
+    return functionQueue.front().hasOutput;
 }
 
 GMEXPORT double isThereDelayedFunctionCall()
 {
-    return functionQueueStart != NULL;
+    return !functionQueue.empty();
 }
 
 delayedInput convertToDelayedInput(double input)
@@ -113,34 +108,25 @@ delayedInput convertToDelayedInput(int* input)
 
 template <typename T> void addDelayedFunctionCall_helper(int argument, T input)
 {
-    functionQueueEnd->input[argument] = convertToDelayedInput(input);
+    functionQueue.back().input[argument] = convertToDelayedInput(input);
 }
 
 template <typename T, typename... Input> void addDelayedFunctionCall_helper(int argument, T input0, Input... input)
 {
-    functionQueueEnd->input[argument] = convertToDelayedInput(input0);
+    functionQueue.back().input[argument] = convertToDelayedInput(input0);
     argument++;
     addDelayedFunctionCall_helper(argument, input...);
 }
 
 void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput)
 {
-    if (functionQueueEnd == NULL)
-    {
-        functionQueueEnd = (delayedFunctionCall*) malloc(sizeof(delayedFunctionCall));
-        memset(functionQueueEnd, 0, sizeof(delayedFunctionCall));
-        functionQueueStart = functionQueueEnd;
-    } else if (functionQueueEnd->next == NULL)
-    {
-        functionQueueEnd->next = (delayedFunctionCall*) malloc(sizeof(delayedFunctionCall));
-        memset(functionQueueEnd->next, 0, sizeof(delayedFunctionCall));
-        functionQueueEnd = functionQueueEnd->next;
-    }
+    delayedFunctionCall call;
+    memset(&call, 0, sizeof(delayedFunctionCall));
+    functionQueue.push(call);
 
-    functionQueueEnd->function      = function;
-    functionQueueEnd->delayedOutput = delayedOutput;
-    functionQueueEnd->hasOutput     = hasOutput;
-    functionQueueEnd->next          = NULL;
+    functionQueue.back().function      = function;
+    functionQueue.back().delayedOutput = delayedOutput;
+    functionQueue.back().hasOutput     = hasOutput;
 }
 
 template <typename... Input> void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput, Input... input)

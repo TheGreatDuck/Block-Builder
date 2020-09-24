@@ -74,7 +74,7 @@ global.gameControl[control_moveDown] = ord('S');*/
       <arguments>
         <argument kind="STRING">scr_initControlInterface();
 scr_initDelayedCallingDLL();
-external_call(global.gameLoopInit);
+external_call(global.gameLoopInit, program_directory);
 scr_delayCallDLL_callQueuedFunctions();
 draw_set_color(c_white);
 </argument>

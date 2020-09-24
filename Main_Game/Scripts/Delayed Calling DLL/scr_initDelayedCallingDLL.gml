@@ -107,6 +107,6 @@ external_call(global.delayCallDLL_export_d3d_set_fog, scr_wrapper_d3d_set_fog);
 global.delayCallDLL_export_d3d_set_lighting = external_define("CallDelayedFunctions.dll", "export_d3d_set_lighting", dll_cdecl, ty_real, 1, ty_real);
 external_call(global.delayCallDLL_export_d3d_set_lighting, scr_wrapper_d3d_set_lighting);
 
-global.gameLoopInit = external_define("CallDelayedFunctions.dll", "gameLoopInit", dll_cdecl, ty_real, 0);
+global.gameLoopInit = external_define("CallDelayedFunctions.dll", "gameLoopInit", dll_cdecl, ty_real, 1, ty_string);
 global.gameLoopStep = external_define("CallDelayedFunctions.dll", "gameLoopStep", dll_cdecl, ty_real, 2, ty_real, ty_real);
 global.gameLoopDraw = external_define("CallDelayedFunctions.dll", "gameLoopDraw", dll_cdecl, ty_real, 0);

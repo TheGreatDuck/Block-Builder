@@ -109,8 +109,6 @@
 		<Unit filename="loadLevel.cpp" />
 		<Unit filename="loadLevel.h" />
 		<Unit filename="loadWorld.cpp" />
-		<Unit filename="player.cpp" />
-		<Unit filename="player.h" />
 		<Unit filename="vector.cpp" />
 		<Unit filename="vector.h" />
 		<Extensions>

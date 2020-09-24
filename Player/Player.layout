@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="entity.h" open="0" top="0" tabpos="4">
+		<Cursor position="45" topLine="0" />
+	</File>
+	<File name="player.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="11272" topLine="292" />
+	</File>
+	<File name="player.h" open="0" top="0" tabpos="6">
+		<Cursor position="238" topLine="0" />
+	</File>
+	<File name="vector.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="44" topLine="0" />
+	</File>
+	<File name="vector.h" open="0" top="0" tabpos="15">
+		<Cursor position="45" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
