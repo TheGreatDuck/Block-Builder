@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <queue>
-#include "delayed_function_calls.h"
+#include "delayed_function_calls.hpp"
 
 typedef struct
 {
@@ -19,8 +19,6 @@ typedef struct delayedFunctionCall
     int                         hasOutput;
 } delayedFunctionCall;
 
-//delayedFunctionCall* functionQueueStart;
-//delayedFunctionCall* functionQueueEnd;
 std::queue<delayedFunctionCall> functionQueue;
 
 GMEXPORT double removeDelayedFunctionCall()
@@ -32,9 +30,7 @@ GMEXPORT double removeDelayedFunctionCall()
         for (int i = 0; i < 14; i++)
         {
             if (temp.input[i].type == 1)
-            {
                 free(temp.input[i].text);
-            }
         }
     }
     return 1.0;
@@ -81,7 +77,7 @@ GMEXPORT double isThereDelayedFunctionCall()
     return !functionQueue.empty();
 }
 
-delayedInput convertToDelayedInput(double input)
+static delayedInput convertToDelayedInput(double input)
 {
     delayedInput returnValue;
     returnValue.number = input;
@@ -89,7 +85,7 @@ delayedInput convertToDelayedInput(double input)
     return returnValue;
 }
 
-delayedInput convertToDelayedInput(const char* input)
+static delayedInput convertToDelayedInput(const char* input)
 {
     delayedInput returnValue;
     returnValue.text = (char*) malloc((strlen(input) + 1)*sizeof(char));
@@ -98,7 +94,7 @@ delayedInput convertToDelayedInput(const char* input)
     return returnValue;
 }
 
-delayedInput convertToDelayedInput(int* input)
+static delayedInput convertToDelayedInput(int* input)
 {
     delayedInput returnValue;
     returnValue.delayedVariable = input;
@@ -118,12 +114,11 @@ template <typename T, typename... Input> void addDelayedFunctionCall_helper(int 
     addDelayedFunctionCall_helper(argument, input...);
 }
 
-void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput)
+static void addDelayedFunctionCall(int function, int* delayedOutput, int hasOutput)
 {
     delayedFunctionCall call;
     memset(&call, 0, sizeof(delayedFunctionCall));
     functionQueue.push(call);
-
     functionQueue.back().function      = function;
     functionQueue.back().delayedOutput = delayedOutput;
     functionQueue.back().hasOutput     = hasOutput;
@@ -137,16 +132,15 @@ template <typename... Input> void addDelayedFunctionCall(int function, int* dela
 
 #define ADD_FUNCTION(name)\
 static int FP_##name;\
+GMEXPORT double export_##name(double functionPointer);\
 GMEXPORT double export_##name(double functionPointer)\
 {\
     FP_##name = functionPointer;\
     return functionPointer;\
 }
 
-#include "gameMakerFunctions\3DGraphics\d3d_model.h"
-#include "gameMakerFunctions\3DGraphics\d3d_shape.h"
-#include "gameMakerFunctions\3DGraphics\d3d_transform.h"
-#include "gameMakerFunctions\3DGraphics\d3d_primitive.h"
+#define DEFINE_WRAPPERS 1
+#include "gameMakerLibrary.hpp"
 
 ADD_FUNCTION(sprite_get_texture)
 ADD_FUNCTION(sprite_add)

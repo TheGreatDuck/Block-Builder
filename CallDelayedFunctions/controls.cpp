@@ -4,8 +4,8 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "controls.h"
+#include "delayed_function_calls.hpp"
+#include "controls.hpp"
 
 controlSet gameControl;
 
@@ -37,8 +37,9 @@ void initGameControl()
 }
 
 #define SET_CONTROL(controlName)\
-GMEXPORT double setGameControl_##controlName(double pressed)\
+GMEXPORT double setGameControl_##controlName(double double_pressed)\
 {\
+    int pressed = double_pressed;\
     gameControl.control_##controlName.gameControlPress = (pressed && !gameControl.control_##controlName.gameControlPressed);\
     gameControl.control_##controlName.gameControlPressed = pressed;\
     return 1.0;\

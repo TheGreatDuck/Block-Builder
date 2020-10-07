@@ -1,4 +1,6 @@
-#include "vector.h"
+#include "vector.hpp"
+#include "blockGraph.hpp"
+#include "controls.hpp"
 
 #ifndef ENTITY_H
 #define ENTITY_H
@@ -48,6 +50,8 @@ typedef struct entity
     unsigned int movingSide;
     unsigned int typeID;
     unsigned int turnActive;
+    int entityID;
+    int alive;
     void* internalData;
 } entity;
 

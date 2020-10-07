@@ -4,10 +4,11 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "combatant.h"
-#include "linkedCycle.h"
+#include "delayed_function_calls.hpp"
+#include "linkedCycle.hpp"
+#include "entity.hpp"
 
+#if 0
 typedef struct battleManager
 {
     linkedCycle* battleCycle;
@@ -15,44 +16,38 @@ typedef struct battleManager
 
 void battle_manageTurn(battleManager* battle)
 {
-    combatant* combatantData = (combatant*)(int)getCurrentData(battle->battleCycle);
+    entity* entityData = (entity*)getCurrentData(battle->battleCycle);
 
-    if (combatant_getActive(combatantData) == 0)
+    if (entityData == NULL)
     {
-        if (1)//instance_exists(combatant_getInstanceID(combatantData)))
+        blockGraph_updateBlockGraphWithList();
+        next(battle->battleCycle);
+        entityData = (entity*)getCurrentData(battle->battleCycle);
+        if (entityData != NULL)
+            entityData->turnActive = 1;
+
+    }
+
+    if (entityData->turnActive)
+    {
+        entityTypeList[worldID][entityData->typeID].stepEvent(entityData, gameControl);
+    } else
+    {
+        next(battle->battleCycle);
+        entityData = (entity*)getCurrentData(battle->battleCycle);
+        if (entityData != NULL)
+            entityData->turnActive = 1;
+        if (entityData->alive)
         {
             //entity is still alive
-            combatant_setActive(combatantData,1);
-            /*with (combatant_getInstanceID(combatantData))
-            {
-                instance_change(objectType,false);
-            }*/
+            entityTypeList[worldID][entityData->typeID].stepEvent(entityData, gameControl);
         } else
         {
             //entity was defeated
             next(battle->battleCycle);
-            //removeBeforeCurrent(battle->battleCycle);
-        }
-    } else if (combatant_getActive(combatantData) == 1)
-    {
-        if (1)//instance_number(combatant_getObjectType(combatantData)) == 1)
-        {
-            int turnCompleted = 0;
-            /*with (combatant_getObjectType(combatantData))
+            if (entityData != NULL)
             {
-                with (obj_battleManager)
-                {
-                    if (other.attackCompleted == true)
-                    {
-                        other.changeBack = true;
-                        turnCompleted = true;
-                    }
-                }
-            }*/
-            if (turnCompleted)
-            {
-                combatant_setActive(combatantData,0);
-                next(battle->battleCycle);
+            removeBeforeCurrent(battle->battleCycle);
             }
         }
     }
@@ -60,13 +55,14 @@ void battle_manageTurn(battleManager* battle)
 
 void battle_initialize(battleManager* battle)
 {
-    battle->battleCycle = createCycle(1.0);//combatant_deleteCombatant);
+    battle->battleCycle = createCycle();
 
-    /*with (obj_idleBasic)
+    with (obj_idleBasic)
     {
         with (obj_battleManager)
         {
             insertAfterCurrent(battleCycle,combatant_createCombatant(0,other.id,other.objectType,other.objectActivator));
         }
-    }*/
+    }
 }
+#endif

@@ -1,4 +1,4 @@
-#include "vector.h"
+#include "vector.hpp"
 
 int operator==(vector v1, vector v2)
 {

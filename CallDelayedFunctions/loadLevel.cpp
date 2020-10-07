@@ -4,9 +4,9 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "blockGraph.h"
-#include "loadLevel.h"
+#include "delayed_function_calls.hpp"
+#include "blockGraph.hpp"
+#include "loadLevel.hpp"
 
 static void load_blockGraph(const char* program_directory, const char* worldName, const char* levelLoading)
 {

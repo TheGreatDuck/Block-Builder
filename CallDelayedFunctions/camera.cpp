@@ -4,26 +4,27 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "controls.h"
-#include "camera.h"
-#include "blockGraph.h"
-#include "entity.h"
+#include "gameMakerLibrary.hpp"
+#include "controls.hpp"
+#include "camera.hpp"
+#include "blockGraph.hpp"
+#include "entity.hpp"
 
 extern int spr_selectBlock;
 
-#ifdef RELEASE_DLL
 extern entity* entityList;
 extern int entityID;
 
 void camera_drawEvent()
 {
     d3d_set_projection_ortho(0,0,1280,1024,0);
-    //draw_sprite(spr_itemIcons,global.itemOne,64,0);
-    //draw_sprite(spr_itemIcons,global.itemTwo,192,0);
-    //draw_sprite(&spr_selectBlock,player.type,1024 + 64,0);
-    //draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1]/10),1024 + 64,0);
-    //draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1])-10*floor(global.inventoryBlock[player.type+1]/10),1024 + 128,0);
+    #if 0
+    draw_sprite(spr_itemIcons,global.itemOne,64,0);
+    draw_sprite(spr_itemIcons,global.itemTwo,192,0);
+    draw_sprite(&spr_selectBlock,player.type,1024 + 64,0);
+    draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1]/10),1024 + 64,0);
+    draw_sprite(spr_numbers,floor(global.inventoryBlock[player.type+1])-10*floor(global.inventoryBlock[player.type+1]/10),1024 + 128,0);
+    #endif
     d3d_set_projection_perspective(0,0,640,512,0);
 
     vector n   = blkGph->blockGraph[entityList[entityID].currentSpace].normal;
@@ -38,15 +39,15 @@ void camera_drawEvent()
     double playY = p.y +  5*n.y;
     double playZ = p.z +  5*n.z;
     d3d_set_projection(camX,camY,camZ,playX,playY,playZ,n.x,n.y,n.z);
-    //d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
-    //d3d_light_enable(1,true);
+    #if 0
+    d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
+    d3d_light_enable(1,true);
+    #endif
 }
-#endif
 
-#ifdef EDITOR_DLL
 vector cam_m[4];
 
-void camera_drawEvent()
+void cameraEditor_drawEvent()
 {
     d3d_set_projection_perspective(0,0,1280,1024,0);
 
@@ -59,7 +60,8 @@ void camera_drawEvent()
     d3d_set_projection(camX,       camY,       camZ,
                        playX,      playY,      playZ,
                        cam_m[2].x, cam_m[2].y, cam_m[2].z);
-    //d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
-    //d3d_light_enable(1,true);
+    #if 0
+    d3d_light_define_point(1,camX,camY,camZ,10000000,c_white);
+    d3d_light_enable(1,true);
+    #endif
 }
-#endif

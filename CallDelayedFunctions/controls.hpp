@@ -1,3 +1,5 @@
+#ifndef CONTROLS_H
+#define CONTROLS_H
 typedef struct control
 {
     unsigned int gameControlPress;
@@ -34,3 +36,4 @@ GMEXPORT double setGameControl_moveLeft(double pressed);
 GMEXPORT double setGameControl_moveDown(double pressed);
 GMEXPORT double setGameControl_moveRight(double pressed);
 GMEXPORT double setGameControl_moveUp(double pressed);
+#endif

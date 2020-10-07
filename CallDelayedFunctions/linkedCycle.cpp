@@ -4,8 +4,8 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "linkedCycle.h"
+#include "delayed_function_calls.hpp"
+#include "linkedCycle.hpp"
 
 static linkedNode* createNode()
 {
@@ -13,31 +13,27 @@ static linkedNode* createNode()
     node->data           = 0;
     node->next           = NULL;
     node->previous       = NULL;
-    node->dataDestructor = 0;
     return node;
 }
 
 static void deleteNode(linkedNode* node)
 {
-    //script_execute(node->dataDestructor, node->data);
     free(node);
 }
 
-linkedCycle* createCycle(double dataDestructor)
+linkedCycle* createCycle()
 {
     linkedCycle* cycle = (linkedCycle*) malloc(sizeof(linkedCycle));
     cycle->current        = NULL;
-    cycle->dataDestructor = dataDestructor;
     cycle->length         = 0;
     return cycle;
 }
 
-void insertAfterCurrent(linkedCycle* cycle, double data)
+void insertAfterCurrent(linkedCycle* cycle, void* data)
 {
     linkedNode* node = createNode();
 
     node->data = data;
-    node->dataDestructor = cycle->dataDestructor;
 
     if (cycle->length == 0)
     {
@@ -81,14 +77,19 @@ int getLength(linkedCycle* cycle)
     return cycle->length;
 }
 
-double getCurrentData(linkedCycle* cycle)
+void* getCurrentData(linkedCycle* cycle)
 {
     return cycle->current->data;
 }
 
-double next(linkedCycle* cycle)
+void next(linkedCycle* cycle)
 {
     cycle->current = cycle->current->next;
+}
+
+void previous(linkedCycle* cycle)
+{
+    cycle->current = cycle->current->previous;
 }
 
 linkedNode* getCurrentNode(linkedCycle* cycle)

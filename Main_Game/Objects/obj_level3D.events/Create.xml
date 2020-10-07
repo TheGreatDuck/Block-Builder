@@ -50,8 +50,14 @@ global.gameControlType[control_itemTwo] = controlType_keyboard;
 global.gameControlControllerID[control_itemTwo] = 0;
 
 global.gameControl[control_cancel] = ord('C');
-global.gameControlType[control_cancel] = controlType_controller;
+global.gameControlType[control_cancel] = controlType_keyboard;
 global.gameControlControllerID[control_cancel] = 0;
+
+global.gameControl[control_confirm] = ord('X');
+global.gameControlType[control_confirm] = controlType_keyboard;
+global.gameControlControllerID[control_confirm] = 0;
+
+
 
 /*global.gameControl[control_moveUp] = ord('W');
 global.gameControl[control_moveLeft] = ord('A');

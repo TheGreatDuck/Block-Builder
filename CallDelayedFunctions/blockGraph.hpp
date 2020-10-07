@@ -1,5 +1,7 @@
-#include "vector.h"
+#include "vector.hpp"
 
+#ifndef BLOCKGRAPH_H
+#define BLOCKGRAPH_H
 typedef struct block3D
 {
     int type;
@@ -49,3 +51,4 @@ void d3d_transform_add_block_matrix(int blockID, int sideFacing, int motion, int
 int blockGraph_getAdjacentID(int blockID, int side);
 
 extern blockGraph* blkGph;
+#endif

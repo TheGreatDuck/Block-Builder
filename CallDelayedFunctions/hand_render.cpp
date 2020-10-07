@@ -1,4 +1,5 @@
-#include "blockGraph.h"
+#include "blockGraph.hpp"
+#include "hand_render.hpp"
 #include <stdio.h>
 
 extern vector cam_m[4];
@@ -12,12 +13,9 @@ double renderedBlockGraph_z[640*512];
 static int ceil(double x)
 {
     if (x > (int)x)
-    {
         return ((int)x)+1;
-    } else
-    {
+    else
         return (int)x;
-    }
 }
 
 static void render_block_left(int blockID)
@@ -236,19 +234,20 @@ static void render_block_right(int blockID)
 
 void render()
 {
-    for (int i = 0; i < width*height; i++)
+    for (unsigned int i = 0; i < width*height; i++)
     {
         renderedBlockGraph_ID[i] = -1;
         renderedBlockGraph_z[i]  = 1.0;
     }
 
-    for (int i = 0; i < blkGph->numberOfBlockModels; i++)
+    for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i++)
     {
         render_block_left(i);
         render_block_right(i);
     }
 }
 
+#if 0
 void render_text()
 {
     for (int i = 0; i < height; i++)
@@ -265,3 +264,4 @@ void render_text()
     }
 
 }
+#endif

@@ -1,4 +1,4 @@
-#include "blockAlchemy.h"
+#include "blockAlchemy.hpp"
 
 int scr_changeBlock(int blockType, int north, int west, int east, int south)
 {
@@ -70,52 +70,34 @@ int scr_changeBlock(int blockType, int north, int west, int east, int south)
 
     int light = (north == 35) || (west == 35) || (east == 35) || (south == 35);
 
-
-
     if (blockType < 1000 && blockType != 34)
     {
         if ((darknessBaseN || darknessSpreadN) && !light)
-        {
             return blockType + 1000;
-        }
 
         if ((darknessBaseW || darknessSpreadW) && !light)
-        {
             return blockType + 2000;
-        }
 
         if ((darknessBaseE || darknessSpreadE) && !light)
-        {
             return blockType + 3000;
-        }
 
         if ((darknessBaseS || darknessSpreadS) && !light)
-        {
             return blockType + 4000;
-        }
     }
 
     if (blockType >= 1000)
     {
         if (((blockType/1000) == 1) && !(darknessBaseN || darknessSpreadN))
-        {
             return (blockType % 1000) + 4000000;
-        }
 
         if (((blockType/1000) == 2) && !(darknessBaseW || darknessSpreadW))
-        {
             return (blockType % 1000) + 4000000;
-        }
 
         if (((blockType/1000) == 3) && !(darknessBaseE || darknessSpreadE))
-        {
             return (blockType % 1000) + 4000000;
-        }
 
         if (((blockType/1000) == 4) && !(darknessBaseS || darknessSpreadS))
-        {
             return (blockType % 1000) + 4000000;
-        }
     }
 
     int shadowCounter = blockType - (blockType % 1000000);
@@ -126,134 +108,94 @@ int scr_changeBlock(int blockType, int north, int west, int east, int south)
         int waterSource = (water || wetSand);
 
         if (waterSource && !lava && !poison)
-        {
             return 2 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (!waterSource && lava && !poison)
-        {
             return 3 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (poison && !lava)
-        {
             return 7 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (lava && (waterSource || poison))
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (!waterSource && !lava && !poison)
-        {
             return 1 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 2)
     {
         if (lava)
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (grass || tree)
-        {
             return 6 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (poison)
-        {
             return 7 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 3)
     {
         if (water || poison)
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 5)
     {
         if (lava)
-        {
             return 2 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 6)
     {
         if (lava || poison)
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 7)
     {
         if (lava)
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 8)
     {
         if (lava)
-        {
             return 10 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if ((water || poison) && !lava)
-        {
             return 9 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 9)
     {
         if (!water && !poison && !lava)
-        {
             return 8 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (lava)
-        {
             return 10 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 11)
     {
         if (lava)
-        {
             return 4 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
 
         if (poison)
-        {
             return 12 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 20)
     {
         if (lava)
-        {
             return 21 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     if (blockType == 21)
     {
         if (water || poison || ice)
-        {
             return 20 + (shadowCounter-1000000)*(shadowCounter > 0);
-        }
     }
 
     return blockType + (shadowCounter-1000000)*(shadowCounter > 0);

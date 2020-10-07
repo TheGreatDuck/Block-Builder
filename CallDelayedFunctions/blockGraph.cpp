@@ -4,9 +4,10 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.h"
-#include "blockGraph.h"
-#include "blockAlchemy.h"
+#include <malloc.h>
+#include "gameMakerLibrary.hpp"
+#include "blockGraph.hpp"
+#include "blockAlchemy.hpp"
 
 #define blockModelCapacity 100.0
 
@@ -26,12 +27,11 @@ void blockGraph_initBlockModelAssets(const char* program_directory, const char* 
 
     fscanf(file, "%u\n", &numberOfBlockModelTriangles);
 
+    free(blockModelAsset[0]);
     blockModelAsset[0] = (vector*)malloc(3*sizeof(vector)*numberOfBlockModelTriangles);
 
-    for (int i = 0; i < 3*numberOfBlockModelTriangles; i++)
-    {
+    for (unsigned int i = 0; i < 3*numberOfBlockModelTriangles; i++)
         fscanf(file, "%lf %lf %lf\n", &blockModelAsset[0][i].x, &blockModelAsset[0][i].y, &blockModelAsset[0][i].z);
-    }
 }
 
 static void blockGraph_createSubmodel(int modelID)
@@ -53,14 +53,15 @@ static void blockGraph_createSubmodel(int modelID)
 
         double bt = blkGph->blockGraph[i].type;
 
-        /*d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p1x,p1y,p1z,pn1x,pn1y,pn1z,bt/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);
-        d3d_model_vertex_normal_texture(&blkGph->surfaceModelmodelID],p3x,p3y,p3z,pn3x,pn3y,pn3z,bt/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
-        d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p4x,p4y,p4z,pn4x,pn4y,pn4z,(bt+1)/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
+        #if 0
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p1x,p1y,p1z,pn1x,pn1y,pn1z,bt/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModelmodelID],p3x,p3y,p3z,pn3x,pn3y,pn3z,bt/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p4x,p4y,p4z,pn4x,pn4y,pn4z,(bt+1)/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
 
-        d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p1x,p1y,p1z,pn1x,pn1y,pn1z,bt/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);
-        d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p4x,p4y,p4z,pn4x,pn4y,pn4z,(bt+1)/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
-        d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p2x,p2y,p2z,pn2x,pn2y,pn2z,(bt+1)/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);*/
-
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p1x,p1y,p1z,pn1x,pn1y,pn1z,bt/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p4x,p4y,p4z,pn4x,pn4y,pn4z,(bt+1)/numberOfBlocks_3D,0.5+0.5*blkGph->blockGraph[i].removable);
+            d3d_model_vertex_normal_texture(&blkGph->surfaceModel[modelID],p2x,p2y,p2z,pn2x,pn2y,pn2z,(bt+1)/numberOfBlocks_3D,0+0.5*blkGph->blockGraph[i].removable);
+        #endif
 
         d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x,p1.y,p1.z,bt/numberOfBlocks_3D,0);
         d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p3.x,p3.y,p3.z,bt/numberOfBlocks_3D,1);
@@ -78,7 +79,7 @@ static void blockGraph_createSubmodel(int modelID)
         d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x,p2.y,p2.z,(bt+1)/numberOfBlocks_3D,0);
         d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p4.x,p4.y,p4.z,(bt+1)/numberOfBlocks_3D,1);
 
-        for (int j = 0; j < numberOfBlockModelTriangles*3; j++)
+        for (unsigned int j = 0; j < numberOfBlockModelTriangles*3; j++)
         {
             if (blockModelAsset[0][j].x > 1 - blockModelAsset[0][j].y)
             {
@@ -105,13 +106,15 @@ static void blockGraph_createSubmodel(int modelID)
             }
         }
 
-        /*d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x+pn1.x,p1.y+pn1.y,p1.z+pn1.z,0/numberOfBlocks_3D,0);
-        d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x,p1.y,p1.z,0/numberOfBlocks_3D,0);
-        d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x,p2.y,p2.z,(0)/numberOfBlocks_3D,0);
+        #if 0
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x+pn1.x,p1.y+pn1.y,p1.z+pn1.z,0/numberOfBlocks_3D,0);
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x,p1.y,p1.z,0/numberOfBlocks_3D,0);
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x,p2.y,p2.z,(0)/numberOfBlocks_3D,0);
 
-        d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x+pn1.x,p1.y+pn1.y,p1.z+pn1.z,0/numberOfBlocks_3D,0);
-        d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x,p2.y,p2.z,(0)/numberOfBlocks_3D,0);
-        d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x+pn2.x,p2.y+pn2.y,p2.z+pn2.z,(0)/numberOfBlocks_3D,0);*/
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x+pn1.x,p1.y+pn1.y,p1.z+pn1.z,0/numberOfBlocks_3D,0);
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x,p2.y,p2.z,(0)/numberOfBlocks_3D,0);
+            d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p2.x+pn2.x,p2.y+pn2.y,p2.z+pn2.z,(0)/numberOfBlocks_3D,0);
+        #endif
     }
 
     d3d_model_primitive_end(&blkGph->surfaceModel[modelID]);
@@ -122,9 +125,7 @@ void blockGraph_create3DModel()
     d3d_model_create(&blkGph->fillerModel);
     blkGph->numberOfModels = ceil(blkGph->numberOfBlockModels/blockModelCapacity);
     for (unsigned int i = 0; i < blkGph->numberOfModels; i+=1)
-    {
         blockGraph_createSubmodel(i);
-    }
 }
 
 static int blockGraph_blockArithmetic(int blockID)
@@ -134,42 +135,19 @@ static int blockGraph_blockArithmetic(int blockID)
     int s3 = blkGph->blockGraph[blockID].adj[2];
     int s4 = blkGph->blockGraph[blockID].adj[3];
 
-    int b1;
-    int b2;
-    int b3;
-    int b4;
+    int b1 = -1;
+    int b2 = -1;
+    int b3 = -1;
+    int b4 = -1;
 
     if (s1 != -1)
-    {
         b1 = blkGph->blockGraph[s1].type;
-    } else
-    {
-        b1 = -1;
-    }
-
     if (s2 != -1)
-    {
         b2 = blkGph->blockGraph[s2].type;
-    } else
-    {
-        b2 = -1;
-    }
-
     if (s3 != -1)
-    {
         b3 = blkGph->blockGraph[s3].type;
-    } else
-    {
-        b3 = -1;
-    }
-
     if (s4 != -1)
-    {
         b4 = blkGph->blockGraph[s4].type;
-    } else
-    {
-        b4 = -1;
-    }
 
     return scr_changeBlock(blkGph->blockGraph[blockID].type,b1,b2,b3,b4);
 }
@@ -178,7 +156,7 @@ void blockGraph_setUpBlockGraphList()
 {
     blkGph->blockUpdateListLength = 0;
 
-    double tempBlocks[blkGph->numberOfBlockModels];
+    int* tempBlocks = (int*)alloca(blkGph->numberOfBlockModels*sizeof(int));
 
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i+=1)
     {
@@ -231,13 +209,11 @@ static void blockGraph_addToTempBlockUpdateList(int blockID)
 
 void blockGraph_updateBlockGraphWithList()
 {
-    unsigned int changed[(int)ceil(blkGph->numberOfBlockModels/blockModelCapacity)];
+    unsigned int* changed = (unsigned int*)alloca(((int)ceil(blkGph->numberOfBlockModels/blockModelCapacity))*sizeof(unsigned int));
     for (unsigned int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
-    {
         changed[i] = 0;
-    }
 
-    int tempBlocks[blkGph->numberOfBlockModels];
+    int* tempBlocks = (int*)alloca(blkGph->numberOfBlockModels*sizeof(int));
 
     for (unsigned int k = 0; k < blkGph->blockUpdateListLength; k += 1)
     {
@@ -285,37 +261,17 @@ void blockGraph_updateBlockGraphWithList()
 
 static int blockGraph_getSideWithPoint(int blockID, vector v)
 {
-    double x = v.x;
-    double y = v.y;
-    double z = v.z;
-
     if (blockID == -1)
         return -1;
 
-    vector s0 = blkGph->blockGraph[blockID].side[0];
-    vector s1 = blkGph->blockGraph[blockID].side[1];
-    vector s2 = blkGph->blockGraph[blockID].side[2];
-    vector s3 = blkGph->blockGraph[blockID].side[3];
-
-    if (s0.x == x && s0.y == y && s0.z == z)
-    {
+    if (blkGph->blockGraph[blockID].side[0] == v)
         return 0;
-    }
-
-    if (s1.x == x && s1.y == y && s1.z == z)
-    {
+    if (blkGph->blockGraph[blockID].side[1] == v)
         return 1;
-    }
-
-    if (s2.x == x && s2.y == y && s2.z == z)
-    {
+    if (blkGph->blockGraph[blockID].side[2] == v)
         return 2;
-    }
-
-    if (s3.x == x && s3.y == y && s3.z == z)
-    {
+    if (blkGph->blockGraph[blockID].side[3] == v)
         return 3;
-    }
 
     return -1;
 }
@@ -433,9 +389,7 @@ void blockGraph_loadFromFile(const char* fileName)
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i += 1)
     {
         for (unsigned int m = 0; m < 4; m += 1)
-        {
             blkGph->blockGraph[i].adj[m] = -1;
-        }
     }
 
     for (unsigned int i = 0; i < blkGph->numberOfBlockModels; i += 1)
@@ -447,9 +401,7 @@ void blockGraph_loadFromFile(const char* fileName)
                 for (unsigned int m = 0; m < 4; m += 1)
                 {
                     if (blkGph->blockGraph[i].side[m] == blkGph->blockGraph[j].side[k] && i != j)
-                    {
                         blkGph->blockGraph[i].adj[m] = j;
-                    }
                 }
             }
         }
@@ -530,9 +482,7 @@ void blockGraph_loadFromFile(const char* fileName)
 void blockGraph_drawEvent()
 {
     for (int i = 0; i  < ceil(blkGph->numberOfBlockModels/blockModelCapacity); i+=1)
-    {
         d3d_model_draw(&blkGph->surfaceModel[i],0,0,0, &blkGph->tex_blockTexture);
-    }
 }
 
 void d3d_transform_add_block_matrix(int blockID, int sideFacing, int motion, int movingSide)
@@ -555,15 +505,11 @@ void d3d_transform_add_block_matrix(int blockID, int sideFacing, int motion, int
     double rot_angle;
 
     if ((a11 + a22 + a33 - 1)/2 > 1)
-    {
         rot_angle = 0;
-    } else if ((a11 + a22 + a33 - 1)/2 < -1)
-    {
+    else if ((a11 + a22 + a33 - 1)/2 < -1)
         rot_angle = acos(-1.0);
-    } else
-    {
+    else
         rot_angle = acos((a11 + a22 + a33 - 1)/2);
-    }
 
     if (sin(rot_angle) != 0)
     {

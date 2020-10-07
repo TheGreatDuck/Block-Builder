@@ -33,4 +33,6 @@
   <resource name="scr_wrapper_d3d_start" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_set_fog" type="RESOURCE"/>
   <resource name="scr_wrapper_d3d_set_lighting" type="RESOURCE"/>
+  <resource name="scr_wrapper_draw_text" type="RESOURCE"/>
+  <resource name="scr_wrapper_game_end" type="RESOURCE"/>
 </resources>
