@@ -1,12 +1,26 @@
 #ifdef DEFINE_WRAPPERS
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(draw_text)
 #endif
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void draw_text(int x, int y, const char* text_string);
 #ifdef DEFINE_WRAPPERS
 void draw_text(int x, int y, const char* text_string)
 {
-    addDelayedFunctionCall(FP_draw_text, NULL, 0, x, y, text_string);
+    addDelayedFunctionCall(FP_draw_text, 0, x, y, text_string);
 }
 #endif
 

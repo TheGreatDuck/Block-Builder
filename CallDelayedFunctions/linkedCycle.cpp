@@ -7,6 +7,13 @@
 #include "delayed_function_calls.hpp"
 #include "linkedCycle.hpp"
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static linkedNode* createNode()
 {
     linkedNode* node     = (linkedNode*) malloc(sizeof(linkedNode));
@@ -16,11 +23,25 @@ static linkedNode* createNode()
     return node;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void deleteNode(linkedNode* node)
 {
     free(node);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 linkedCycle* createCycle()
 {
     linkedCycle* cycle = (linkedCycle*) malloc(sizeof(linkedCycle));
@@ -29,6 +50,13 @@ linkedCycle* createCycle()
     return cycle;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void insertAfterCurrent(linkedCycle* cycle, void* data)
 {
     linkedNode* node = createNode();
@@ -55,6 +83,13 @@ void insertAfterCurrent(linkedCycle* cycle, void* data)
     cycle->length += 1;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void removeAfterCurrent(linkedCycle* cycle)
 {
     if (cycle->length > 1)
@@ -72,36 +107,85 @@ void removeAfterCurrent(linkedCycle* cycle)
     cycle->length -= 1;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int getLength(linkedCycle* cycle)
 {
     return cycle->length;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void* getCurrentData(linkedCycle* cycle)
 {
     return cycle->current->data;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void next(linkedCycle* cycle)
 {
     cycle->current = cycle->current->next;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void previous(linkedCycle* cycle)
 {
     cycle->current = cycle->current->previous;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 linkedNode* getCurrentNode(linkedCycle* cycle)
 {
     return cycle->current;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void setCurrentNode(linkedCycle* cycle, linkedNode* node)
 {
     cycle->current = node;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void setLength(linkedCycle* cycle, double length)
 {
     cycle->length = length;

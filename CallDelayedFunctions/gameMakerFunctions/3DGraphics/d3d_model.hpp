@@ -1,68 +1,272 @@
 #ifdef DEFINE_WRAPPERS
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_create)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_destroy)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_clear)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_save)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_load)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_draw)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_primitive_begin)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_color)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_texture)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_texture_color)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_normal)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_normal_color)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_normal_texture)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_vertex_normal_texture_color)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(d3d_model_primitive_end)
 #endif
 
-void d3d_model_create(int* ind);
+/** \brief
+ *
+ * \param ind
+ *
+ * \return
+ *
+ */
+double d3d_model_create();
 #ifdef DEFINE_WRAPPERS
-void d3d_model_create(int* ind)
+double d3d_model_create()
 {
-    addDelayedFunctionCall(FP_d3d_model_create, ind, 1);
+    return addDelayedFunctionCall(FP_d3d_model_create, 1);
 }
 #endif
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \return
+ *
+ */
 void d3d_model_destroy(double ind);
 #ifdef DEFINE_WRAPPERS
 void d3d_model_destroy(double ind)
 {
-    addDelayedFunctionCall(FP_d3d_model_destroy, NULL, 0, ind);
+    addDelayedFunctionCall(FP_d3d_model_destroy, 0, ind);
 }
 #endif
-void d3d_model_load(int* ind, const char* fname);
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \param fname
+ *
+ * \return
+ *
+ */
+void d3d_model_load(double ind, const char* fname);
 #ifdef DEFINE_WRAPPERS
-void d3d_model_load(int* ind, const char* fname)
+void d3d_model_load(double ind, const char* fname)
 {
-    addDelayedFunctionCall(FP_d3d_model_load, NULL, 0, ind, fname);
+    addDelayedFunctionCall(FP_d3d_model_load, 0, ind, fname);
 }
 #endif
-void d3d_model_draw(int* ind, double x, double y, double z, int* texid);
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \param x
+ *
+ * \param y
+ *
+ * \param z
+ *
+ * \param texid
+ *
+ * \return
+ *
+ */
+void d3d_model_draw(double ind, double x, double y, double z, double texid);
 #ifdef DEFINE_WRAPPERS
-void d3d_model_draw(int* ind, double x, double y, double z, int* texid)
+void d3d_model_draw(double ind, double x, double y, double z, double texid)
 {
-    addDelayedFunctionCall(FP_d3d_model_draw, NULL, 0, ind, x, y, z, texid);
+    addDelayedFunctionCall(FP_d3d_model_draw, 0, ind, x, y, z, texid);
 }
 #endif
-void d3d_model_primitive_begin(int* ind, double kind);
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \param kind
+ *
+ * \return
+ *
+ */
+void d3d_model_primitive_begin(double ind, double kind);
 #ifdef DEFINE_WRAPPERS
-void d3d_model_primitive_begin(int* ind, double kind)
+void d3d_model_primitive_begin(double ind, double kind)
 {
-    addDelayedFunctionCall(FP_d3d_model_primitive_begin, NULL, 0, ind, kind);
+    addDelayedFunctionCall(FP_d3d_model_primitive_begin, 0, ind, kind);
 }
 #endif
-void d3d_model_vertex_texture(int* ind, double x, double y, double z, double xtex, double ytex);
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \param x
+ *
+ * \param y
+ *
+ * \param z
+ *
+ * \param xtex
+ *
+ * \param ytex
+ *
+ * \return
+ *
+ */
+void d3d_model_vertex_texture(double ind, double x, double y, double z, double xtex, double ytex);
 #ifdef DEFINE_WRAPPERS
-void d3d_model_vertex_texture(int* ind, double x, double y, double z, double xtex, double ytex)
+void d3d_model_vertex_texture(double ind, double x, double y, double z, double xtex, double ytex)
 {
-    addDelayedFunctionCall(FP_d3d_model_vertex_texture, NULL, 0, ind, x, y, z, xtex, ytex);
+    addDelayedFunctionCall(FP_d3d_model_vertex_texture, 0, ind, x, y, z, xtex, ytex);
 }
 #endif
-void d3d_model_primitive_end(int* ind);
+
+/** \brief
+ *
+ * \param ind
+ *
+ * \return
+ *
+ */
+void d3d_model_primitive_end(double ind);
 #ifdef DEFINE_WRAPPERS
-void d3d_model_primitive_end(int* ind)
+void d3d_model_primitive_end(double ind)
 {
-    addDelayedFunctionCall(FP_d3d_model_primitive_end, NULL, 0, ind);
+    addDelayedFunctionCall(FP_d3d_model_primitive_end, 0, ind);
 }
 #endif

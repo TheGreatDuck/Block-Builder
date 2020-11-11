@@ -1,5 +1,4 @@
 global.delayCallDLL_removeDelayedFunctionCall  = external_define("CallDelayedFunctions.dll", "removeDelayedFunctionCall",  dll_cdecl, ty_real,   0);
-global.delayCallDLL_getInputDelayedVariable    = external_define("CallDelayedFunctions.dll", "getInputDelayedVariable",    dll_cdecl, ty_real,   1, ty_real);
 global.delayCallDLL_getInputText               = external_define("CallDelayedFunctions.dll", "getInputText",               dll_cdecl, ty_string, 1, ty_real);
 global.delayCallDLL_getInputNumber             = external_define("CallDelayedFunctions.dll", "getInputNumber",             dll_cdecl, ty_real,   1, ty_real);
 global.delayCallDLL_getInputType               = external_define("CallDelayedFunctions.dll", "getInputType",               dll_cdecl, ty_real,   1, ty_real);
@@ -113,6 +112,23 @@ external_call(global.delayCallDLL_export_draw_text, scr_wrapper_draw_text);
 global.delayCallDLL_export_game_end = external_define("CallDelayedFunctions.dll", "export_game_end", dll_cdecl, ty_real, 1, ty_real);
 external_call(global.delayCallDLL_export_game_end, scr_wrapper_game_end);
 
-global.gameLoopInit = external_define("CallDelayedFunctions.dll", "gameLoopInit", dll_cdecl, ty_real, 1, ty_string);
-global.gameLoopStep = external_define("CallDelayedFunctions.dll", "gameLoopStep", dll_cdecl, ty_real, 0);
-global.gameLoopDraw = external_define("CallDelayedFunctions.dll", "gameLoopDraw", dll_cdecl, ty_real, 0);
+global.delayCallDLL_export_keyboard_check = external_define("CallDelayedFunctions.dll", "export_keyboard_check", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_keyboard_check, scr_wrapper_keyboard_check);
+
+global.delayCallDLL_export_set_keyboard_lastkey = external_define("CallDelayedFunctions.dll", "export_set_keyboard_lastkey", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_set_keyboard_lastkey, scr_wrapper_set_keyboard_lastkey);
+
+global.delayCallDLL_export_get_keyboard_lastkey = external_define("CallDelayedFunctions.dll", "export_get_keyboard_lastkey", dll_cdecl, ty_real, 1, ty_real);
+external_call(global.delayCallDLL_export_get_keyboard_lastkey, scr_wrapper_get_keyboard_lastkey);
+
+global.init_dll_function_call_loop = external_define("CallDelayedFunctions.dll", "init_dll_function_call_loop", dll_cdecl, ty_real, 0);
+global.call_dll_function = external_define("CallDelayedFunctions.dll", "call_dll_function", dll_cdecl, ty_real, 1, ty_real);
+global.is_dll_function_call_complete = external_define("CallDelayedFunctions.dll", "is_dll_function_call_complete", dll_cdecl, ty_real, 0);
+global.prime_argument_real = external_define("CallDelayedFunctions.dll", "prime_argument_real", dll_cdecl, ty_real, 2, ty_real, ty_real);
+global.prime_argument_string = external_define("CallDelayedFunctions.dll", "prime_argument_string", dll_cdecl, ty_real, 2, ty_real, ty_string);
+
+global.gameLoopInit = scr_get_DLL_function("CallDelayedFunctions.dll", "gameLoopInit");
+global.gameLoopBeginStep = scr_get_DLL_function("CallDelayedFunctions.dll", "gameLoopBeginStep");
+global.gameLoopStep = scr_get_DLL_function("CallDelayedFunctions.dll", "gameLoopStep");
+global.gameLoopDraw = scr_get_DLL_function("CallDelayedFunctions.dll", "gameLoopDraw");
+

@@ -5,7 +5,7 @@
  * \return
  *
  */
-void render();
+void worldSelectStep();
 
 /** \brief
  *
@@ -14,4 +14,4 @@ void render();
  * \return
  *
  */
-extern int renderedBlockGraph_ID[640*512];
+void worldSelectDraw();

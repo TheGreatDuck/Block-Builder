@@ -1,5 +1,12 @@
 #include "blockAlchemy.hpp"
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 int scr_changeBlock(int blockType, int north, int west, int east, int south)
 {
     /* An ideal version of this would be a mathematical function.
@@ -25,37 +32,37 @@ int scr_changeBlock(int blockType, int north, int west, int east, int south)
     east = east % 1000000;
     south = south % 1000000;
 
-    int channel = (north == 1) || (west == 1) || (east == 1) || (south == 1);
+    //int channel = (north == 1) || (west == 1) || (east == 1) || (south == 1);
     int water = (north == 2) || (west == 2) || (east == 2) || (south == 2);
     int lava = (north == 3) || (west == 3) || (east == 3) || (south == 3);
-    int dirt = (north == 4) || (west == 4) || (east == 4) || (south == 4);
+    //int dirt = (north == 4) || (west == 4) || (east == 4) || (south == 4);
     int ice = (north == 5) || (west == 5) || (east == 5) || (south == 5);
     int grass = (north == 6) || (west == 6) || (east == 6) || (south == 6);
     int poison = (north == 7) || (west == 7) || (east == 7) || (south == 7);
-    int sand = (north == 8) || (west == 8) || (east == 8) || (south == 8);
+    //int sand = (north == 8) || (west == 8) || (east == 8) || (south == 8);
     int wetSand = (north == 9) || (west == 9) || (east == 9) || (south == 9);
-    int glass = (north == 10) || (west == 10) || (east == 10) || (south == 10);
+    //int glass = (north == 10) || (west == 10) || (east == 10) || (south == 10);
     int tree = (north == 11) || (west == 11) || (east == 11) || (south == 11);
-    int petrifiedTree = (north == 12) || (west == 12) || (east == 12) || (south == 12);
-    int waterEyeSwitch = (north == 13) || (west == 13) || (east == 13) || (south == 13);
-    int lavaEyeSwitch = (north == 14) || (west == 14) || (east == 14) || (south == 14);
-    int poisonEyeSwitch = (north == 15) || (west == 15) || (east == 15) || (south == 15);
+    //int petrifiedTree = (north == 12) || (west == 12) || (east == 12) || (south == 12);
+    //int waterEyeSwitch = (north == 13) || (west == 13) || (east == 13) || (south == 13);
+    //int lavaEyeSwitch = (north == 14) || (west == 14) || (east == 14) || (south == 14);
+    //int poisonEyeSwitch = (north == 15) || (west == 15) || (east == 15) || (south == 15);
 
-    int pushable = (north == 19) || (west == 19) || (east == 19) || (south == 19);
-    int metal = (north == 20) || (west == 20) || (east == 20) || (south == 20);
-    int hotMetal = (north == 21) || (west == 21) || (east == 21) || (south == 21);
-    int hole = (north == 22) || (west == 22) || (east == 22) || (south == 22);
-    int underworldFlame = (north == 23) || (west == 23) || (east == 23) || (south == 23);
-    int bomb = (north == 24) || (west == 24) || (east == 24) || (south == 24);
-    int explosion = (north == 25) || (west == 25) || (east == 25) || (south == 25);
-    int electricalSource = (north == 26) || (west == 26) || (east == 26) || (south == 26);
-    int pitdoorOpen = (north == 27) || (west == 27) || (east == 27) || (south == 27);
-    int pitdoorShut = (north == 28) || (west == 28) || (east == 28) || (south == 28);
-    int wood = (north == 29) || (west == 29) || (east == 29) || (south == 29);
-    int burningWood = (north == 30) || (west == 30) || (east == 30) || (south == 30);
-    int sandstone = (north == 31) || (west == 31) || (east == 31) || (south == 31);
-    int stoneBrick = (north == 32) || (west == 32) || (east == 32) || (south == 32);
-    int prism = (north == 33) || (west == 33) || (east == 33) || (south == 33);
+    //int pushable = (north == 19) || (west == 19) || (east == 19) || (south == 19);
+    //int metal = (north == 20) || (west == 20) || (east == 20) || (south == 20);
+    //int hotMetal = (north == 21) || (west == 21) || (east == 21) || (south == 21);
+    //int hole = (north == 22) || (west == 22) || (east == 22) || (south == 22);
+    //int underworldFlame = (north == 23) || (west == 23) || (east == 23) || (south == 23);
+    //int bomb = (north == 24) || (west == 24) || (east == 24) || (south == 24);
+    //int explosion = (north == 25) || (west == 25) || (east == 25) || (south == 25);
+    //int electricalSource = (north == 26) || (west == 26) || (east == 26) || (south == 26);
+    //int pitdoorOpen = (north == 27) || (west == 27) || (east == 27) || (south == 27);
+    //int pitdoorShut = (north == 28) || (west == 28) || (east == 28) || (south == 28);
+    //int wood = (north == 29) || (west == 29) || (east == 29) || (south == 29);
+    //int burningWood = (north == 30) || (west == 30) || (east == 30) || (south == 30);
+    //int sandstone = (north == 31) || (west == 31) || (east == 31) || (south == 31);
+    //int stoneBrick = (north == 32) || (west == 32) || (east == 32) || (south == 32);
+    //int prism = (north == 33) || (west == 33) || (east == 33) || (south == 33);
 
     //if we try to have multiple directions power a
     //shadow at once then we can get infinite propogation

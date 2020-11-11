@@ -144,20 +144,7 @@
       <objectFollowing hBorder="32" hSpeed="-1" vBorder="32" vSpeed="-1"/>
     </view>
   </views>
-  <instances>
-    <instance>
-      <object>obj_blockItem</object>
-      <position x="320" y="128"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-    <instance>
-      <object>obj_menuIcon</object>
-      <position x="128" y="128"/>
-      <creationCode/>
-      <locked>false</locked>
-    </instance>
-  </instances>
+  <instances/>
   <tiles/>
   <editorSettings remember="false"/>
 </room>

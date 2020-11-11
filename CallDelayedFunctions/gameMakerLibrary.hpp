@@ -21,6 +21,29 @@
 
 #include "gameMakerFunctions\gamePlay\rooms.hpp"
 
-void sprite_get_texture(int* spr, double subimg, int* returnValue);
-void sprite_add(const char* fname, double imgnumb, double removeback, double smooth, double xorig, double yorig, int* ind);
-void draw_sprite(int* spr, double subimg, double x, double y);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double sprite_get_texture(double spr, double subimg);
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double sprite_add(const char* fname, double imgnumb, double removeback, double smooth, double xorig, double yorig);
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+void draw_sprite(double spr, double subimg, double x, double y);

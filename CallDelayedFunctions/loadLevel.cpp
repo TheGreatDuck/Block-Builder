@@ -8,6 +8,13 @@
 #include "blockGraph.hpp"
 #include "loadLevel.hpp"
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_blockGraph(const char* program_directory, const char* worldName, const char* levelLoading)
 {
     char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter")];
@@ -24,6 +31,13 @@ static void load_blockGraph(const char* program_directory, const char* worldName
     blockGraph_create3DModel();
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void load_level(const char* program_directory, const char* worldName, const char* levelLoading)
 {
     load_blockGraph(program_directory, worldName, levelLoading);

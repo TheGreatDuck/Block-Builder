@@ -35,4 +35,7 @@
   <resource name="scr_wrapper_d3d_set_lighting" type="RESOURCE"/>
   <resource name="scr_wrapper_draw_text" type="RESOURCE"/>
   <resource name="scr_wrapper_game_end" type="RESOURCE"/>
+  <resource name="scr_wrapper_keyboard_check" type="RESOURCE"/>
+  <resource name="scr_wrapper_set_keyboard_lastkey" type="RESOURCE"/>
+  <resource name="scr_wrapper_get_keyboard_lastkey" type="RESOURCE"/>
 </resources>

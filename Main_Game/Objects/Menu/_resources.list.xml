@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resources>
-  <resource name="obj_menuIcon" type="RESOURCE"/>
-  <resource name="obj_item_basic" type="RESOURCE"/>
-  <resource name="obj_blockItem" type="RESOURCE"/>
-</resources>
+<resources/>

@@ -24,6 +24,13 @@ map_level* map_levels;
 
 int* map_levelCompletion;
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_map(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
@@ -48,6 +55,13 @@ static void load_map(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void save_map(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
@@ -71,6 +85,13 @@ static void save_map(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_collision(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
@@ -92,6 +113,13 @@ static void load_collision(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void save_collision(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
@@ -112,6 +140,13 @@ static void save_collision(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_player(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.play"))*sizeof(char));
@@ -128,6 +163,13 @@ static void load_player(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_path(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"))*sizeof(char));
@@ -149,6 +191,13 @@ static void load_path(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_level(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"))*sizeof(char));
@@ -172,6 +221,13 @@ static void load_level(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void load_lock(const char* program_directory, const char* worldName)
 {
     char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"))*sizeof(char));
@@ -199,6 +255,13 @@ static void load_lock(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void load_world(const char* program_directory, const char* worldName)
 {
     load_map(program_directory, worldName);
@@ -209,6 +272,13 @@ void load_world(const char* program_directory, const char* worldName)
     load_lock(program_directory, worldName);
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void save_world(const char* program_directory, const char* worldName)
 {
     save_map(program_directory, worldName);

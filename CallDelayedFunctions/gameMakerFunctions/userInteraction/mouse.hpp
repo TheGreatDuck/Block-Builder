@@ -1,83 +1,217 @@
 #ifdef DEFINE_WRAPPERS
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(get_mouse_x)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(get_mouse_y)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(get_mouse_button)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(get_mouse_lastbutton)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(mouse_check_button)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(mouse_check_button_pressed)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(mouse_check_button_released)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(mouse_wheel_up)
+
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 ADD_FUNCTION(mouse_wheel_down)
 #endif
 
-void get_mouse_x(int* coord);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double get_mouse_x();
 #ifdef DEFINE_WRAPPERS
-void get_mouse_x(int* coord)
+double get_mouse_x()
 {
-    addDelayedFunctionCall(FP_get_mouse_x, coord, 1);
+    return addDelayedFunctionCall(FP_get_mouse_x, 1);
 }
 #endif
 
-void get_mouse_y(int* coord);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double get_mouse_y();
 #ifdef DEFINE_WRAPPERS
-void get_mouse_y(int* coord)
+double get_mouse_y()
 {
-    addDelayedFunctionCall(FP_get_mouse_y, coord, 1);
+    return addDelayedFunctionCall(FP_get_mouse_y, 1);
 }
 #endif
 
-void get_mouse_button(int* button);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double get_mouse_button();
 #ifdef DEFINE_WRAPPERS
-void get_mouse_button(int* button)
+double get_mouse_button()
 {
-    addDelayedFunctionCall(FP_get_mouse_button, button, 1);
+    return addDelayedFunctionCall(FP_get_mouse_button, 1);
 }
 #endif
 
-void get_mouse_lastbutton(int* button);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double get_mouse_lastbutton();
 #ifdef DEFINE_WRAPPERS
-void get_mouse_lastbutton(int* button)
+double get_mouse_lastbutton()
 {
-    addDelayedFunctionCall(FP_get_mouse_lastbutton, button, 1);
+    return addDelayedFunctionCall(FP_get_mouse_lastbutton, 1);
 }
 #endif
 
-void mouse_check_button(double numb, int* returnValue);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double mouse_check_button(double numb);
 #ifdef DEFINE_WRAPPERS
-void mouse_check_button(double numb, int* returnValue)
+double mouse_check_button(double numb)
 {
-    addDelayedFunctionCall(FP_mouse_check_button, returnValue, 1, numb);
+    return addDelayedFunctionCall(FP_mouse_check_button, 1, numb);
 }
 #endif
 
-void mouse_check_button_pressed(double numb, int* returnValue);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double mouse_check_button_pressed(double numb);
 #ifdef DEFINE_WRAPPERS
-void mouse_check_button_pressed(double numb, int* returnValue)
+double mouse_check_button_pressed(double numb)
 {
-    addDelayedFunctionCall(FP_mouse_check_button_pressed, returnValue, 1, numb);
+    return addDelayedFunctionCall(FP_mouse_check_button_pressed, 1, numb);
 }
 #endif
 
-void mouse_check_button_released(double numb, int* returnValue);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double mouse_check_button_released(double numb);
 #ifdef DEFINE_WRAPPERS
-void mouse_check_button_released(double numb, int* returnValue)
+double mouse_check_button_released(double numb)
 {
-    addDelayedFunctionCall(FP_mouse_check_button_released, returnValue, 1, numb);
+    addDelayedFunctionCall(FP_mouse_check_button_released, 1, numb);
 }
 #endif
 
-void mouse_wheel_up(int* returnValue);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double mouse_wheel_up();
 #ifdef DEFINE_WRAPPERS
-void mouse_wheel_up(int* returnValue)
+double mouse_wheel_up()
 {
-    addDelayedFunctionCall(FP_mouse_wheel_up, returnValue, 1);
+    return addDelayedFunctionCall(FP_mouse_wheel_up, 1);
 }
 #endif
 
-void mouse_wheel_down(int* returnValue);
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
+double mouse_wheel_down();
 #ifdef DEFINE_WRAPPERS
-void mouse_wheel_down(int* returnValue)
+double mouse_wheel_down()
 {
-    addDelayedFunctionCall(FP_mouse_wheel_down, returnValue, 1);
+    return addDelayedFunctionCall(FP_mouse_wheel_down, 1);
 }
 #endif

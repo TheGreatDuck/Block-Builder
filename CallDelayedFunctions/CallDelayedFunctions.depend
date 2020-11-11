@@ -262,14 +262,16 @@
 
 1599848490 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.h
 
-1602022387 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.cpp
+1604967032 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.cpp
 	<stdlib.h>
 	<string.h>
 	<queue>
+	<pthread.h>
 	"delayed_function_calls.hpp"
+	"gameLoop.hpp"
 	"gameMakerLibrary.hpp"
 
-1602034172 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\linkedcycle.cpp
+1602263591 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\linkedcycle.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -298,12 +300,13 @@
 	"delayed_function_calls.hpp"
 	"combatant.hpp"
 
-1601349571 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.cpp
+1602287122 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.cpp
+	<math.h>
 	"vector.hpp"
 
 1582402445 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.h
 
-1602016579 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.cpp
+1604824338 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -318,7 +321,7 @@
 1600887452 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.h
 	"vector.h"
 
-1602022274 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.cpp
+1602275303 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.cpp
 	"blockAlchemy.hpp"
 
 1600205656 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.h
@@ -327,7 +330,7 @@
 
 1601057010 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\linkedcycle.h
 
-1602034939 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\battle.cpp
+1602262592 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\battle.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -349,19 +352,21 @@
 	"player.h"
 	"entity.h"
 
-1601432836 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.cpp
+1604784320 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	<string>
 	<sstream>
 	<math.h>
-	"delayed_function_calls.hpp"
+	<windows.h>
+	<winuser.h>
+	"gameMakerLibrary.hpp"
 	"controls.hpp"
 
 1599757985 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.h
 
-1602031916 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.cpp
+1604969222 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -380,8 +385,12 @@
 	"loadLevel.hpp"
 	"entity.hpp"
 	"hand_render.hpp"
+	"rm_main_menu.hpp"
+	"rm_world_select.hpp"
+	"rm_world_editor_select.hpp"
+	"rm_configure_control.hpp"
 
-1601349563 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\loadlevel.cpp
+1602263610 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\loadlevel.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -398,7 +407,7 @@
 	"vector.h"
 	"entity.h"
 
-1602021899 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.cpp
+1602263279 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -438,7 +447,7 @@
 
 1599621084 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_primitive.h
 
-1602021688 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\hand_render.cpp
+1602263523 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\hand_render.cpp
 	"blockGraph.hpp"
 	"hand_render.hpp"
 	<stdio.h>
@@ -462,7 +471,7 @@
 1600745795 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\entity.h
 	"vector.h"
 
-1602010851 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\worldmap.cpp
+1602263729 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\worldmap.cpp
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -481,50 +490,50 @@
 
 1601347130 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\joystick.h
 
-1601430404 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.hpp
+1604780367 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\delayed_function_calls.hpp
 
 1601350045 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\combatant.hpp
 
-1602034202 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\linkedcycle.hpp
+1602282001 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\linkedcycle.hpp
 
-1600205656 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.hpp
+1602267905 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockalchemy.hpp
 
-1602035020 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.hpp
+1602514874 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\blockgraph.hpp
 	"vector.hpp"
 
-1582402445 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.hpp
+1602287087 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\vector.hpp
 
-1602035064 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.hpp
+1602516896 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\controls.hpp
 
-1601447288 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.hpp
+1602268545 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\camera.hpp
 	"vector.hpp"
 
-1602033544 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\entity.hpp
+1604825001 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\entity.hpp
 	"vector.hpp"
 	"blockGraph.hpp"
 	"controls.hpp"
 
-1602016617 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_model.hpp
+1604958264 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_model.hpp
 
-1601429667 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_shape.hpp
+1604968343 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_shape.hpp
 
-1601429924 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_transform.hpp
+1604969446 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_transform.hpp
 
-1602016651 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_primitive.hpp
+1604968252 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\3dgraphics\d3d_primitive.hpp
 
-1601430988 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\mouse.hpp
+1604949323 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\mouse.hpp
 
-1601348885 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\keyboard.hpp
+1604969855 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\keyboard.hpp
 
-1601430716 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\joystick.hpp
+1604824870 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\userinteraction\joystick.hpp
 
-1601431025 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.hpp
+1604967008 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gameloop.hpp
 
-1602016697 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\worldmap.hpp
+1602276021 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\worldmap.hpp
 
-1599841612 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\loadlevel.hpp
+1602272096 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\loadlevel.hpp
 
-1601522477 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerlibrary.hpp
+1604825041 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerlibrary.hpp
 	"gameMakerFunctions\3DGraphics\d3d_model.hpp"
 	"gameMakerFunctions\3DGraphics\d3d_shape.hpp"
 	"gameMakerFunctions\3DGraphics\d3d_transform.hpp"
@@ -535,9 +544,49 @@
 	"gameMakerFunctions\gameGraphics\fontsAndText.hpp"
 	"gameMakerFunctions\gamePlay\rooms.hpp"
 
-1601495593 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\hand_render.hpp
+1602268558 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\hand_render.hpp
 
-1601514209 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\gamegraphics\fontsandtext.hpp
+1604956323 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\gamegraphics\fontsandtext.hpp
 
-1601522350 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\gameplay\rooms.hpp
+1604969813 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\gamemakerfunctions\gameplay\rooms.hpp
+
+1604958215 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_main_menu.cpp
+	"rm_main_menu.hpp"
+	"gameMakerLibrary.hpp"
+	"controls.hpp"
+
+1602272113 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_main_menu.hpp
+
+1602268696 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_world_select.hpp
+
+1604822329 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_world_select.cpp
+	"rm_world_select.hpp"
+	"gameMakerLibrary.hpp"
+	"controls.hpp"
+	"worldMap.hpp"
+
+1602272153 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_world_editor_select.hpp
+
+1604822320 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_world_editor_select.cpp
+	"rm_world_editor_select.hpp"
+	"gameMakerLibrary.hpp"
+	"controls.hpp"
+	"worldMap.hpp"
+
+1602268095 c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_configure_control.hpp
+
+1604825181 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\rm_configure_control.cpp
+	<string.h>
+	<malloc.h>
+	"rm_configure_control.hpp"
+	"gameMakerLibrary.hpp"
+	"controls.hpp"
+
+1602538408 source:c:\program files (x86)\microsoft games\age of mythology\1025\data\savegame\7-24-2020 hideout\block builder checkouting\block_builder_3d\block-builder\calldelayedfunctions\main.cpp
+	<windows.h>
+	<winuser.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	"blockGraph.hpp"
+	"blockAlchemy.hpp"
 

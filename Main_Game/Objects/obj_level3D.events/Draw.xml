@@ -13,8 +13,7 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">external_call(global.gameLoopDraw);
-scr_delayCallDLL_callQueuedFunctions();
+        <argument kind="STRING">scr_call_DLL_function(global.gameLoopDraw, 0);
 </argument>
       </arguments>
     </action>

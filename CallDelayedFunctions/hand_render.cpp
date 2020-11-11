@@ -10,6 +10,13 @@ extern vector cam_m[4];
 int    renderedBlockGraph_ID[640*512];
 double renderedBlockGraph_z[640*512];
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static int ceil(double x)
 {
     if (x > (int)x)
@@ -18,6 +25,13 @@ static int ceil(double x)
         return (int)x;
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void render_block_left(int blockID)
 {
     vector v0 = blkGph->blockGraph[blockID].v[0] - cam_m[3];
@@ -125,6 +139,13 @@ static void render_block_left(int blockID)
     }
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 static void render_block_right(int blockID)
 {
     vector v0 = blkGph->blockGraph[blockID].v[0] - cam_m[3];
@@ -232,6 +253,13 @@ static void render_block_right(int blockID)
     }
 }
 
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void render()
 {
     for (unsigned int i = 0; i < width*height; i++)
@@ -248,6 +276,13 @@ void render()
 }
 
 #if 0
+/** \brief
+ *
+ * \param
+ * \param
+ * \return
+ *
+ */
 void render_text()
 {
     for (int i = 0; i < height; i++)

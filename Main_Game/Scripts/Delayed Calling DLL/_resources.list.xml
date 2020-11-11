@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
   <resource name="scr_initDelayedCallingDLL" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getInput" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_callQueuedFunctions" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_removeDelayedFunctionCall" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getInputDelayedVariable" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getInputText" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getInputNumber" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getInputType" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getFunction" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_setDelayedOutput" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_getHasOutput" type="RESOURCE"/>
-  <resource name="scr_delayCallDLL_isThereDelayedFunctionCall" type="RESOURCE"/>
+  <resource name="scr_get_DLL_function" type="RESOURCE"/>
+  <resource name="scr_call_DLL_function" type="RESOURCE"/>
+  <resource name="Internal" type="GROUP"/>
   <resource name="Wrapper Functions" type="GROUP"/>
 </resources>
