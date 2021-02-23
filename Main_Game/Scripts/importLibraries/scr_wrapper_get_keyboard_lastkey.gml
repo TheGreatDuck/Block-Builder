@@ -1,0 +1,1 @@
+return keyboard_lastkey;

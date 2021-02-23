@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="entity.h" open="0" top="0" tabpos="4">
-		<Cursor position="45" topLine="0" />
+	<File name="player.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="44" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="player.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="11272" topLine="292" />
+	<File name="vector.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="player.h" open="0" top="0" tabpos="6">
-		<Cursor position="238" topLine="0" />
+	<File name="entity.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="44" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="vector.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="44" topLine="0" />
+	<File name="player.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5015" topLine="102" />
+		</Cursor>
 	</File>
-	<File name="vector.h" open="0" top="0" tabpos="15">
-		<Cursor position="45" topLine="0" />
+	<File name="vector.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="44" topLine="0" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

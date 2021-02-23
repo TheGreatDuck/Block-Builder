@@ -4,5 +4,4 @@
   <resource name="scr_get_DLL_function" type="RESOURCE"/>
   <resource name="scr_call_DLL_function" type="RESOURCE"/>
   <resource name="Internal" type="GROUP"/>
-  <resource name="Wrapper Functions" type="GROUP"/>
 </resources>

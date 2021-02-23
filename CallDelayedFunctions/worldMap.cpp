@@ -24,19 +24,11 @@ map_level* map_levels;
 
 int* map_levelCompletion;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_map(const char* program_directory, const char* worldName)
+static void load_map(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.map");
     FILE* file = fopen(fileName, "r");
@@ -55,19 +47,11 @@ static void load_map(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void save_map(const char* program_directory, const char* worldName)
+static void save_map(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.map");
     FILE* file = fopen(fileName, "w");
@@ -85,19 +69,11 @@ static void save_map(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_collision(const char* program_directory, const char* worldName)
+static void load_collision(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.col");
     FILE* file = fopen(fileName, "r");
@@ -113,19 +89,11 @@ static void load_collision(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void save_collision(const char* program_directory, const char* worldName)
+static void save_collision(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.map"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.col");
     FILE* file = fopen(fileName, "r");
@@ -140,19 +108,11 @@ static void save_collision(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_player(const char* program_directory, const char* worldName)
+static void load_player(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.play"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.play"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.play"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.play"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.play");
     FILE* file = fopen(fileName, "r");
@@ -163,19 +123,11 @@ static void load_player(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_path(const char* program_directory, const char* worldName)
+static void load_path(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.pat"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.pat");
     FILE* file = fopen(fileName, "r");
@@ -191,19 +143,11 @@ static void load_path(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_level(const char* program_directory, const char* worldName)
+static void load_level(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.lev"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.lev");
     FILE* file = fopen(fileName, "r");
@@ -221,19 +165,11 @@ static void load_level(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_lock(const char* program_directory, const char* worldName)
+static void load_lock(const char* worldName)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\overworld.loc"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\overworld.loc");
     FILE* file = fopen(fileName, "r");
@@ -255,36 +191,22 @@ static void load_lock(const char* program_directory, const char* worldName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void load_world(const char* program_directory, const char* worldName)
+void load_world(const char* worldName)
 {
-    load_map(program_directory, worldName);
-    load_collision(program_directory, worldName);
-    load_player(program_directory, worldName);
-    load_path(program_directory, worldName);
-    load_level(program_directory, worldName);
-    load_lock(program_directory, worldName);
+    load_map(worldName);
+    load_collision(worldName);
+    load_player(worldName);
+    load_path(worldName);
+    load_level(worldName);
+    load_lock(worldName);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void save_world(const char* program_directory, const char* worldName)
+void save_world(const char* worldName)
 {
-    save_map(program_directory, worldName);
-    save_collision(program_directory, worldName);
-    //load_player(program_directory, worldName);
-    //load_path(program_directory, worldName);
-    //load_level(program_directory, worldName);
-    //load_lock(program_directory, worldName);
+    save_map(worldName);
+    save_collision(worldName);
+    //load_player(worldName);
+    //load_path(worldName);
+    //load_level(worldName);
+    //load_lock(worldName);
 }

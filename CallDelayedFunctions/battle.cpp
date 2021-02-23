@@ -14,13 +14,6 @@ typedef struct battleManager
     linkedCycle* battleCycle;
 } battleManager;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void battle_manageTurn(battleManager* battle)
 {
     entity* entityData = (entity*)getCurrentData(battle->battleCycle);
@@ -60,13 +53,6 @@ void battle_manageTurn(battleManager* battle)
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void battle_initialize(battleManager* battle)
 {
     battle->battleCycle = createCycle();

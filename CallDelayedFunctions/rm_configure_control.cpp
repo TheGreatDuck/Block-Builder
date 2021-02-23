@@ -13,127 +13,36 @@
 #define LEVEL_EDITOR_ROOM 6
 #define CONFIGURE_CONTROL 7
 
-
-/** \brief
- *
- */
 extern int room;
 
-
-/** \brief
- *
- */
-int keyboard_lastkey;
-
-/** \brief
- *
- */
 int enter_key_check;
-
-/** \brief
- *
- */
 int enter_key_check_now;
-
-/** \brief
- *
- */
 int enter_key_check_held;
-
-/** \brief
- *
- */
 int left_key_check;
-
-/** \brief
- *
- */
 int left_key_check_now;
-
-/** \brief
- *
- */
 int left_key_check_held;
-
-/** \brief
- *
- */
 int right_key_check;
-
-/** \brief
- *
- */
 int right_key_check_now;
-
-/** \brief
- *
- */
 int right_key_check_held;
-
-/** \brief
- *
- */
 int space_key_check;
-
-/** \brief
- *
- */
 int space_key_check_now;
-
-/** \brief
- *
- */
 int space_key_check_held;
-
-
-/** \brief
- *
- */
 int waiting;
-
-/** \brief
- *
- */
 int timer;
-
-/** \brief
- *
- */
 int selection;
-
-/** \brief
- *
- */
 int numberOfControls = 11;
 
 control* controlArray[11] = {&gameControl.control_moveUp, &gameControl.control_moveRight, &gameControl.control_moveDown, &gameControl.control_moveLeft, &gameControl.control_blockLeft, &gameControl.control_blockRight, &gameControl.control_pause, &gameControl.control_itemOne, &gameControl.control_itemTwo, &gameControl.control_confirm, &gameControl.control_cancel};
 const char* controlText[11] = {"Set Move Up", "Set Move Right", "Set Move Down", "Set Move Left", "Set Block Left", "Set Block Right", "Set Pause", "Set Item One", "Set Item Two", "Set Confirm", "Set Cancel"};
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void configureControlBeginStep()
 {
-    keyboard_lastkey = get_keyboard_lastkey();
-    set_keyboard_lastkey(0);
-
     enter_key_check = keyboard_check(vk_enter);
     left_key_check  = keyboard_check(vk_left);
     right_key_check = keyboard_check(vk_right);
     space_key_check = keyboard_check(vk_space);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void configureControlStep()
 {
     if (waiting)
@@ -141,7 +50,7 @@ void configureControlStep()
         timer -= 1;
         if (keyboard_lastkey != 0)
         {
-            controlArray[selection]->gameControl = keyboard_lastkey;
+            controlArray[selection]->gameControl = *keyboard_lastkey;
             controlArray[selection]->gameControlType = controlType_keyboard;
             waiting = false;
         }
@@ -308,25 +217,14 @@ void configureControlStep()
         {
             selection += 1;
             if (selection >= numberOfControls)
-            {
                 selection = numberOfControls-1;
-            }
         }
 
         if (space_key_check_now)
-        {
             room = MAIN_MENU_ROOM;
-        }
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static const char* get_key_text(int key)
 {
     if (key == 13)
@@ -421,13 +319,6 @@ static const char* get_key_text(int key)
         return "Unknown Keyboard Key";
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void configureControlDraw()
 {
     char timer_text[4];
@@ -456,15 +347,13 @@ void configureControlDraw()
     if (controlArray[selection]->gameControlType == controlType_keyboard)
         draw_text(256,208+64, get_key_text(controlArray[selection]->gameControl));
 
-    /*if (global.gameControlType[selection] == controlType_controller)
-    {
+    #if 0
+    if (global.gameControlType[selection] == controlType_controller)
         draw_text(x,y+64,"Controller Button " + string(global.gameControl[selection]));
-    }
 
     if (global.gameControlType[selection] == controlType_controller)
-    {
         draw_text(x,y+64,"Controller Button " + string(global.gameControl[selection]));
-    }*/
+    #endif
 
     if (controlArray[selection]->gameControlType == controlType_dPadDown)
         draw_text(256,208+64,"D Pad Down");

@@ -4,23 +4,15 @@
 #include <string>
 #include <sstream>
 #include <math.h>
-#include "delayed_function_calls.hpp"
+#include "gameMakerLibrary.hpp"
 #include "blockGraph.hpp"
 #include "loadLevel.hpp"
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_blockGraph(const char* program_directory, const char* worldName, const char* levelLoading)
+static void load_blockGraph(const char* worldName, const char* levelLoading)
 {
-    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter")];
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char fileName[strlen("Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter")];
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\level.ter"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\Level ");
     strcat(fileName,levelLoading);
@@ -31,14 +23,7 @@ static void load_blockGraph(const char* program_directory, const char* worldName
     blockGraph_create3DModel();
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void load_level(const char* program_directory, const char* worldName, const char* levelLoading)
+void load_level(const char* worldName, const char* levelLoading)
 {
-    load_blockGraph(program_directory, worldName, levelLoading);
+    load_blockGraph(worldName, levelLoading);
 }

@@ -11,13 +11,6 @@
 
 controlSet gameControl;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void initGameControl()
 {
     gameControl.control_moveUp.gameControl = vk_up;
@@ -63,287 +56,100 @@ void initGameControl()
     gameControl.control_confirm.gameControl = 'X';
     gameControl.control_confirm.gameControlType = controlType_keyboard;
     gameControl.control_confirm.gameControlControllerID = 0;
+}
+
+static int isControlPressed(control* controlName)
+{
+    int keyboardCheck = keyboard_check(controlName->gameControl);
+    int controllerCheck = 0;
 
     #if 0
-    gameControl[control_moveUp] = ord('W');
-    gameControl[control_moveLeft] = ord('A');
-    gameControl[control_moveRight] = ord('D');
-    gameControl[control_moveDown] = ord('S');
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_controller)
+        controllerCheck = joystick_check_button(controlName.gameControlControllerID,controlName.gameControl);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadUp)
+        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 0);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadRight)
+        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 90);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadDown)
+        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 180);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadLeft)
+        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 270);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_xUp)
+        controllerCheck = (joystick_xpos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_xDown)
+        controllerCheck = (joystick_xpos(controlName.gameControlControllerID) <= -0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_yUp)
+        controllerCheck = (joystick_ypos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_yDown)
+        controllerCheck = (joystick_ypos(controlName.gameControlControllerID) <= -0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_zUp)
+        controllerCheck = (joystick_zpos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_zDown)
+        controllerCheck = (joystick_zpos(controlName.gameControlControllerID) <= -0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_rUp)
+        controllerCheck = (joystick_rpos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_rDown)
+        controllerCheck = (joystick_rpos(controlName.gameControlControllerID) <= -0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_uUp)
+        controllerCheck = (joystick_upos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_uDown)
+        controllerCheck = (joystick_upos(controlName.gameControlControllerID) <= -0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_vUp)
+        controllerCheck = (joystick_vpos(controlName.gameControlControllerID) >= 0.5);
+
+    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_vDown)
+        controllerCheck = (joystick_vpos(controlName.gameControlControllerID) <= -0.5);
     #endif
 
-    /*gameControl.control_cancel.gameControlPress = 0;
-    gameControl.control_confirm.gameControlPress = 0;
-    gameControl.control_itemTwo.gameControlPress = 0;
-    gameControl.control_itemOne.gameControlPress = 0;
-    gameControl.control_pause.gameControlPress = 0;
-    gameControl.control_blockRight.gameControlPress = 0;
-    gameControl.control_blockLeft.gameControlPress = 0;
-    gameControl.control_moveLeft.gameControlPress = 0;
-    gameControl.control_moveDown.gameControlPress = 0;
-    gameControl.control_moveRight.gameControlPress = 0;
-    gameControl.control_moveUp.gameControlPress = 0;
-
-    gameControl.control_cancel.gameControlPressed = 0;
-    gameControl.control_confirm.gameControlPressed = 0;
-    gameControl.control_itemTwo.gameControlPressed = 0;
-    gameControl.control_itemOne.gameControlPressed = 0;
-    gameControl.control_pause.gameControlPressed = 0;
-    gameControl.control_blockRight.gameControlPressed = 0;
-    gameControl.control_blockLeft.gameControlPressed = 0;
-    gameControl.control_moveLeft.gameControlPressed = 0;
-    gameControl.control_moveDown.gameControlPressed = 0;
-    gameControl.control_moveRight.gameControlPressed = 0;
-    gameControl.control_moveUp.gameControlPressed = 0;*/
+    return keyboardCheck || controllerCheck;
 }
 
 #define SET_CONTROL(controlName)\
-double setGameControl_##controlName(double double_pressed)\
+void setGameControl_##controlName()\
 {\
-    int pressed = double_pressed;\
+    int pressed = isControlPressed(&gameControl.control_##controlName);\
     gameControl.control_##controlName.gameControlPress = (pressed && !gameControl.control_##controlName.gameControlPressed);\
     gameControl.control_##controlName.gameControlPressed = pressed;\
-    return 1.0;\
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(cancel)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(confirm)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(itemTwo)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(itemOne)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(pause)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(blockRight)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(blockLeft)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(moveLeft)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(moveDown)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(moveRight)
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 SET_CONTROL(moveUp)
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void isControlPressed(control* controlName)
+void updateGameControl()
 {
-    controlName->keyboardCheck = keyboard_check(controlName->gameControl);
-    //int controllerCheck;
-
-    /*if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_controller)
-    {
-        controllerCheck = joystick_check_button(controlName.gameControlControllerID,controlName.gameControl);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadUp)
-    {
-        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 0);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadRight)
-    {
-        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 90);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadDown)
-    {
-        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 180);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_dPadLeft)
-    {
-        controllerCheck = (joystick_pov(controlName.gameControlControllerID) == 270);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_xUp)
-    {
-        controllerCheck = (joystick_xpos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_xDown)
-    {
-        controllerCheck = (joystick_xpos(controlName.gameControlControllerID) <= -0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_yUp)
-    {
-        controllerCheck = (joystick_ypos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_yDown)
-    {
-        controllerCheck = (joystick_ypos(controlName.gameControlControllerID) <= -0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_zUp)
-    {
-        controllerCheck = (joystick_zpos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_zDown)
-    {
-        controllerCheck = (joystick_zpos(controlName.gameControlControllerID) <= -0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_rUp)
-    {
-        controllerCheck = (joystick_rpos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_rDown)
-    {
-        controllerCheck = (joystick_rpos(controlName.gameControlControllerID) <= -0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_uUp)
-    {
-        controllerCheck = (joystick_upos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_uDown)
-    {
-        controllerCheck = (joystick_upos(controlName.gameControlControllerID) <= -0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_vUp)
-    {
-        controllerCheck = (joystick_vpos(controlName.gameControlControllerID) >= 0.5);
-    }
-
-    if (joystick_exists(controlName.gameControlControllerID) && controlName.gameControlType == controlType_vDown)
-    {
-        controllerCheck = (joystick_vpos(controlName.gameControlControllerID) <= -0.5);
-    }*/
-
-    //return keyboardCheck || controllerCheck;
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void updateGameControlBeginStep()
-{
-    isControlPressed(&gameControl.control_cancel);
-    isControlPressed(&gameControl.control_confirm);
-    isControlPressed(&gameControl.control_itemOne);
-    isControlPressed(&gameControl.control_itemTwo);
-    isControlPressed(&gameControl.control_pause);
-    isControlPressed(&gameControl.control_blockLeft);
-    isControlPressed(&gameControl.control_blockRight);
-    isControlPressed(&gameControl.control_moveUp);
-    isControlPressed(&gameControl.control_moveLeft);
-    isControlPressed(&gameControl.control_moveRight);
-    isControlPressed(&gameControl.control_moveDown);
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void updateGameControlStep()
-{
-    setGameControl_cancel(gameControl.control_cancel.keyboardCheck);
-    setGameControl_confirm(gameControl.control_confirm.keyboardCheck);
-    setGameControl_itemOne(gameControl.control_itemOne.keyboardCheck);
-    setGameControl_itemTwo(gameControl.control_itemTwo.keyboardCheck);
-    setGameControl_pause(gameControl.control_pause.keyboardCheck);
-    setGameControl_blockLeft(gameControl.control_blockLeft.keyboardCheck);
-    setGameControl_blockRight(gameControl.control_blockRight.keyboardCheck);
-    setGameControl_moveUp(gameControl.control_moveUp.keyboardCheck);
-    setGameControl_moveLeft(gameControl.control_moveLeft.keyboardCheck);
-    setGameControl_moveRight(gameControl.control_moveRight.keyboardCheck);
-    setGameControl_moveDown(gameControl.control_moveDown.keyboardCheck);
+    setGameControl_cancel();
+    setGameControl_confirm();
+    setGameControl_itemOne();
+    setGameControl_itemTwo();
+    setGameControl_pause();
+    setGameControl_blockLeft();
+    setGameControl_blockRight();
+    setGameControl_moveUp();
+    setGameControl_moveLeft();
+    setGameControl_moveRight();
+    setGameControl_moveDown();
 }

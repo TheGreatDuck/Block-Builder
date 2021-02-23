@@ -1,12 +1,5 @@
 #include "blockAlchemy.hpp"
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 int scr_changeBlock(int blockType, int north, int west, int east, int south)
 {
     /* An ideal version of this would be a mathematical function.

@@ -11,35 +11,15 @@
 
 #define blockModelCapacity 100.0
 
-
-/** \brief
- *
- */
 blockGraph* blkGph;
-
-/** \brief
- *
- */
 vector* blockModelAsset[(int)numberOfBlocks_3D];
-
-/** \brief
- *
- */
 unsigned int numberOfBlockModelTriangles;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void blockGraph_initBlockModelAssets(const char* program_directory, const char* worldName)
+void blockGraph_initBlockModelAssets(const char* worldName)
 {
-    char fileName[strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\TileModels\\block.txt")];
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName) + strlen("\\TileModels\\block.txt"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char fileName[strlen("Worlds\\") + strlen(worldName) + strlen("\\TileModels\\block.txt")];
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName) + strlen("\\TileModels\\block.txt"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName);
     strcat(fileName,"\\TileModels\\block.txt");
     FILE* file = fopen(fileName, "r");
@@ -53,13 +33,6 @@ void blockGraph_initBlockModelAssets(const char* program_directory, const char* 
         fscanf(file, "%lf %lf %lf\n", &blockModelAsset[0][i].x, &blockModelAsset[0][i].y, &blockModelAsset[0][i].z);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void blockGraph_create3DModel()
 {
     blkGph->surfaceModel = d3d_model_create();
@@ -72,10 +45,10 @@ void blockGraph_create3DModel()
         vector p3 = blkGph->blockGraph[i].v[2];
         vector p4 = blkGph->blockGraph[i].v[3];
 
-        vector pn1 = blkGph->blockGraph[i].n[0];
+        /*vector pn1 = blkGph->blockGraph[i].n[0];
         vector pn2 = blkGph->blockGraph[i].n[1];
         vector pn3 = blkGph->blockGraph[i].n[2];
-        vector pn4 = blkGph->blockGraph[i].n[3];
+        vector pn4 = blkGph->blockGraph[i].n[3];*/
 
         double bt = blkGph->blockGraph[i].type;
 
@@ -105,6 +78,7 @@ void blockGraph_create3DModel()
         d3d_model_vertex_texture(blkGph->surfaceModel,p2.x,p2.y,p2.z,(bt+1)/numberOfBlocks_3D,0);
         d3d_model_vertex_texture(blkGph->surfaceModel,p4.x,p4.y,p4.z,(bt+1)/numberOfBlocks_3D,1);
 
+        #if 0
         for (unsigned int j = 0; j < numberOfBlockModelTriangles*3; j++)
         {
             vector v;
@@ -126,6 +100,7 @@ void blockGraph_create3DModel()
             v = v + z*(1/(n*blkGph->blockGraph[i].normal))*n;
             d3d_model_vertex_texture(blkGph->surfaceModel,v.x,v.y,v.z,0,0);
         }
+        #endif
 
         #if 0
             d3d_model_vertex_texture(&blkGph->surfaceModel[modelID],p1.x+pn1.x,p1.y+pn1.y,p1.z+pn1.z,0/numberOfBlocks_3D,0);
@@ -141,13 +116,6 @@ void blockGraph_create3DModel()
     d3d_model_primitive_end(blkGph->surfaceModel);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static int blockGraph_blockArithmetic(int blockID)
 {
     int s1 = blkGph->blockGraph[blockID].adj[0];
@@ -172,13 +140,6 @@ static int blockGraph_blockArithmetic(int blockID)
     return scr_changeBlock(blkGph->blockGraph[blockID].type,b1,b2,b3,b4);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void blockGraph_setUpBlockGraphList()
 {
     blkGph->blockUpdateListLength = 0;
@@ -208,13 +169,6 @@ void blockGraph_setUpBlockGraphList()
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void blockGraph_addToBlockUpdateList(int blockID)
 {
     if (blockID >= 0)
@@ -228,13 +182,6 @@ void blockGraph_addToBlockUpdateList(int blockID)
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static void blockGraph_addToTempBlockUpdateList(int blockID)
 {
     if (blockID >= 0)
@@ -248,13 +195,6 @@ static void blockGraph_addToTempBlockUpdateList(int blockID)
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void blockGraph_updateBlockGraphWithList()
 {
     unsigned int changed = 0;
@@ -295,18 +235,11 @@ void blockGraph_updateBlockGraphWithList()
     blkGph->blockUpdateListTempLength = 0;
     if (changed == 1)
     {
-        //d3d_model_destroy(blkGph->surfaceModel);
-        //blockGraph_create3DModel();
+        d3d_model_destroy(blkGph->surfaceModel);
+        blockGraph_create3DModel();
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static int blockGraph_getSideWithPoint(int blockID, vector v)
 {
     if (blockID == -1)
@@ -321,13 +254,6 @@ static int blockGraph_getSideWithPoint(int blockID, vector v)
     return -1;
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void blockGraph_loadFromFile(const char* fileName)
 {
     FILE* file = fopen(fileName, "r");
@@ -489,25 +415,30 @@ void blockGraph_loadFromFile(const char* fileName)
     fclose(file);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
+int blockGraph_addBlock(vector v0, vector v1, vector v2, vector v3)
+{
+    block3D* tempBlockGraph = (block3D*)malloc((blkGph->numberOfBlockModels+1)*sizeof(block3D));
+
+    memcpy(tempBlockGraph, blkGph->blockGraph, blkGph->numberOfBlockModels*sizeof(block3D));
+
+    tempBlockGraph[blkGph->numberOfBlockModels].v[0] = v0;
+    tempBlockGraph[blkGph->numberOfBlockModels].v[1] = v1;
+    tempBlockGraph[blkGph->numberOfBlockModels].v[2] = v2;
+    tempBlockGraph[blkGph->numberOfBlockModels].v[3] = v3;
+    tempBlockGraph[blkGph->numberOfBlockModels].type = 0;
+    blkGph->numberOfBlockModels++;
+
+    blkGph->blockGraph = tempBlockGraph;
+
+    blockGraph_create3DModel();
+    return blkGph->numberOfBlockModels-1;
+}
+
 void blockGraph_drawEvent()
 {
     d3d_model_draw(blkGph->surfaceModel,0,0,0,blkGph->tex_blockTexture);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void d3d_transform_add_block_matrix(int blockID, int sideFacing, int motion, int movingSide)
 {
     double a11 = blkGph->blockGraph[blockID].axisX[sideFacing].x;

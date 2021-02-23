@@ -15,13 +15,6 @@ extern int spr_selectBlock;
 extern entity* entityList;
 extern int entityID;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void camera_drawEvent()
 {
     d3d_set_projection_ortho(0,0,1280,1024,0);
@@ -54,13 +47,6 @@ void camera_drawEvent()
 
 vector cam_m[4];
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void cameraEditor_drawEvent()
 {
     d3d_set_projection_perspective(0,0,1280,1024,0);

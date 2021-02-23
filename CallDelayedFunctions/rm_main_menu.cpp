@@ -16,13 +16,6 @@ extern int spr_mapPlayer;
 
 unsigned int menu_position;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void mainMenuStep()
 {
     if (gameControl.control_moveUp.gameControlPress)
@@ -50,13 +43,6 @@ void mainMenuStep()
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void mainMenuDraw()
 {
     draw_text(100, 100, "World select");

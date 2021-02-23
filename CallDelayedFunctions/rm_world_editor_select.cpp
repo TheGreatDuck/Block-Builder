@@ -1,4 +1,5 @@
 #include "rm_world_editor_select.hpp"
+#include "rm_world_editor.hpp"
 #include "gameMakerLibrary.hpp"
 #include "controls.hpp"
 #include "worldMap.hpp"
@@ -19,13 +20,6 @@ extern unsigned int worldCount;
 extern char** worldName;
 extern char* program_directory;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void worldEditorSelectStep()
 {
     if (gameControl.control_moveUp.gameControlPress)
@@ -41,19 +35,9 @@ void worldEditorSelectStep()
     }
 
     if (gameControl.control_confirm.gameControlPress)
-    {
-        room = WORLD_EDITOR_ROOM;
-        load_world(program_directory, worldName[worldID]);
-    }
+        worldEditorEnter();
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void worldEditorSelectDraw()
 {
     for (unsigned int id = 0; id < worldCount; id++)

@@ -1,1 +1,0 @@
-d3d_model_draw(argument[0], argument[1], argument[2], argument[3], argument[4]);

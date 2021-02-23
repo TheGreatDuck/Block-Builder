@@ -1,0 +1,9 @@
+extern variableWrapper* keyboard_lastkey;
+extern variableWrapper* mouse_x;
+extern variableWrapper* mouse_y;
+extern variableWrapper* fa_left;
+extern variableWrapper* fa_center;
+extern variableWrapper* fa_right;
+extern variableWrapper* fa_top;
+extern variableWrapper* fa_middle;
+extern variableWrapper* fa_bottom;

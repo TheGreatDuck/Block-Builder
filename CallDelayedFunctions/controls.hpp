@@ -2,92 +2,25 @@
 #define CONTROLS_H
 typedef struct control
 {
-    /** \brief
-     *
-     */
     unsigned int gameControl;
-
-    /** \brief
-     *
-     */
     unsigned int gameControlType;
-
-    /** \brief
-     *
-     */
     unsigned int gameControlControllerID;
-
-    /** \brief
-     *
-     */
     unsigned int gameControlPress;
-
-    /** \brief
-     *
-     */
     unsigned int gameControlPressed;
-
-    /** \brief
-     *
-     */
-    int keyboardCheck;
 } control;
 
 typedef struct controlSet
 {
-    /** \brief
-     *
-     */
     control control_cancel;
-
-    /** \brief
-     *
-     */
     control control_confirm;
-
-    /** \brief
-     *
-     */
     control control_itemTwo;
-
-    /** \brief
-     *
-     */
     control control_itemOne;
-
-    /** \brief
-     *
-     */
     control control_pause;
-
-    /** \brief
-     *
-     */
     control control_blockRight;
-
-    /** \brief
-     *
-     */
     control control_blockLeft;
-
-    /** \brief
-     *
-     */
     control control_moveLeft;
-
-    /** \brief
-     *
-     */
     control control_moveDown;
-
-    /** \brief
-     *
-     */
     control control_moveRight;
-
-    /** \brief
-     *
-     */
     control control_moveUp;
 } controlSet;
 
@@ -113,105 +46,5 @@ typedef struct controlSet
 extern controlSet gameControl;
 
 void initGameControl();
-void updateGameControlBeginStep();
-void updateGameControlStep();
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_cancel(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_confirm(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_itemTwo(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_itemOne(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_pause(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_blockRight(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_blockLeft(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_moveLeft(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_moveDown(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_moveRight(double pressed);
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-double setGameControl_moveUp(double pressed);
+void updateGameControl();
 #endif

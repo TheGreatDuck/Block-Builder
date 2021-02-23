@@ -14,7 +14,6 @@
       <appliesTo>.self</appliesTo>
       <arguments>
         <argument kind="STRING">scr_initDelayedCallingDLL();
-external_call(global.init_dll_function_call_loop);
 scr_call_DLL_function(global.gameLoopInit, 1, program_directory);
 draw_set_color(c_white);
 </argument>

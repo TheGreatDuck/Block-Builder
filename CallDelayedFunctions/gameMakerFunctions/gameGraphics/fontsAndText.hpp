@@ -1,51 +1,19 @@
-#ifdef DEFINE_WRAPPERS
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-ADD_FUNCTION(draw_text)
-#endif
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-void draw_text(int x, int y, const char* text_string);
-#ifdef DEFINE_WRAPPERS
-void draw_text(int x, int y, const char* text_string)
-{
-    addDelayedFunctionCall(FP_draw_text, 0, x, y, text_string);
-}
-#endif
-
-/*draw_set_font(font)
-draw_set_halign(halign)
-
-        fa_left
-        fa_center
-        fa_right
-
-draw_set_valign(valign)
-
-        fa_top
-        fa_middle
-        fa_bottom*/
-
-//draw_text_ext(int x, int y, char* string, int sep, int w)
-//string_width(char* string)
-//string_height(char* string)
-//string_width_ext(char* string, int sep, int w)
-//string_height_ext(char* string, int sep, int w)
-
-/*draw_text_transformed(int x, int y, char* string, int xscale, int yscale, int angle)
-draw_text_ext_transformed(x,y,string,sep,w,xscale,yscale,angle)
-draw_text_color(x,y,string,c1,c2,c3,c4,alpha)
-draw_text_ext_color(x,y,string,sep,w,c1,c2,c3,c4,alpha)
-draw_text_transformed_color(x,y,string,xscale,yscale,angle,c1,c2,c3,c4,alpha)
-draw_text_ext_transformed_color(x,y,string,sep,w,xscale,yscale,angle,c1,c2,c3,c4, double alpha)*/
+void draw_set_font(double font);
+void draw_set_halign(double halign);
+void draw_set_valign(double valign);
+void draw_text(double x, double y, const char* string);
+void draw_text_ext(double x, double y, const char* string, double sep, double w);
+double string_width(const char* string);
+double string_height(const char* string);
+double string_width_ext(const char* string, double sep, double w);
+double string_height_ext(const char* string, double sep, double w);
+void draw_text_transformed(double x, double y, const char* string, double xscale, double yscale, double angle);
+void draw_text_ext_transformed(double x, double y, const char* string, double sep, double w, double xscale, double yscale, double angle);
+void draw_text_color(double x, double y, const char* string, double c1, double c2, double c3, double c4, double alpha);
+void draw_text_ext_color(double x, double y, const char* string, double sep, double w, double c1, double c2, double c3, double c4, double alpha);
+void draw_text_transformed_color(double x, double y, const char* string, double xscale, double yscale, double angle, double c1, double c2, double c3, double c4, double alpha);
+void draw_text_ext_transformed_color(double x, double y, const char* string, double sep, double w, double xscale, double yscale, double angle, double c1, double c2, double c3, double c4, double alpha);
+double sprite_get_texture(double spr, double subimg);
+double sprite_add(const char* fname, double imgnumb, double removeback, double smooth, double xorig, double yorig);
+void draw_sprite(double spr, double subimg, double x, double y);
+double show_message(const char* text_string);

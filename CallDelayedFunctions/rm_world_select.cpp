@@ -19,13 +19,6 @@ extern unsigned int worldCount;
 extern char** worldName;
 extern char* program_directory;
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void worldSelectStep()
 {
     if (gameControl.control_moveUp.gameControlPress)
@@ -43,17 +36,10 @@ void worldSelectStep()
     if (gameControl.control_confirm.gameControlPress)
     {
         room = WORLD_ROOM;
-        load_world(program_directory, worldName[worldID]);
+        load_world(worldName[worldID]);
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 void worldSelectDraw()
 {
     for (unsigned int id = 0; id < worldCount; id++)

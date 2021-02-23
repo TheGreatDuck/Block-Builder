@@ -18,7 +18,9 @@
 #include "hand_render.hpp"
 #include "rm_main_menu.hpp"
 #include "rm_world_select.hpp"
+#include "rm_world.hpp"
 #include "rm_world_editor_select.hpp"
+#include "rm_world_editor.hpp"
 #include "rm_configure_control.hpp"
 
 #define MAIN_MENU_ROOM 0
@@ -28,124 +30,32 @@
 #define WORLD_EDITOR_SELECT_ROOM 4
 #define WORLD_EDITOR_ROOM 5
 #define LEVEL_EDITOR_ROOM 6
-#define CONFIGURE_CONTROL 7
+#define LEVEL_EDITOR_GEO_ROOM 7
+#define CONFIGURE_CONTROL 8
 
-
-/** \brief
- *
- */
 int room;
-
-/** \brief
- *
- */
 int spr_selectBlock;
-
-/** \brief
- *
- */
 int spr_mapIcon;
-
-/** \brief
- *
- */
 int spr_mapPlayer;
-
-
-/** \brief
- *
- */
 int spr_mapWestMapPath;
-
-/** \brief
- *
- */
 int spr_mapEastMapPath;
-
-/** \brief
- *
- */
 int spr_mapNorthMapPath;
-
-/** \brief
- *
- */
 int spr_mapSouthMapPath;
-
-
-/** \brief
- *
- */
 int spr_mapLock;
-
-
-/** \brief
- *
- */
 entity* entityList;
-
-/** \brief
- *
- */
 entityType** entityTypeList;
-
-/** \brief
- *
- */
 unsigned int* entityTypeCount;
-
-/** \brief
- *
- */
 unsigned int entityCount;
-
-/** \brief
- *
- */
 int entityID;
-
-
-/** \brief
- *
- */
-char* program_directory;
-
-
-/** \brief
- *
- */
 unsigned int worldCount;
-
-/** \brief
- *
- */
 char** worldName;
-
-
-/** \brief
- *
- */
 unsigned int worldID;
 
-
-/** \brief
- *
- */
-unsigned int worldEditorMode;
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-static void load_entityList(const char* levelLoading)
+void load_entityList(const char* levelLoading)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[worldID]) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[worldID]) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName[worldID]) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName[worldID]) + strlen("\\Level ") + strlen(levelLoading) + strlen("\\entityList.el"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName[worldID]);
     strcat(fileName,"\\Level ");
     strcat(fileName,levelLoading);
@@ -168,19 +78,11 @@ static void load_entityList(const char* levelLoading)
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static void load_entityType(const char* typeName, unsigned int entityTypeID, unsigned int loadedWorld)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\") + strlen(typeName) + strlen(".dll"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName[loadedWorld]);
     strcat(fileName,"\\EntityData\\");
     strcat(fileName,typeName);
@@ -232,26 +134,16 @@ static void load_entityType(const char* typeName, unsigned int entityTypeID, uns
     instantiate_entity_DLL(&ecd);
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static void load_entityTypeList(unsigned int loadedWorld)
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\entityTypeList.etl"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\entityTypeList.etl"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\");
+    char* fileName = (char*)alloca((strlen("Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\entityTypeList.etl"))*sizeof(char));
+    memset(fileName, 0, strlen("Worlds\\") + strlen(worldName[loadedWorld]) + strlen("\\EntityData\\entityTypeList.etl"));
+    strcat(fileName,"Worlds\\");
     strcat(fileName,worldName[loadedWorld]);
     strcat(fileName,"\\EntityData\\entityTypeList.etl");
     FILE* file = fopen(fileName, "r");
 
-    free(entityTypeList);
-
-    fscanf(file, "%u\n", &entityTypeCount[loadedWorld]);
+    fscanf(file, "%u\n", &(entityTypeCount[loadedWorld]));
 
     entityTypeList[loadedWorld] = (entityType*)malloc(sizeof(entityType)*entityTypeCount[loadedWorld]);
 
@@ -264,20 +156,9 @@ static void load_entityTypeList(unsigned int loadedWorld)
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 static void load_worldName()
 {
-    char* fileName = (char*)alloca((strlen(program_directory) + strlen("\\Worlds\\worldName.txt"))*sizeof(char));
-    memset(fileName, 0, strlen(program_directory) + strlen("\\Worlds\\worldName.txt"));
-    strcat(fileName,program_directory);
-    strcat(fileName,"\\Worlds\\worldName.txt");
-    FILE* file = fopen(fileName, "r");
+    FILE* file = fopen("Worlds\\worldName.txt", "r");
 
     if (worldName)
     {
@@ -300,28 +181,9 @@ static void load_worldName()
     }
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-GMEXPORT double get_gameLoopInit()
-{
-    return (double)(int)gameLoopInit;
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 GMEXPORT double gameLoopInit(char* external_program_directory)
 {
-    #ifdef EDITOR_DLL
+    //#ifdef EDITOR_DLL
     cam_m[3].x = 0;
     cam_m[3].y = 0;
     cam_m[3].z = 100;
@@ -337,15 +199,13 @@ GMEXPORT double gameLoopInit(char* external_program_directory)
     cam_m[0].x = -1;
     cam_m[0].y =  0;
     cam_m[0].z =  0;
-    #endif
+    //#endif
 
-    program_directory = (char*)malloc(strlen(external_program_directory)*sizeof(char));
-    strcpy(program_directory,external_program_directory);
     load_worldName();
 
     for (unsigned int id = 0; id < worldCount; id++)
     {
-        blockGraph_initBlockModelAssets(program_directory, worldName[id]);
+        blockGraph_initBlockModelAssets(worldName[id]);
     }
 
     spr_selectBlock = sprite_add("selectBlock.png", numberOfBlocks_3D, 0, 0, 0, 0);
@@ -370,55 +230,18 @@ GMEXPORT double gameLoopInit(char* external_program_directory)
     return 1.0;
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-GMEXPORT double get_gameLoopBeginStep()
-{
-    return (double)(int)gameLoopBeginStep;
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 GMEXPORT double gameLoopBeginStep()
 {
-    updateGameControlBeginStep();
-    if (room == CONFIGURE_CONTROL)
-        configureControlBeginStep();
     return 1.0;
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-GMEXPORT double get_gameLoopStep()
-{
-    return (double)(int)gameLoopStep;
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 GMEXPORT double gameLoopStep()
 {
-    updateGameControlStep();
+    if (room == CONFIGURE_CONTROL)
+        configureControlBeginStep();
+
+    updateGameControl();
+
     if (room == MAIN_MENU_ROOM)
         mainMenuStep();
     else if (room == WORLD_SELECT_ROOM)
@@ -426,107 +249,14 @@ GMEXPORT double gameLoopStep()
     else if (room == WORLD_EDITOR_SELECT_ROOM)
         worldEditorSelectStep();
     else if (room == WORLD_ROOM)
-    {
-        if (gameControl.control_moveUp.gameControlPress)
-        {
-            if (map_player_y >= 1)
-            {
-                if (map_collision[map_width*(map_player_y-1) + map_player_x] == 0)
-                    map_player_y--;
-            }
-        }
-
-        if (gameControl.control_moveRight.gameControlPress)
-        {
-            if (map_player_x + 1 < map_width)
-            {
-                if (map_collision[map_width*map_player_y + (map_player_x+1)] == 0)
-                    map_player_x++;
-            }
-        }
-
-        if (gameControl.control_moveDown.gameControlPress)
-        {
-            if (map_player_y + 1 < map_height)
-            {
-                if (map_collision[map_width*(map_player_y+1) + map_player_x] == 0)
-                    map_player_y++;
-            }
-        }
-
-        if (gameControl.control_moveLeft.gameControlPress)
-        {
-            if (map_player_x >= 1)
-            {
-                if (map_collision[map_width*map_player_y + (map_player_x-1)] == 0)
-                    map_player_x--;
-            }
-        }
-
-        if (gameControl.control_confirm.gameControlPress)
-        {
-            for (unsigned int levelID = 0; levelID < numberOfLevels; levelID++)
-            {
-                if (map_levels[levelID].xPos == map_player_x && map_levels[levelID].yPos == map_player_y)
-                {
-                    room = LEVEL_ROOM;
-
-                    char levelNumber[2];
-                    levelNumber[0] = map_levels[levelID].level+'0';
-                    levelNumber[1] = 0;
-
-                    load_level(program_directory, worldName[worldID], levelNumber);
-
-                    blkGph->spr_blockTexture = sprite_add("block.png", 1, 0, 0, 0, 0);
-                    blkGph->tex_blockTexture = sprite_get_texture(blkGph->spr_blockTexture,0);
-
-                    d3d_start();
-                    d3d_set_fog(1,0,600,1000);
-                    #if 0
-                    draw_set_color(c_white);
-                    texture_set_interpolation(0);
-                    d3d_set_culling(true);
-                    #endif
-                    d3d_set_lighting(0);
-
-                    load_entityList(levelNumber);
-                    entityList[entityID].turnActive = 1;
-                }
-            }
-        }
-    } else if (room == WORLD_EDITOR_ROOM)
-    {
-        if (gameControl.control_moveUp.gameControlPress && map_player_y >= 1)
-            map_player_y--;
-        if (gameControl.control_moveRight.gameControlPress && map_player_x + 1 < map_width)
-            map_player_x++;
-        if (gameControl.control_moveDown.gameControlPress && map_player_y + 1 < map_height)
-            map_player_y++;
-        if (gameControl.control_moveLeft.gameControlPress && map_player_x >= 1)
-            map_player_x--;
-
-        if (gameControl.control_confirm.gameControlPress)
-        {
-            if (worldEditorMode == 0)
-                map_icons[map_width*map_player_y + map_player_x] = (map_icons[map_width*map_player_y + map_player_x]+1) % 7;
-            if (worldEditorMode == 1)
-                map_collision[map_width*map_player_y + map_player_x] = (map_collision[map_width*map_player_y + map_player_x]+1) % 2;
-            if (worldEditorMode == 2)
-                map_path[map_width*map_player_y + map_player_x] = (map_path[map_width*map_player_y + map_player_x]+1) % 16;
-        }
-
-        if (gameControl.control_blockLeft.gameControlPress)
-            worldEditorMode = (worldEditorMode+1) % 3;
-        if (gameControl.control_blockRight.gameControlPress)
-            worldEditorMode = (worldEditorMode+1) % 3;
-        if (gameControl.control_cancel.gameControlPress)
-            save_world(program_directory, worldName[worldID]);
-    } else if (room == LEVEL_ROOM)
+        worldStep();
+    else if (room == WORLD_EDITOR_ROOM)
+        worldEditorStep();
+    else if (room == LEVEL_ROOM)
     {
         if (entityList[entityID].turnActive == 1)
-        {
             entityTypeList[worldID][entityList[entityID].typeID].stepEvent(&entityList[entityID], gameControl);
-        } else
+        else
         {
             entityID++;
             if (entityID == entityCount)
@@ -546,39 +276,106 @@ GMEXPORT double gameLoopStep()
             cam_m[3].y += 1;
         if (gameControl.control_moveLeft.gameControlPressed)
             cam_m[3].x -= 1;
-
         if (gameControl.control_blockRight.gameControlPressed)
+            cam_m[3].z -= 1;
+        if (gameControl.control_blockLeft.gameControlPressed)
+            cam_m[3].z += 1;
+
+        render();
+
+        int x = *mouse_x;
+        int y = *mouse_y;
+
+        if (mouse_check_button_pressed(1))
         {
-            //cam_m[3].z -= 1;
-            entityID += 9;
-            entityID = entityID % 10;
+            if (y < 512 && x < 640 && y >= 0 && x >= 0)
+            {
+                if (renderedBlockGraph_ID[y*640 + x] != -1)
+                    entityID = blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID;
+                else
+                    entityID = -1;
+            } else
+                entityID = -1;
         }
 
-        if (gameControl.control_blockLeft.gameControlPressed)
+        if (mouse_check_button(1) && entityID != -1)
         {
-            //cam_m[3].z += 1;
-            entityID++;
-            entityID = entityID % 10;
+            if (y < 512 && x < 640 && y >= 0 && x >= 0)
+            {
+                if (renderedBlockGraph_ID[y*640 + x] != -1)
+                {
+                    if (blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID == -1)
+                    {
+                        blkGph->blockGraph[entityList[entityID].currentSpace].entityID = -1;
+                        blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID  = entityID;
+                        entityList[entityID].currentSpace = renderedBlockGraph_ID[y*640 + x];
+                    }
+                }
+            }
+        }
+
+        if (mouse_check_button_released(1))
+            entityID = -1;
+    } else if (room == LEVEL_EDITOR_GEO_ROOM)
+    {
+        if (entityID == -1)
+        {
+            if (gameControl.control_moveUp.gameControlPressed)
+                cam_m[3].y -= 1;
+            if (gameControl.control_moveRight.gameControlPressed)
+                cam_m[3].x += 1;
+            if (gameControl.control_moveDown.gameControlPressed)
+                cam_m[3].y += 1;
+            if (gameControl.control_moveLeft.gameControlPressed)
+                cam_m[3].x -= 1;
+            if (gameControl.control_blockRight.gameControlPressed)
+                cam_m[3].z -= 1;
+            if (gameControl.control_blockLeft.gameControlPressed)
+                cam_m[3].z += 1;
+        } else
+        {
+            block3D block = blkGph->blockGraph[entityID];
+            if (gameControl.control_moveUp.gameControlPressed)
+                entityID = blockGraph_addBlock(block.v[0]+(block.v[1] - block.v[0]),
+                                               block.v[1]+(block.v[1] - block.v[0]),
+                                               block.v[2]+(block.v[1] - block.v[0]),
+                                               block.v[3]+(block.v[1] - block.v[0]));
+            if (gameControl.control_moveRight.gameControlPressed)
+                entityID = blockGraph_addBlock(block.v[0]+(block.v[0] - block.v[2]),
+                                               block.v[1]+(block.v[0] - block.v[2]),
+                                               block.v[2]+(block.v[0] - block.v[2]),
+                                               block.v[3]+(block.v[0] - block.v[2]));
+            if (gameControl.control_moveDown.gameControlPressed)
+                entityID = blockGraph_addBlock(block.v[0]+(block.v[0] - block.v[1]),
+                                               block.v[1]+(block.v[0] - block.v[1]),
+                                               block.v[2]+(block.v[0] - block.v[1]),
+                                               block.v[3]+(block.v[0] - block.v[1]));
+            if (gameControl.control_moveLeft.gameControlPressed)
+                entityID = blockGraph_addBlock(block.v[0]+(block.v[2] - block.v[0]),
+                                               block.v[1]+(block.v[2] - block.v[0]),
+                                               block.v[2]+(block.v[2] - block.v[0]),
+                                               block.v[3]+(block.v[2] - block.v[0]));
         }
 
         render();
 
-        // TEMP FIX ONLY!!!!!!!!!!!!!!!!
-        double double_x = 0;
-        double double_y = 0;
+        int x = *mouse_x;
+        int y = *mouse_y;
 
-        int x = double_x;
-        int y = double_y;
-
-        if (y < 512 && x < 640 && y >= 0 && x >= 0)
+        if (mouse_check_button_pressed(1))
         {
-            if (renderedBlockGraph_ID[y*640 + x] != -1)
+            if (y < 512 && x < 640 && y >= 0 && x >= 0)
+                entityID = renderedBlockGraph_ID[y*640 + x];
+        }
+
+        if (mouse_check_button_pressed(2))
+        {
+            if (y < 512 && x < 640 && y >= 0 && x >= 0)
             {
-                if (blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID == entityID || blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID == -1)
+                if (renderedBlockGraph_ID[y*640 + x] != -1)
                 {
-                    blkGph->blockGraph[entityList[entityID].currentSpace].entityID = -1;
-                    blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].entityID  = entityID;
-                    entityList[entityID].currentSpace = renderedBlockGraph_ID[y*640 + x];
+                    blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].type = (blkGph->blockGraph[renderedBlockGraph_ID[y*640 + x]].type+1) % (int)numberOfBlocks_3D;
+                    blockGraph_create3DModel();
                 }
             }
         }
@@ -588,25 +385,6 @@ GMEXPORT double gameLoopStep()
     return 1.0;
 }
 
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
-GMEXPORT double get_gameLoopDraw()
-{
-    return (double)(int)gameLoopDraw;
-}
-
-/** \brief
- *
- * \param
- * \param
- * \return
- *
- */
 GMEXPORT double gameLoopDraw()
 {
     if (room == MAIN_MENU_ROOM)
@@ -616,91 +394,19 @@ GMEXPORT double gameLoopDraw()
     else if (room == WORLD_EDITOR_SELECT_ROOM)
         worldEditorSelectDraw();
     else if (room == WORLD_ROOM)
-    {
-        unsigned int x_min = 0;
-        unsigned int y_min = 0;
-        if (map_player_x >= 10)
-            x_min = map_player_x - 10;
-        if (map_player_y >= 10)
-            y_min = map_player_y - 10;
-        unsigned int x_max = x_min+20;
-        unsigned int y_max = y_min+20;
-
-        for (unsigned int i = y_min; i < y_max; i++)
-        {
-            for (unsigned int j = x_min; j < x_max; j++)
-            {
-                draw_sprite(spr_mapIcon,map_icons[map_width*i + j],32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 0))
-                    draw_sprite(spr_mapWestMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 1))
-                    draw_sprite(spr_mapEastMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 2))
-                    draw_sprite(spr_mapNorthMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 3))
-                    draw_sprite(spr_mapSouthMapPath,0,32*(j-x_min),32*(i-y_min));
-            }
-        }
-
-        for (unsigned int i = 0; i < numberOfLocks; i++)
-        {
-            if (!(map_locks[i].side & map_levelCompletion[map_locks[i].level]))
-                draw_sprite(spr_mapLock,0,32*(map_locks[i].xPos-x_min),32*(map_locks[i].yPos-y_min));
-        }
-
-        for (unsigned int i = 0; i < numberOfLevels; i++)
-            draw_sprite(spr_mapPlayer,0,32*(map_levels[i].xPos-x_min),32*(map_levels[i].yPos-y_min));
-
-        draw_sprite(spr_mapPlayer,0,32*(map_player_x-x_min),32*(map_player_y-y_min));
-    } else if (room == WORLD_EDITOR_ROOM)
-    {
-        unsigned int x_min = 0;
-        unsigned int y_min = 0;
-        if (map_player_x >= 10)
-            x_min = map_player_x - 10;
-        if (map_player_y >= 10)
-            y_min = map_player_y - 10;
-        unsigned int x_max = x_min+20;
-        unsigned int y_max = y_min+20;
-
-        for (unsigned int i = y_min; i < y_max; i++)
-        {
-            for (unsigned int j = x_min; j < x_max; j++)
-            {
-                if (worldEditorMode == 0)
-                    draw_sprite(spr_mapIcon,map_icons[map_width*i + j],32*(j-x_min),32*(i-y_min));
-                if (worldEditorMode == 1)
-                    draw_sprite(spr_mapIcon,map_collision[map_width*i + j],32*(j-x_min),32*(i-y_min));
-                if (worldEditorMode == 2)
-                    draw_sprite(spr_mapIcon,map_icons[map_width*i + j],32*(j-x_min),32*(i-y_min));
-
-                if (map_path[map_width*i + j] & (1 << 0))
-                    draw_sprite(spr_mapWestMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 1))
-                    draw_sprite(spr_mapEastMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 2))
-                    draw_sprite(spr_mapNorthMapPath,0,32*(j-x_min),32*(i-y_min));
-                if (map_path[map_width*i + j] & (1 << 3))
-                    draw_sprite(spr_mapSouthMapPath,0,32*(j-x_min),32*(i-y_min));
-            }
-        }
-
-        for (unsigned int i = 0; i < numberOfLocks; i++)
-        {
-            if (!(map_locks[i].side & map_levelCompletion[map_locks[i].level]))
-                draw_sprite(spr_mapLock,0,32*(map_locks[i].xPos-x_min),32*(map_locks[i].yPos-y_min));
-        }
-
-        for (unsigned int i = 0; i < numberOfLevels; i++)
-            draw_sprite(spr_mapPlayer,0,32*(map_levels[i].xPos-x_min),32*(map_levels[i].yPos-y_min));
-
-        draw_sprite(spr_mapPlayer,0,32*(map_player_x-x_min),32*(map_player_y-y_min));
-    } else if (room == LEVEL_ROOM)
+        worldDraw();
+    else if (room == WORLD_EDITOR_ROOM)
+        worldEditorDraw();
+    else if (room == LEVEL_ROOM)
     {
         camera_drawEvent();
         blockGraph_drawEvent();
         for (unsigned int i = 0; i < entityCount; i++)
             entityTypeList[worldID][entityList[i].typeID].drawEvent(&entityList[i]);
+    } else if (room == LEVEL_EDITOR_GEO_ROOM)
+    {
+        cameraEditor_drawEvent();
+        blockGraph_drawEvent();
     } else if (room == LEVEL_EDITOR_ROOM)
     {
         cameraEditor_drawEvent();
